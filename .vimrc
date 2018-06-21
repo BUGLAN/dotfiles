@@ -18,7 +18,14 @@ Plug 'Chiel92/vim-autoformat'
 
 call plug#end()
 "插件末尾
-
+" 当光标一段时间保持不动了，就禁用高亮
+autocmd cursorhold * set nohlsearch
+" 当输入查找命令时，再启用高亮
+noremap n :set hlsearch<cr>n
+noremap N :set hlsearch<cr>N
+noremap / :set hlsearch<cr>/
+noremap ? :set hlsearch<cr>?
+noremap * *:set hlsearch<cr>
 set nocompatible "去除vi 和vim 的一致性
 set nu! " 设置行号
 filetype on " 开启类型检查
@@ -47,7 +54,6 @@ let python_highlight_all=1 "make code 漂亮
 au BufRead,BufNewFile *.vue set filetype=html "vue高亮
 autocmd FileType python set colorcolumn=79
 set gcr=a:block-blinkon0 "禁止光标闪烁
-set hlsearch "高亮搜索结果
 hi Normal guibg=NONE ctermbg=NONE
 set cmdheight=1
 "set noswapfile "禁止生产交换文件
