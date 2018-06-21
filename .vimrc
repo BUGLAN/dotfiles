@@ -1,3 +1,24 @@
+call plug#begin('~/.vim/plugged')
+" 下面的我安装的插件
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Valloric/YouCompleteMe'
+Plug 'bling/vim-airline'
+Plug 'Yggdroot/indentLine'
+Plug 'jiangmiao/auto-pairs'
+Plug 'w0rp/ale' "异步的语法检查工具 比syntastic好多了
+Plug 'google/yapf' " python的格式化
+Plug 'ntpeters/vim-better-whitespace' "空白标红
+Plug 'dracula/vim'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'}
+Plug 'iamcco/markdown-preview.vim', {'for': 'markdown'}
+Plug 'lilydjwg/fcitx.vim'
+Plug 'Chiel92/vim-autoformat'
+
+call plug#end()
+"插件末尾
+
 set nocompatible "去除vi 和vim 的一致性
 set nu! " 设置行号
 filetype on " 开启类型检查
@@ -19,7 +40,6 @@ set t_md= "禁用粗体
 set t_Co=256 "开启256色
 set cursorline "高亮显示当前行
 "set cursorcolumn "高亮光标列
-"set textwidth=79 "pep8 79个字符
 set fileformat=unix "filetype
 set encoding=utf-8 "编码utf-8
 colorscheme space-vim-dark
@@ -28,35 +48,9 @@ au BufRead,BufNewFile *.vue set filetype=html "vue高亮
 autocmd FileType python set colorcolumn=79
 set gcr=a:block-blinkon0 "禁止光标闪烁
 set hlsearch "高亮搜索结果
-
-"set wrap
+hi Normal guibg=NONE ctermbg=NONE
+set cmdheight=1
 "set noswapfile "禁止生产交换文件
-
-"highlight CursorLine cterm=none ctermbg=236
-"highlight CursorColumn cterm=none ctermbg=236
-call plug#begin('~/.vim/plugged')
-" 下面的我安装的插件
-"Plugin 'VundleVim/Vundle.vim'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'Valloric/YouCompleteMe'
-Plug 'bling/vim-airline'
-Plug 'Yggdroot/indentLine'
-Plug 'jiangmiao/auto-pairs'
-Plug 'w0rp/ale' "异步的语法检查工具 比syntastic好多了
-Plug 'google/yapf' " python的格式化
-Plug 'ntpeters/vim-better-whitespace' "空白标红
-Plug 'dracula/vim'
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
-Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'}
-Plug 'iamcco/markdown-preview.vim', {'for': 'markdown'}
-Plug 'lilydjwg/fcitx.vim'
-Plug 'Chiel92/vim-autoformat'
-
-"" ADD YOUR PLUGIN
-call plug#end()
-"插件末尾
-
 
 "插件相关配置
 "---------------------------vim-autoformater---------------------------
@@ -81,8 +75,7 @@ let g:vim_markdown_conceal = 0 "禁用语法隐藏
 "------------------------------ale------------------------------------------
 let g:ale_linters = {'python': ['flake8'], 'reStructuredText': ['rstcheck']}
 let g:ale_fixers = {'python': ['remove_trailing_lines', 'trim_whitespace', 'autopep8']}
-"let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-k> <Plug>(ceale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 let g:ale_sign_error = '😠'
 let g:ale_sign_warning = '😡'
@@ -92,10 +85,6 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 let g:ale_cache_executable_check_failures = 1
 "------------------------------ale------------------------------------------
-
-"------------------------------rainbow--------------------------------------
-let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
-"------------------------------rainbow--------------------------------------
 
 "---------------yapf----------------------------------------------------
 autocmd FileType python nnoremap <F3> :0,$!yapf<Cr>
