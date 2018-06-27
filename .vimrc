@@ -18,14 +18,11 @@ Plug 'Chiel92/vim-autoformat'
 
 call plug#end()
 "插件末尾
-" 当光标一段时间保持不动了，就禁用高亮
-autocmd cursorhold * set nohlsearch
-" 当输入查找命令时，再启用高亮
-noremap n :set hlsearch<cr>n
-noremap N :set hlsearch<cr>N
-noremap / :set hlsearch<cr>/
-noremap ? :set hlsearch<cr>?
-noremap * *:set hlsearch<cr>
+nnoremap <SPACE> :
+let mapleader=","
+nmap <leader>w :w<CR>
+nmap <leader>q :q<CR>
+nmap <leader>wq :wq<CR>
 set nocompatible "去除vi 和vim 的一致性
 set nu! " 设置行号
 filetype on " 开启类型检查
