@@ -97,7 +97,9 @@ bindsym $mod+Right move right
 # bindsym $mod+a focus parent
 
 # wrappers
-exec --no-startup-id feh --bg-scale ~/wrappers/wrapper1.png
+# exec --no-startup-id feh --bg-scale ~/wrappers/wrapper1.png
+exec_always --no-startup-id nitrogen --restore
+
 
 # compton
 exec_always compton -f
@@ -158,6 +160,8 @@ floating_modifier $mod
 # float mode open
 for_window [class="Thunar"] floating enable resize set 800 600
 for_window [class="Blueberry.py"] floating enable
+for_window [class="Nitrogen"] floating enable
+# move position center
 
 bindsym $mod+z exec Thunar
 
