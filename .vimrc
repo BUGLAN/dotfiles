@@ -18,11 +18,17 @@ Plug 'Chiel92/vim-autoformat'
 
 call plug#end()
 "插件末尾
-nnoremap <SPACE> :
+" leader 键位映射
 let mapleader=","
-nmap <leader>w :w<CR>
-nmap <leader>q :q<CR>
-nmap <leader>wq :wq<CR>
+nnoremap <SPACE> :
+inoremap <leader>w <Esc>:w<cr>
+inoremap <leader>e =
+inoremap <leader>r -
+inoremap <leader>c :
+noremap <leader>w :w<cr>
+noremap <leader>q :q<cr>
+noremap <leader>e :wq<cr>
+" leader 键位映射 end
 set nocompatible "去除vi 和vim 的一致性
 set nu! " 设置行号
 filetype on " 开启类型检查
