@@ -22,12 +22,16 @@ call plug#end()
 let mapleader=","
 nnoremap <SPACE> :
 inoremap <leader>w <Esc>:w<cr>
-inoremap <leader>e =
-inoremap <leader>r -
-inoremap <leader>c :
 noremap <leader>w :w<cr>
 noremap <leader>q :q<cr>
 noremap <leader>e :wq<cr>
+inoremap <leader>e =
+inoremap <leader>r -
+inoremap <leader>c :
+inoremap <leader>b (
+inoremap <leader>s [
+inoremap <leader>t {
+inoremap <leader>m *
 " leader 键位映射 end
 set nocompatible "去除vi 和vim 的一致性
 set nu! " 设置行号
