@@ -2,7 +2,6 @@ call plug#begin('~/.vim/plugged')
 " 下面的我安装的插件
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Valloric/YouCompleteMe'
-Plug 'bling/vim-airline'
 Plug 'Yggdroot/indentLine'
 Plug 'jiangmiao/auto-pairs'
 Plug 'w0rp/ale' "异步的语法检查工具 比syntastic好多了
@@ -15,24 +14,50 @@ Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'}
 Plug 'iamcco/markdown-preview.vim', {'for': 'markdown'}
 Plug 'lilydjwg/fcitx.vim'
 Plug 'Chiel92/vim-autoformat'
+Plug 'airblade/vim-gitgutter'
+Plug 'SirVer/ultisnips'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 "插件末尾
-" leader 键位映射
+"--------------------------- leader 键位映射---------------------------
 let mapleader=","
+nnoremap <c-a> I
+nnoremap <c-e> A
 nnoremap <SPACE> :
-inoremap <leader>w <Esc>:w<cr>
 noremap <leader>w :w<cr>
-noremap <leader>q :q<cr>
+noremap <leader>q :q!<cr>
 noremap <leader>e :wq<cr>
+noremap <leader>c A:<cr>
+noremap <leader>n o
+
+inoremap <leader>w <Esc>:w<cr>
+inoremap <C-a> <esc>I
+inoremap <C-e> <esc>A
+inoremap <leader>q <Esc>:wq<cr>
 inoremap <leader>e =
-inoremap <leader>r -
-inoremap <leader>c :
-inoremap <leader>b (
-inoremap <leader>s [
-inoremap <leader>t {
-inoremap <leader>m *
-" leader 键位映射 end
+inoremap <leader>r <SPACE>-<SPACE>
+inoremap <leader>a <SPACE>+<SPACE>
+inoremap <leader>u _
+inoremap <leader>i ____<Esc>hi
+inoremap <leader>n <Esc>o
+inoremap <leader>c <Esc>A:<cr>
+inoremap <leader>b ()<Esc>i
+inoremap <leader>s []<Esc>i
+inoremap <leader>t {}<Esc>i
+inoremap <leader>m <SPACE>*<SPACE>
+inoremap <leader>d <SPACE>-><SPACE>
+inoremap <leader>f "<Esc>bi"<Esc>eei
+inoremap <leader>p print()<Esc>i
+inoremap <leader>j <Esc>f)i
+"--------------------------- leader 键位映射 end---------------------------
+"------------------------输入快捷方式-------------------------------------
+iabbrev hw Hello World
+iabbrev im import
+iabbrev fm from
+
+
+"------------------------输入快捷方式-------------------------------------
 set nocompatible "去除vi 和vim 的一致性
 set nu! " 设置行号
 filetype on " 开启类型检查
@@ -62,10 +87,14 @@ au BufRead,BufNewFile *.vue set filetype=html "vue高亮
 autocmd FileType python set colorcolumn=79
 set gcr=a:block-blinkon0 "禁止光标闪烁
 hi Normal guibg=NONE ctermbg=NONE
+hi lineNr guibg=NONE ctermbg=NONE
 set cmdheight=1
 "set noswapfile "禁止生产交换文件
 
 "插件相关配置
+"-----------------------vim-gitgutter--------------------------------
+let g:gitgutter_map_keys = 0 "关闭所有键位映射
+"-----------------------vim-gitgutter--------------------------------
 "---------------------------vim-autoformater---------------------------
 let g:formatdef_harttle = '"astyle --style=attach --pad-oper"'
 let g:formatters_cpp = ['harttle']
@@ -109,24 +138,32 @@ autocmd FileType python nnoremap <F3> :0,$!yapf<Cr>
 "vim-airline
 
 "这个是安装字体后 必须设置此项"
-let g:airline_powerline_fonts = 1
-
- "打开tabline功能,方便查看Buffer和切换,省去了minibufexpl插件
- let g:airline#extensions#tabline#enabled = 1
- let g:airline#extensions#tabline#buffer_nr_show = 1
-
-"设置切换Buffer快捷键"
- nnoremap <C-tab> :bn<CR>
- nnoremap <C-s-tab> :bp<CR>
- " 关闭状态显示空白符号计数
- let g:airline#extensions#whitespace#enabled = 0
- let g:airline#extensions#whitespace#symbol = '!'
- " 设置consolas字体"前面已经设置过
- "set guifont=Consolas\ for\ Powerline\ FixedD:h11
-  if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
+"let g:airline_powerline_fonts = 1
+"
+" "打开tabline功能,方便查看Buffer和切换,省去了minibufexpl插件
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#buffer_nr_show = 1
+"
+""设置切换Buffer快捷键"
+" nnoremap <c-n> :bn<CR>
+" nnoremap <c-p> :bp<CR>
+" " 关闭状态显示空白符号计数
+" let g:airline#extensions#whitespace#enabled = 0
+" let g:airline#extensions#whitespace#symbol = '!'
+"if !exists('g:airline_symbols')
+"let g:airline_symbols = {}
+"endif
+"let g:airline_left_sep = '▶'
+"let g:airline_left_alt_sep = '❯'
+"let g:airline_right_sep = '◀'
+"let g:airline_right_alt_sep = '❮'
+"let g:airline_symbols.linenr = '¶'
+"let g:airline_symbols.branch = '⎇'
+"let g:airline#extensions#tabline#enabled = 1
+"
+"stautline
+"let g:airline_powerline_fonts = 1
+set laststatus=2
 "------------------------------air-line--------------------------------------
 
 
@@ -230,3 +267,11 @@ augroup relative_numbser
     autocmd InsertLeave * :set relativenumber
 augroup END
 " -----------------normal 使用相对行号 insert 使用绝对行号-------------------
+" --------------------------ultisnips--------------------------------------------
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
+
+" --------------------------ultisnips--------------------------------------------
