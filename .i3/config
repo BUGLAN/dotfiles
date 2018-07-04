@@ -62,7 +62,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 #bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec terminator
 bindsym $mod+Shift+q kill
-bindsym $mod+q kill
+# bindsym $mod+q kill easy to touch
 bindsym $mod+c exec google-chrome-stable
 
 # - & |
@@ -97,13 +97,17 @@ bindsym $mod+Right move right
 # bindsym $mod+a focus parent
 
 # wrappers
-exec --no-startup-id feh --bg-scale ~/wrappers/wrapper1.png
+# exec --no-startup-id feh --bg-scale ~/wrappers/wrapper1.png
+exec_always --no-startup-id nitrogen --restore
+
 
 # compton
 exec_always compton -f
 
 # fcitx
 exec --no-startup-id LANG="zh_CN.UTF-8" fcitx
+
+# voice control
 
 
 # bar
@@ -158,6 +162,10 @@ floating_modifier $mod
 # float mode open
 for_window [class="Thunar"] floating enable resize set 800 600
 for_window [class="Blueberry.py"] floating enable
+for_window [class="Nitrogen"] floating enable
+for_window [class="Lxappearance"] floating enable
+for_window [class="Gnome-screenshot"] floating enable
+# move position center
 
 bindsym $mod+z exec Thunar
 
@@ -166,4 +174,6 @@ bindsym $mod+z exec Thunar
 bindsym $mod+m move scratchpad
 bindsym $mod+a scratchpad show
 
+# screenshot
+bindsym $mod+p exec gnome-screenshot --interactive
 

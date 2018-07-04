@@ -7,12 +7,11 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'w0rp/ale' "异步的语法检查工具 比syntastic好多了
 Plug 'google/yapf' " python的格式化
 Plug 'ntpeters/vim-better-whitespace' "空白标红
-Plug 'dracula/vim'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'}
 Plug 'iamcco/markdown-preview.vim', {'for': 'markdown'}
-Plug 'lilydjwg/fcitx.vim'
+Plug 'lilydjwg/fcitx.vim', {'for': 'markdown'}
 Plug 'Chiel92/vim-autoformat'
 Plug 'airblade/vim-gitgutter'
 Plug 'SirVer/ultisnips'
@@ -22,9 +21,9 @@ call plug#end()
 "插件末尾
 "--------------------------- leader 键位映射---------------------------
 let mapleader=","
-nnoremap <c-a> I
-nnoremap <c-e> A
-nnoremap <SPACE> :
+noremap <c-a> I
+noremap <c-e> A
+noremap <SPACE> :
 noremap <leader>w :w<cr>
 noremap <leader>q :q!<cr>
 noremap <leader>e :wq<cr>
@@ -36,8 +35,8 @@ inoremap <C-a> <esc>I
 inoremap <C-e> <esc>A
 inoremap <leader>q <Esc>:wq<cr>
 inoremap <leader>e =
-inoremap <leader>r <SPACE>-<SPACE>
-inoremap <leader>a <SPACE>+<SPACE>
+inoremap <leader>r -
+inoremap <leader>a +
 inoremap <leader>u _
 inoremap <leader>i ____<Esc>hi
 inoremap <leader>n <Esc>o
@@ -45,16 +44,22 @@ inoremap <leader>c <Esc>A:<cr>
 inoremap <leader>b ()<Esc>i
 inoremap <leader>s []<Esc>i
 inoremap <leader>t {}<Esc>i
-inoremap <leader>m <SPACE>*<SPACE>
+inoremap <leader>m *
 inoremap <leader>d <SPACE>-><SPACE>
 inoremap <leader>f "<Esc>bi"<Esc>eei
-inoremap <leader>p print()<Esc>i
+inoremap <leader>v print()<Esc>i
 inoremap <leader>j <Esc>f)i
 "--------------------------- leader 键位映射 end---------------------------
+"--------------------------vim tables----------------------------------
+noremap gu :tabp<CR>
+
+
+"--------------------------vim tables----------------------------------
 "------------------------输入快捷方式-------------------------------------
 iabbrev hw Hello World
 iabbrev im import
 iabbrev fm from
+cabbrev tn tabnew
 
 
 "------------------------输入快捷方式-------------------------------------
@@ -81,16 +86,20 @@ set cursorline "高亮显示当前行
 "set cursorcolumn "高亮光标列
 set fileformat=unix "filetype
 set encoding=utf-8 "编码utf-8
-colorscheme space-vim-dark
 let python_highlight_all=1 "make code 漂亮
-au BufRead,BufNewFile *.vue set filetype=html "vue高亮
 autocmd FileType python set colorcolumn=79
 set gcr=a:block-blinkon0 "禁止光标闪烁
-hi Normal guibg=NONE ctermbg=NONE
-hi lineNr guibg=NONE ctermbg=NONE
 set cmdheight=1
 "set noswapfile "禁止生产交换文件
-
+"-----------------------vim color setting---------------------------------
+colorscheme space-vim-dark
+hi lineNr guibg=NONE ctermbg=NONE
+hi Normal guibg=NONE ctermbg=NONE
+hi Pmenu guifg=#abb2bf ctermfg=249 guibg=#282c34 ctermbg=236
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ }
+"-----------------------vim color setting---------------------------------
 "插件相关配置
 "-----------------------vim-gitgutter--------------------------------
 let g:gitgutter_map_keys = 0 "关闭所有键位映射
@@ -99,17 +108,19 @@ let g:gitgutter_map_keys = 0 "关闭所有键位映射
 let g:formatdef_harttle = '"astyle --style=attach --pad-oper"'
 let g:formatters_cpp = ['harttle']
 let g:formatter_yapf_style = 'google'
-noremap <F1> :Autoformat<CR>
+noremap <leader>z :Autoformat<CR>
 "---------------------------vim-autoformater---------------------------
 
 
 
-"--------------------------vim-instant-markdown--------------------------
+"--------------------------vim-markdown--------------------------
 let g:instant_markdown_autostart = 0 "关闭chrome自动打开
 "使用 :InstantMarkdionPreview 打开chrome预览
 " ---------------------------vim-markdown----------------------------------
 let g:vim_markdown_folding_disabled = 1 "禁用折叠
 let g:vim_markdown_conceal = 0 "禁用语法隐藏
+let g:vim_markdown_no_default_key_mappings = 1
+
 " ---------------------------vim-markdown----------------------------------
 
 
@@ -176,7 +187,7 @@ let g:ycm_seed_identifiers_with_syntax=1 "语言关键字补全, 不过python关
 set completeopt=longest,menu	"让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif	"离开插入模式后自动关闭预览窗口
 " 跳转到定义处
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>j :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <F6> :YcmForceCompileAndDiagnostics<CR>	"force recomile with syntastic
 " nnoremap <leader>lo :lopen<CR>	"open locationlist
 " nnoremap <leader>lc :lclose<CR>	"close locationlist
@@ -185,8 +196,6 @@ let g:ycm_cache_omnifunc=0
 "在注释输入中也能补全
 let g:ycm_complete_in_comments = 1
 "在字符串输入中也能补全
-map <C-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>
-" 跳转
 let g:ycm_show_diagnostics_ui = 0 "close syntax checked
 ""---------------------------YouCompleteMe-----------------------------------------------
 
