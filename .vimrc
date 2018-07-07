@@ -16,11 +16,17 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'airblade/vim-gitgutter'
 Plug 'SirVer/ultisnips'
 Plug 'itchyny/lightline.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'fisadev/vim-isort'
+Plug 'majutsushi/tagbar'
+
 
 call plug#end()
 "插件末尾
 "--------------------------- leader 键位映射---------------------------
 let mapleader=","
+map! <c-l> <right>
+
 noremap <c-a> I
 noremap <c-e> A
 noremap <SPACE> :
@@ -41,17 +47,22 @@ inoremap <leader>u _
 inoremap <leader>i ____<Esc>hi
 inoremap <leader>n <Esc>o
 inoremap <leader>c <Esc>A:<cr>
-inoremap <leader>v ()<Esc>i
+inoremap <leader>b ()<Esc>i
 inoremap <leader>s []<Esc>i
 inoremap <leader>t {}<Esc>i
 inoremap <leader>m *
 inoremap <leader>d <SPACE>-><SPACE>
-inoremap <leader>f "<Esc>bi"<Esc>eei
+inoremap <leader>f <Esc>bi"<Esc>ea"
 inoremap <leader>p print()<Esc>i
 inoremap <leader>j <Esc>f)i
+
+map <leader>. <Esc>
+
+
 "--------------------------- leader 键位映射 end---------------------------
 "--------------------------vim tables----------------------------------
-noremap gu :tabp<CR>
+noremap gn :tabn<CR>
+noremap gp :tabp<CR>
 
 
 "--------------------------vim tables----------------------------------
@@ -63,12 +74,13 @@ cabbrev tn tabnew
 
 
 "------------------------输入快捷方式-------------------------------------
+set nofoldenable "禁用折叠"
 set nocompatible "去除vi 和vim 的一致性
 set nu! " 设置行号
 filetype on " 开启类型检查
 syntax on " 开启语法高粱
 set autoindent "自动缩进
-set cindent	"C语言的缩进格式
+set cindent "C语言的缩进格式
 set smartindent "当遇到右花括号（}），则取消缩进形式
 set tabstop=4 "定义tab所等同的空格长度
 set expandtab "expandtab，输入一个tab，将被展开成softtabstop值个空格，如果softtabstop=4，那么一个tab就会被替换成4个空格
@@ -92,13 +104,13 @@ set cmdheight=1
 "set noswapfile "禁止生产交换文件
 "-----------------------vim color setting---------------------------------
 colorscheme space-vim-dark
-set background=dark
+"set background=dark
 hi lineNr guibg=NONE ctermbg=NONE
 hi Normal guibg=NONE ctermbg=NONE
-" hi Pmenu guifg=#abb2bf ctermfg=249 guibg=#282c34 ctermbg=236
+"hi Pmenu guibg=NONE ctermbg=NONE
 let g:lightline = {
-      \ 'colorscheme': 'one',
-      \ }
+            \ 'colorscheme': 'one',
+            \ }
 "-----------------------vim color setting---------------------------------
 "插件相关配置
 "-----------------------vim-gitgutter--------------------------------
@@ -130,10 +142,10 @@ let g:ale_linters = {'python': ['flake8'], 'reStructuredText': ['rstcheck']}
 let g:ale_fixers = {'python': ['remove_trailing_lines', 'trim_whitespace', 'autopep8']}
 nmap <silent> <C-k> <Plug>(ceale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-let g:ale_sign_error = '😠'
-let g:ale_sign_warning = '😡'
-"highlight ALEErrorSign ctermbg=NONE ctermfg=NONE
-"highlight ALEWarningSign ctermbg=NONE ctermfg=NONE
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+highlight ALEErrorSign ctermbg=NONE ctermfg=NONE
+highlight ALEWarningSign ctermbg=NONE ctermfg=NONE
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 let g:ale_cache_executable_check_failures = 1
@@ -187,17 +199,17 @@ let g:ycm_cache_omnifunc=0 "禁止缓存匹配项, 每次重新生成"
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 let g:ycm_seed_identifiers_with_syntax=1 "语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
-set completeopt=longest,menu	"让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif	"离开插入模式后自动关闭预览窗口
+set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
 " 跳转到定义GoToDefinition
 " 跳转到声明GoToDeclaration
 " 以及两者的合体GoToDefinitionElseDeclaration
 nnoremap <leader>j :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>k :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>l :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <F6> :YcmForceCompileAndDiagnostics<CR>	"force recomile with syntastic
-" nnoremap <leader>lo :lopen<CR>	"open locationlist
-" nnoremap <leader>lc :lclose<CR>	"close locationlist
+nnoremap <F6> :YcmForceCompileAndDiagnostics<CR>    "force recomile with syntastic
+" nnoremap <leader>lo :lopen<CR>    "open locationlist
+" nnoremap <leader>lc :lclose<CR>   "close locationlist
 inoremap <leader><leader> <C-x><C-o>
 let g:ycm_cache_omnifunc=0
 "在注释输入中也能补全
@@ -210,14 +222,14 @@ let g:ycm_show_diagnostics_ui = 0 "close syntax checked
 filetype plugin indent on
 "Vundle Section End
 if !has('gui_running')
-  set t_Co=256
-  if has('termguicolors')
-    set termguicolors
-  end
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-  set timeoutlen=1000 ttimeoutlen=0
+    set t_Co=256
+    if has('termguicolors')
+        set termguicolors
+    end
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+    set timeoutlen=1000 ttimeoutlen=0
 endif
 
 
@@ -231,14 +243,14 @@ let NERDTreeWinSize=28
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 " 按下 F2 调出/隐藏 NERDTree
- map <F2> :NERDTreeToggle<CR>
- autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
- "----------------------NERDTree setting---------------------------------
+map <F2> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+"----------------------NERDTree setting---------------------------------
 
 
 
- "----------------------indentLine---------------------------------------
- "缩进指示线"
+"----------------------indentLine---------------------------------------
+"缩进指示线"
 let g:indentLine_char='┆'
 let g:indentLine_enabled = 1
 let g:indentLine_fileTypeExclude = ['json'] "indentLine 不在json文件中加载, 目的是显示双引号
@@ -249,9 +261,9 @@ let g:indentLine_fileTypeExclude = ['json'] "indentLine 不在json文件中加�
 if has("autocmd")
     autocmd BufRead *.txt set tw=78
     autocmd BufReadPost *
-    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-    \   exe "normal g'\"" |
-    \ endif
+                \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+                \   exe "normal g'\"" |
+                \ endif
 endif
 " 配置vim打开时vim自动定位到上次的位置
 
@@ -277,11 +289,11 @@ augroup ZF_setting_disable_italic
 augroup END
 " ------------------------禁用斜体--------------------------------------------
 " -----------------normal 使用相对行号 insert 使用绝对行号-------------------
-augroup relative_numbser
-    autocmd!
-    autocmd InsertEnter * :set norelativenumber
-    autocmd InsertLeave * :set relativenumber
-augroup END
+" augroup relative_numbser
+"     autocmd!
+"     autocmd InsertEnter * :set norelativenumber
+"     autocmd InsertLeave * :set relativenumber
+" augroup END
 " -----------------normal 使用相对行号 insert 使用绝对行号-------------------
 " --------------------------ultisnips--------------------------------------------
 let g:UltiSnipsExpandTrigger="<c-j>"
@@ -291,3 +303,18 @@ let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 
 " --------------------------ultisnips--------------------------------------------
+" ---------------------------nerdcommenter--------------------------------------
+let g:NERDSpaceDelims = 1
+let g:NERDTrimTrailingWhitespace = 1
+let g:NERDCreateDefaultMappings = 0
+map <leader><leader>z <plug>NERDCommenterToggle
+
+"---------------------------nerdcommenter--------------------------------------
+"---------------------------vim-isort--------------------------------------
+let g:vim_isort_map = ''
+let g:vim_isort_python_version = 'python3'
+"---------------------------vim-isort--------------------------------------
+"---------------------------tagbar--------------------------------------
+let g:tagbar_width = 30
+nmap <F8> :TagbarToggle<CR>
+"---------------------------tagbar--------------------------------------
