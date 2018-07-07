@@ -41,13 +41,13 @@ inoremap <leader>u _
 inoremap <leader>i ____<Esc>hi
 inoremap <leader>n <Esc>o
 inoremap <leader>c <Esc>A:<cr>
-inoremap <leader>b ()<Esc>i
+inoremap <leader>v ()<Esc>i
 inoremap <leader>s []<Esc>i
 inoremap <leader>t {}<Esc>i
 inoremap <leader>m *
 inoremap <leader>d <SPACE>-><SPACE>
 inoremap <leader>f "<Esc>bi"<Esc>eei
-inoremap <leader>v print()<Esc>i
+inoremap <leader>p print()<Esc>i
 inoremap <leader>j <Esc>f)i
 "--------------------------- leader 键位映射 end---------------------------
 "--------------------------vim tables----------------------------------
@@ -79,10 +79,9 @@ set ruler "底部的行号等显示
 set novisualbell "去掉输入错误的提示声音
 set softtabstop=4 "逢4空格进1制表符
 "set noexpandtab
-set rtp+=~/.vim/bundle/Vundle.vim "启用vundle管理vim插件的功能
 set t_md= "禁用粗体
 set t_Co=256 "开启256色
-set cursorline "高亮显示当前行
+"set cursorline "高亮显示当前行
 "set cursorcolumn "高亮光标列
 set fileformat=unix "filetype
 set encoding=utf-8 "编码utf-8
@@ -93,9 +92,10 @@ set cmdheight=1
 "set noswapfile "禁止生产交换文件
 "-----------------------vim color setting---------------------------------
 colorscheme space-vim-dark
+set background=dark
 hi lineNr guibg=NONE ctermbg=NONE
 hi Normal guibg=NONE ctermbg=NONE
-hi Pmenu guifg=#abb2bf ctermfg=249 guibg=#282c34 ctermbg=236
+" hi Pmenu guifg=#abb2bf ctermfg=249 guibg=#282c34 ctermbg=236
 let g:lightline = {
       \ 'colorscheme': 'one',
       \ }
@@ -181,13 +181,20 @@ set laststatus=2
 
 "-------------------------------YouCompleteMe----------------------------------------
 " 全局路径配置
+let g:ycm_max_num_candidates = 15
+let g:ycm_max_num_identifier_candidates = 8
+let g:ycm_cache_omnifunc=0 "禁止缓存匹配项, 每次重新生成"
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 let g:ycm_seed_identifiers_with_syntax=1 "语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
 set completeopt=longest,menu	"让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif	"离开插入模式后自动关闭预览窗口
-" 跳转到定义处
-nnoremap <leader>j :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" 跳转到定义GoToDefinition
+" 跳转到声明GoToDeclaration
+" 以及两者的合体GoToDefinitionElseDeclaration
+nnoremap <leader>j :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>k :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>l :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <F6> :YcmForceCompileAndDiagnostics<CR>	"force recomile with syntastic
 " nnoremap <leader>lo :lopen<CR>	"open locationlist
 " nnoremap <leader>lc :lclose<CR>	"close locationlist
