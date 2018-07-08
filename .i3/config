@@ -60,7 +60,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec terminator
+bindsym $mod+Return exec xfce4-terminal
 bindsym $mod+Shift+q kill
 # bindsym $mod+q kill easy to touch
 bindsym $mod+c exec google-chrome-stable
@@ -141,10 +141,10 @@ bindsym $mod+r mode "resize"
 
 #resize shortcuts (also you can use the mouse for resizing)
 mode "resize" {
-    bindsym j resize shrink width 10 px or 10 ppt
-    bindsym k resize grow height 10 px or 10 ppt
-    bindsym l resize shrink height 10 px or 10 ppt
-    bindsym semicolon resize grow width 10 px or 10 ppt
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
     #same bindings, but for the arrow keys
     bindsym Left resize shrink width 10 px or 10 ppt
     bindsym Down resize grow height 10 px or 10 ppt
@@ -177,3 +177,8 @@ bindsym $mod+a scratchpad show
 # screenshot
 bindsym $mod+p exec gnome-screenshot --interactive
 
+# change size
+bindsym $mod+Shift+Left  resize shrink width  10 px or 1 ppt
+bindsym $mod+Shift+Down  resize grow   height 10 px or 1 ppt
+bindsym $mod+Shift+Up    resize shrink height 10 px or 1 ppt
+bindsym $mod+Shift+Right resize grow   width  10 px or 1 ppt
