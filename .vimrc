@@ -117,14 +117,17 @@ endif
 
 
 " vim color setting
-colorscheme space-vim-dark
 " set background=dark
+set relativenumber
+colorscheme space-vim-dark
 hi lineNr guibg=NONE ctermbg=NONE
 hi Normal guibg=NONE ctermbg=NONE
 hi SignColumn ctermbg=NONE guibg=NONE
 hi Comment guifg=#5C6370 ctermfg=59
+hi CursorLineNr guibg=NONE ctermbg=NONE
+hi Pmenu guibg=NONE ctermbg=NONE
+" highlight LineNr ctermbg=NONE
 " hi Comment cterm=italic
-" hi Pmenu guibg=NONE ctermbg=NONE
 " let g:lightline = {
 " \ 'colorscheme': 'one',
 " \ }
