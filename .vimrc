@@ -1,32 +1,43 @@
 call plug#begin('~/.vim/plugged')
 " 下面的我安装的插件
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', {'on': []}
 Plug 'Yggdroot/indentLine'
 Plug 'jiangmiao/auto-pairs'
 Plug 'w0rp/ale' "异步的语法检查工具 比syntastic好多了
-Plug 'google/yapf' " python的格式化
+Plug 'google/yapf', {'for': 'python'} " python的格式化
 Plug 'ntpeters/vim-better-whitespace' "空白标红
-Plug 'godlygeek/tabular'
+Plug 'godlygeek/tabular', {'for': 'markdown'}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'}
 Plug 'iamcco/markdown-preview.vim', {'for': 'markdown'}
-Plug 'lilydjwg/fcitx.vim'
+Plug 'lilydjwg/fcitx.vim', {'for': 'markdown'}
 Plug 'Chiel92/vim-autoformat'
 Plug 'airblade/vim-gitgutter'
 Plug 'SirVer/ultisnips'
-Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'fisadev/vim-isort'
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'liuchengxu/space-vim-dark'
 Plug 'kien/ctrlp.vim'
+Plug 'liuchengxu/eleline.vim'
 
 
 call plug#end()
 "插件末尾
 
+" lazy load plugins
+autocmd! InsertEnter * call Init()
+let g:lazy_load = 0
+function! Init()
+  if g:lazy_load == 0
+    let g:lazy_load = 1
+    call plug#load('YouCompleteMe')
+  endif
+endfunction
 
+
+" key mapping
 let mapleader=","
 map! <c-l> <right>
 
@@ -38,6 +49,7 @@ noremap <leader>q :q!<cr>
 noremap <leader>e :wq<cr>
 noremap <leader>c A:<cr>
 noremap <leader>n o
+nnoremap <leader><space> :nohlsearch<cr>
 
 inoremap <leader>w <Esc>:w<cr>
 inoremap <C-a> <esc>I
@@ -105,6 +117,22 @@ set cmdheight=1
 set noswapfile "禁止生产交换文件
 
 
+" vim color setting
+set norelativenumber
+colorscheme space-vim-dark
+hi CursorLineNR cterm=bold
+hi lineNr guibg=NONE ctermbg=NONE
+hi Normal guibg=NONE ctermbg=NONE
+hi SignColumn ctermbg=NONE guibg=NONE
+hi Comment guifg=#5C6370 ctermfg=59
+hi CursorLineNr guibg=NONE ctermbg=NONE
+hi Pmenu guibg=NONE ctermbg=NONE
+hi Search cterm=underline ctermfg=red ctermbg=NONE
+hi TabLineFill ctermfg=NONE ctermbg=NONE
+hi TabLine ctermfg=NONE ctermbg=NONE
+hi TabLineSel ctermfg=red ctermbg=NONE
+
+
 " 配置vim打开时vim自动定位到上次的位置
 if has("autocmd")
     autocmd BufRead *.txt set tw=78
@@ -116,42 +144,25 @@ endif
 " 配置vim打开时vim自动定位到上次的位置
 
 
-" vim color setting
-" set background=dark
-set relativenumber
-colorscheme space-vim-dark
-hi lineNr guibg=NONE ctermbg=NONE
-hi Normal guibg=NONE ctermbg=NONE
-hi SignColumn ctermbg=NONE guibg=NONE
-hi Comment guifg=#5C6370 ctermfg=59
-hi CursorLineNr guibg=NONE ctermbg=NONE
-hi Pmenu guibg=NONE ctermbg=NONE
-" highlight LineNr ctermbg=NONE
-" hi Comment cterm=italic
-" let g:lightline = {
-" \ 'colorscheme': 'one',
-" \ }
-
-
 " 禁用斜体
-function! ZF_Setting_DisableItalic()
-    let his = ''
-    redir => his
-    silent highlight
-    redir END
-    let his = substitute(his, '\n\s\+', ' ', 'g')
-    for line in split(his, "\n")
-        if line !~ ' links to ' && line !~ ' cleared$'
-            execute 'hi' substitute(substitute(line, ' xxx ', ' ', ''), 'italic', 'none', 'g')
-        endif
-    endfor
-endfunction
-augroup ZF_setting_disable_italic
-    call ZF_Setting_DisableItalic()
-    autocmd!
+" function! ZF_Setting_DisableItalic()
+    " let his = ''
+    " redir => his
+    " silent highlight
+    " redir END
+    " let his = substitute(his, '\n\s\+', ' ', 'g')
+    " for line in split(his, "\n")
+        " if line !~ ' links to ' && line !~ ' cleared$'
+            " execute 'hi' substitute(substitute(line, ' xxx ', ' ', ''), 'italic', 'none', 'g')
+        " endif
+    " endfor
+" endfunction
+" augroup ZF_setting_disable_italic
+    " call ZF_Setting_DisableItalic()
+    " autocmd!
 
-    autocmd FileType,BufNewFile,BufReadPost * call ZF_Setting_DisableItalic()
-augroup END
+    " autocmd FileType,BufNewFile,BufReadPost * call ZF_Setting_DisableItalic()
+" augroup END
 
 
 " normal 使用相对行号 insert 使用绝对行号
@@ -229,6 +240,7 @@ set laststatus=2
 
 " YouCompleteMe 相关配置
 source ~/.vim/config/ycm-config.vim
+
 
 " NERDTree setting
 source ~/.vim/config/nerdtree-config.vim

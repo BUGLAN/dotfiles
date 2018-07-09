@@ -1,5 +1,4 @@
-
-" 全局路径配置
+"全局路径配置
 let g:ycm_max_num_candidates = 15
 let g:ycm_max_num_identifier_candidates = 8
 " let g:ycm_cache_omnifunc=0 "禁止缓存匹配项, 每次重新生成"
