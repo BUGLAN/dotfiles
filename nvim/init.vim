@@ -22,6 +22,7 @@ Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
 Plug 'kien/ctrlp.vim'
 Plug 'liuchengxu/eleline.vim'
 Plug 'liuchengxu/space-vim-dark'
+Plug 'Shougo/neopairs.vim'
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -77,8 +78,7 @@ inoremap <leader>d <SPACE>-><SPACE>
 inoremap <leader>f <Esc>bi"<Esc>ea"
 inoremap <leader>p print()<Esc>i
 inoremap <leader>j <Esc>f)i
-
-map <leader>. <Esc>
+inoremap <leader>. <Esc>
 
 
 " vim tables
@@ -146,24 +146,24 @@ endif
 
 
 " 禁用斜体
-function! ZF_Setting_DisableItalic()
-    let his = ''
-    redir => his
-    silent highlight
-    redir END
-    let his = substitute(his, '\n\s\+', ' ', 'g')
-    for line in split(his, "\n")
-        if line !~ ' links to ' && line !~ ' cleared$'
-            execute 'hi' substitute(substitute(line, ' xxx ', ' ', ''), 'italic', 'none', 'g')
-        endif
-    endfor
-endfunction
-augroup ZF_setting_disable_italic
-    call ZF_Setting_DisableItalic()
-    autocmd!
+" function! ZF_Setting_DisableItalic()
+    " let his = ''
+    " redir => his
+    " silent highlight
+    " redir END
+    " let his = substitute(his, '\n\s\+', ' ', 'g')
+    " for line in split(his, "\n")
+        " if line !~ ' links to ' && line !~ ' cleared$'
+            " execute 'hi' substitute(substitute(line, ' xxx ', ' ', ''), 'italic', 'none', 'g')
+        " endif
+    " endfor
+" endfunction
+" augroup ZF_setting_disable_italic
+    " call ZF_Setting_DisableItalic()
+    " autocmd!
 
-    autocmd FileType,BufNewFile,BufReadPost * call ZF_Setting_DisableItalic()
-augroup END
+    " autocmd FileType,BufNewFile,BufReadPost * call ZF_Setting_DisableItalic()
+" augroup END
 
 
 " plugins setting
@@ -268,7 +268,11 @@ let g:deoplete#enable_smart_case = 1
 let g:deoplete#auto_complete_start_length = 2
 let g:deoplete#max_list = 15
 let g:deoplete#enable_at_startup = 0 "开启deplete
+" complete with one brackets
+call deoplete#custom#source('_', 'converters', ['converter_auto_paren'])
 
+" neopairs
+let g:neopairs#enable = 1 "enable neopairs make deoplete complete with one pair brackets"
 
 
 " deoplete-jedi
