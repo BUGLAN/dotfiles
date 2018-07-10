@@ -1,53 +1,67 @@
 call plug#begin('~/.config/nvim/plugged')
 " 下面的我安装的插件
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine', {'for': ['c', 'cpp', 'python']}
 Plug 'jiangmiao/auto-pairs'
-Plug 'w0rp/ale' "异步的语法检查工具 比syntastic好多了
+Plug 'w0rp/ale', {'for': ['c', 'cpp', 'python']}
 Plug 'google/yapf', {'for': 'markdown'} " python的格式化
 Plug 'ntpeters/vim-better-whitespace' "空白标红
 Plug 'godlygeek/tabular', {'for': 'markdown'}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'}
 Plug 'iamcco/markdown-preview.vim', {'for': 'markdown'}
-Plug 'lilydjwg/fcitx.vim', {'for': 'markdown'}
-Plug 'Chiel92/vim-autoformat'
-Plug 'airblade/vim-gitgutter'
+Plug 'lilydjwg/fcitx.vim', {'on': []}
+Plug 'Chiel92/vim-autoformat', {'for': ['c', 'cpp', 'python']}
+Plug 'airblade/vim-gitgutter', {'on': []}
 Plug 'SirVer/ultisnips'
-Plug 'scrooloose/nerdcommenter'
-Plug 'fisadev/vim-isort'
+Plug 'scrooloose/nerdcommenter', {'on': []}
+Plug 'fisadev/vim-isort', {'on': 'Isort'}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
-Plug 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim', {'for': ['c', 'cpp', 'python']}
 Plug 'liuchengxu/eleline.vim'
 Plug 'liuchengxu/space-vim-dark'
-Plug 'Shougo/neopairs.vim'
+Plug 'Shougo/neopairs.vim', {'for': ['c', 'cpp', 'python']}
 if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
 call plug#end()
 "插件末尾
 
 
+" lazy load deoplete
 autocmd InsertEnter * call Init()
 let g:lazy_load = 0
 function! Init()
-    if g:lazy_load == 0
-        g:lazy_load = 1
-        call deoplete#enable()
-    endif
+  if g:lazy_load == 0
+    let g:lazy_load = 1
+    call deoplete#enable()
+    call plug#load('vim-gitgutter')
+    call plug#load('nerdcommenter')
+  endif
 endfunction
 
+
+" lazy load fcitx.vim in markdown
+autocmd InsertEnter *.md call Fcitx()
+let g:fcitx_load = 0
+function! Fcitx()
+  if g:fcitx_load == 0
+    let g:fcitx_load = 1
+    call plug#load('fcitx.vim')
+  endif
+endfunction
 
 " vim leader key mapping
 let mapleader=","
 map! <c-l> <right>
+map <leader><leader>n :NERDTreeToggle<cr>
 
 noremap <c-a> I
 noremap <c-e> A
@@ -94,6 +108,7 @@ cabbrev tn tabnew
 
 
 " vim basic setting
+set termguicolors " true color
 set lazyredraw
 set nofoldenable "禁用折叠"
 set nocompatible "去除vi 和vim 的一致性
@@ -122,17 +137,17 @@ set noswapfile "禁止生产交换文件
 " vim color setting
 set norelativenumber
 colorscheme space-vim-dark
-hi CursorLineNR cterm=bold
+hi CursorLineNR cterm=bold gui=bold
 hi lineNr guibg=NONE ctermbg=NONE
 hi Normal guibg=NONE ctermbg=NONE
 hi SignColumn ctermbg=NONE guibg=NONE
-hi Comment guifg=#5C6370 ctermfg=59
+hi Comment guifg=#5C6370 ctermfg=59 gui=NONE
 hi CursorLineNr guibg=NONE ctermbg=NONE
-hi Pmenu guibg=NONE ctermbg=NONE
-hi Search cterm=underline ctermfg=red ctermbg=NONE
-hi TabLineFill ctermfg=NONE ctermbg=NONE
-hi TabLine ctermfg=NONE ctermbg=NONE
-hi TabLineSel ctermfg=red ctermbg=NONE
+hi Pmenu guibg=NONE ctermbg=NONE guifg=#af87d7 guibg=NONE
+hi TabLineFill ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
+hi TabLine ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
+hi TabLineSel ctermfg=red ctermbg=NONE guifg=#d75faf guibg=NONE
+hi Search cterm=underline ctermfg=red ctermbg=NONE guifg=red guibg=NONE gui=underline
 
 
 " 配置vim打开时vim自动定位到上次的位置
@@ -143,27 +158,6 @@ if has("autocmd")
                 \   exe "normal g'\"" |
                 \ endif
 endif
-
-
-" 禁用斜体
-" function! ZF_Setting_DisableItalic()
-    " let his = ''
-    " redir => his
-    " silent highlight
-    " redir END
-    " let his = substitute(his, '\n\s\+', ' ', 'g')
-    " for line in split(his, "\n")
-        " if line !~ ' links to ' && line !~ ' cleared$'
-            " execute 'hi' substitute(substitute(line, ' xxx ', ' ', ''), 'italic', 'none', 'g')
-        " endif
-    " endfor
-" endfunction
-" augroup ZF_setting_disable_italic
-    " call ZF_Setting_DisableItalic()
-    " autocmd!
-
-    " autocmd FileType,BufNewFile,BufReadPost * call ZF_Setting_DisableItalic()
-" augroup END
 
 
 " plugins setting
@@ -194,17 +188,17 @@ nmap <silent> <C-k> <Plug>(ceale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
-highlight ALEErrorSign ctermbg=NONE ctermfg=NONE
-highlight ALEWarningSign ctermbg=NONE ctermfg=NONE
+highlight ALEErrorSign ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+highlight ALEWarningSign ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 let g:ale_cache_executable_check_failures = 1
 let g:ale_set_highlights = 0 "ban ale's error and warning highlights
-highlight ALEErrorSign ctermbg=NONE ctermfg=red
-highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
-highlight ALEWarningLine ctermbg=NONE ctermfg=yellow
-highlight ALEErrorLine ctermbg=NONE ctermfg=red
-highlight ALEInfoLine ctermbg=NONE ctermfg=black
+highlight ALEErrorSign ctermbg=NONE ctermfg=red guibg=NONE guifg=#e0211d
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow guibg=NONE guifg=yellow
+highlight ALEWarningLine ctermbg=NONE ctermfg=yellow guibg=NONE guifg=yellow
+highlight ALEErrorLine ctermbg=NONE ctermfg=red guibg=NONE guifg=#e0211d
+highlight ALEInfoLine ctermbg=NONE ctermfg=black guibg=NONE guifg=#e18254
 
 
 " yapf
@@ -288,4 +282,3 @@ set completeopt -=preview
 " make neovim faster without search python
 let g:python3_host_skip_check=1
 let g:python3_host_prog = '/home/lan/anaconda3/bin/python3'
-

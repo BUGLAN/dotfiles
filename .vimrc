@@ -1,26 +1,28 @@
 call plug#begin('~/.vim/plugged')
 " 下面的我安装的插件
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Valloric/YouCompleteMe', {'on': []}
-Plug 'Yggdroot/indentLine'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Yggdroot/indentLine', {'for': ['c', 'cpp', 'python']}
 Plug 'jiangmiao/auto-pairs'
-Plug 'w0rp/ale' "异步的语法检查工具 比syntastic好多了
-Plug 'google/yapf', {'for': 'python'} " python的格式化
+Plug 'w0rp/ale', {'for': ['c', 'cpp', 'python']}
+Plug 'google/yapf', {'for': 'markdown'} " python的格式化
 Plug 'ntpeters/vim-better-whitespace' "空白标红
 Plug 'godlygeek/tabular', {'for': 'markdown'}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'}
 Plug 'iamcco/markdown-preview.vim', {'for': 'markdown'}
-Plug 'lilydjwg/fcitx.vim', {'for': 'markdown'}
-Plug 'Chiel92/vim-autoformat'
-Plug 'airblade/vim-gitgutter'
+Plug 'lilydjwg/fcitx.vim', {'on': []}
+Plug 'Chiel92/vim-autoformat', {'for': ['c', 'cpp', 'python']}
+Plug 'airblade/vim-gitgutter', {'on': []}
 Plug 'SirVer/ultisnips'
 Plug 'scrooloose/nerdcommenter'
-Plug 'fisadev/vim-isort'
+Plug 'fisadev/vim-isort', {'on': 'Isort'}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
-Plug 'liuchengxu/space-vim-dark'
-Plug 'kien/ctrlp.vim'
+Plug 'zchee/deoplete-jedi', {'for': 'python'}
+Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
+Plug 'kien/ctrlp.vim', {'for': ['c', 'cpp', 'python']}
 Plug 'liuchengxu/eleline.vim'
+Plug 'liuchengxu/space-vim-dark'
 
 
 call plug#end()
@@ -33,6 +35,8 @@ function! Init()
   if g:lazy_load == 0
     let g:lazy_load = 1
     call plug#load('YouCompleteMe')
+    call plug#load('vim-gitgutter')
+    call plug#load('fcitx.vim')
   endif
 endfunction
 
