@@ -11,15 +11,15 @@ Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'}
 Plug 'iamcco/markdown-preview.vim', {'for': 'markdown'}
 Plug 'lilydjwg/fcitx.vim', {'on': []}
-Plug 'Chiel92/vim-autoformat', {'for': ['c', 'cpp', 'python']}
+Plug 'Chiel92/vim-autoformat', {'on': 'Autoformat'}
 Plug 'airblade/vim-gitgutter', {'on': []}
 Plug 'SirVer/ultisnips'
-Plug 'scrooloose/nerdcommenter', {'on': []}
+Plug 'scrooloose/nerdcommenter', {'on': '<plug>NERDCommenterToggle'}
 Plug 'fisadev/vim-isort', {'on': 'Isort'}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
-Plug 'kien/ctrlp.vim', {'for': ['c', 'cpp', 'python']}
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh', 'on': 'LeaderfFile'}
 Plug 'liuchengxu/eleline.vim'
 Plug 'liuchengxu/space-vim-dark'
 Plug 'Shougo/neopairs.vim', {'for': ['c', 'cpp', 'python']}
@@ -43,25 +43,26 @@ function! Init()
     let g:lazy_load = 1
     call deoplete#enable()
     call plug#load('vim-gitgutter')
-    call plug#load('nerdcommenter')
+    call plug#load('fcitx.vim')
   endif
 endfunction
 
 
 " lazy load fcitx.vim in markdown
-autocmd InsertEnter *.md call Fcitx()
-let g:fcitx_load = 0
-function! Fcitx()
-  if g:fcitx_load == 0
-    let g:fcitx_load = 1
-    call plug#load('fcitx.vim')
-  endif
-endfunction
+" autocmd InsertEnter *.md call Fcitx()
+" let g:fcitx_load = 0
+" function! Fcitx()
+  " if g:fcitx_load == 0
+    " let g:fcitx_load = 1
+    " call plug#load('fcitx.vim')
+  " endif
+" endfunction
 
 " vim leader key mapping
 let mapleader=","
 map! <c-l> <right>
 map <leader><leader>n :NERDTreeToggle<cr>
+map <leader><leader>t :TagbarToggle<cr>
 
 noremap <c-a> I
 noremap <c-e> A
@@ -71,7 +72,8 @@ noremap <leader>q :q!<cr>
 noremap <leader>e :wq<cr>
 noremap <leader>c A:<cr>
 noremap <leader>n o
-nnoremap <leader><space> :nohlsearch<cr>
+noremap <leader><space> :nohlsearch<cr>
+noremap <leader>f :LeaderfFile<cr>
 
 inoremap <leader>w <Esc>:w<cr>
 inoremap <C-a> <esc>I
@@ -111,9 +113,9 @@ cabbrev tn tabnew
 set termguicolors " true color
 set lazyredraw
 set nofoldenable "禁用折叠"
-set nocompatible "去除vi 和vim 的一致性
+" set nocompatible "去除vi 和vim 的一致性
 set nu! " 设置行号
-filetype on " 开启类型检查
+filetype plugin indent on " 开启类型检查
 syntax on " 开启语法高粱
 set autoindent "自动缩进
 set cindent "C语言的缩进格式
@@ -186,8 +188,8 @@ let g:ale_linters = {'python': ['flake8'], 'reStructuredText': ['rstcheck']}
 let g:ale_fixers = {'python': ['remove_trailing_lines', 'trim_whitespace', 'autopep8']}
 nmap <silent> <C-k> <Plug>(ceale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '✗'
 highlight ALEErrorSign ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 highlight ALEWarningSign ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 let g:ale_lint_on_text_changed = 'never'
@@ -282,3 +284,8 @@ set completeopt -=preview
 " make neovim faster without search python
 let g:python3_host_skip_check=1
 let g:python3_host_prog = '/home/lan/anaconda3/bin/python3'
+
+" leaderf
+let g:Lf_WindowHeight = 0.3
+let g:Lf_DefaultMode = 'Fuzzy'
+let g:Lf_CursorBlink = 0
