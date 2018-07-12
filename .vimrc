@@ -55,7 +55,6 @@ noremap <leader>e :wq<cr>
 noremap <leader>c A:<cr>
 noremap <leader>n o
 nnoremap <leader><space> :nohlsearch<cr>
-
 inoremap <leader>w <Esc>:w<cr>
 inoremap <C-a> <esc>I
 inoremap <C-e> <esc>A

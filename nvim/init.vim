@@ -1,49 +1,84 @@
-call plug#begin('~/.config/nvim/plugged')
-" 下面的我安装的插件
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'Yggdroot/indentLine', {'for': ['c', 'cpp', 'python']}
-Plug 'jiangmiao/auto-pairs'
-Plug 'w0rp/ale', {'for': ['c', 'cpp', 'python']}
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'godlygeek/tabular', {'for': 'markdown'}
-Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
-Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'}
-Plug 'iamcco/markdown-preview.vim', {'for': 'markdown'}
-Plug 'lilydjwg/fcitx.vim', {'on': []}
-Plug 'Chiel92/vim-autoformat', {'on': 'Autoformat'}
-Plug 'airblade/vim-gitgutter', {'on': []}
-Plug 'SirVer/ultisnips'
-Plug 'scrooloose/nerdcommenter', {'on': '<plug>NERDCommenterToggle'}
-Plug 'fisadev/vim-isort', {'on': 'Isort'}
-Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
-Plug 'zchee/deoplete-jedi', {'for': 'python'}
-" Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh', 'on': 'LeaderfFile'}
-Plug 'liuchengxu/eleline.vim'
-Plug 'liuchengxu/space-vim-dark'
-Plug 'Shougo/neopairs.vim', {'for': ['c', 'cpp', 'python']}
-if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
+" call plug#begin('~/.config/nvim/plugged')
+" " 下面的我安装的插件
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Plug 'Yggdroot/indentLine', {'for': ['c', 'cpp', 'python']}
+" Plug 'jiangmiao/auto-pairs'
+" Plug 'w0rp/ale', {'for': ['c', 'cpp', 'python']}
+" Plug 'ntpeters/vim-better-whitespace'
+" Plug 'godlygeek/tabular', {'for': 'markdown'}
+" Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+" Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'}
+" Plug 'iamcco/markdown-preview.vim', {'for': 'markdown'}
+" Plug 'lilydjwg/fcitx.vim', {'on': []}
+" Plug 'Chiel92/vim-autoformat', {'on': 'Autoformat'}
+" Plug 'airblade/vim-gitgutter', {'on': []}
+" Plug 'SirVer/ultisnips'
+" Plug 'scrooloose/nerdcommenter', {'on': '<plug>NERDCommenterToggle'}
+" Plug 'fisadev/vim-isort', {'on': 'Isort'}
+" Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
+" Plug 'zchee/deoplete-jedi', {'for': 'python'}
+" " Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
+" Plug 'Yggdroot/LeaderF', { 'do': './install.sh', 'on': 'LeaderfFile'}
+" Plug 'liuchengxu/eleline.vim'
+" Plug 'liuchengxu/space-vim-dark'
+" Plug 'Shougo/neopairs.vim', {'for': ['c', 'cpp', 'python']}
+" if has('nvim')
+    " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+    " Plug 'Shougo/deoplete.nvim'
+    " Plug 'roxma/nvim-yarp'
+    " Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+
+" call plug#end()
+" " 插件末尾
+set runtimepath+=/home/lan/.config/nvim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
+call dein#begin(expand('/home/lan/.config/nvim/dein'))
+
+if dein#load_state('/home/lan/.config/nvim/dein')
+  call dein#add('/home/lan/.config/nvim/dein')
+  call dein#add('Shougo/deoplete.nvim')
+  call dein#add('zchee/deoplete-jedi', {'on_ft': 'python'})
+  call dein#add('scrooloose/nerdtree', {'on_cmd': 'NERDTreeToggle'})
+  call dein#add('Yggdroot/indentLine', {'on_ft': ['c', 'python', 'cpp']})
+  call dein#add('jiangmiao/auto-pairs')
+  call dein#add('w0rp/ale', {'on_event': 'InsertEnter'})
+  call dein#add('ntpeters/vim-better-whitespace', {'on_event': 'InsertEnter'})
+  call dein#add('godlygeek/tabular', {'on_ft': 'markdown'})
+  call dein#add('plasticboy/vim-markdown', {'on_ft': 'markdown'})
+  call dein#add('iamcco/mathjax-support-for-mkdp', {'on_ft': 'markdown'})
+  call dein#add('iamcco/markdown-preview.vim', {'on_ft': 'markdown'})
+  call dein#add('lilydjwg/fcitx.vim', {'on_event': 'InsertEnter'})
+  call dein#add('Chiel92/vim-autoformat', {'on_cmd': 'Autoformat'})
+  call dein#add('airblade/vim-gitgutter', {'on_event': 'InsertEnter'})
+  call dein#add('SirVer/ultisnips', {'on_event': 'InsertEnter'})
+  call dein#add('fisadev/vim-isort', {'on_cmd': 'Isort'})
+  call dein#add('majutsushi/tagbar', {'on_cmd': 'TagbarToggle'})
+  call dein#add('Yggdroot/LeaderF', {'on_cmd': 'LeaderfFile'})
+  call dein#add('liuchengxu/eleline.vim')
+  call dein#add('liuchengxu/space-vim-dark')
+  call dein#add('Shougo/neopairs.vim', {'on_event': 'InsertEnter'})
+  call dein#add('scrooloose/nerdcommenter', {'on_map': '<plug>NERDCommenterToggle'})
+
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
+
+  call dein#end()
+  call dein#save_state()
 endif
-
-call plug#end()
-" 插件末尾
-
 
 " lazy load deoplete
 autocmd InsertEnter * call Init()
 let g:lazy_load = 0
 function! Init()
-    if g:lazy_load == 0
-        let g:lazy_load = 1
-        call deoplete#enable()
-        call plug#load('vim-gitgutter')
-        call plug#load('fcitx.vim')
-    endif
+  if g:lazy_load == 0
+    let g:lazy_load = 1
+    call deoplete#enable()
+    " call plug#load('vim-gitgutter')
+    " let g:GitGutterEnable=1
+  endif
 endfunction
 
 
@@ -260,6 +295,8 @@ let g:deoplete#max_list = 15
 let g:deoplete#enable_at_startup = 0 "开启deplete
 " complete with one brackets
 call deoplete#custom#source('_', 'converters', ['converter_auto_paren'])
+" let g:deoplete#enable_at_startup = 1
+
 
 " neopairs
 let g:neopairs#enable = 1 "enable neopairs make deoplete complete with one pair brackets"
