@@ -5,7 +5,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Yggdroot/indentLine', {'for': ['c', 'cpp', 'python']}
 Plug 'jiangmiao/auto-pairs'
 Plug 'w0rp/ale', {'for': ['c', 'cpp', 'python']}
-Plug 'google/yapf', {'for': 'markdown'} " python的格式化
+Plug 'google/yapf', {'for': 'python'} " python的格式化
 Plug 'ntpeters/vim-better-whitespace' "空白标红
 Plug 'godlygeek/tabular', {'for': 'markdown'}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
@@ -23,6 +23,7 @@ Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
 Plug 'kien/ctrlp.vim', {'for': ['c', 'cpp', 'python']}
 Plug 'liuchengxu/eleline.vim'
 Plug 'liuchengxu/space-vim-dark'
+
 
 
 call plug#end()

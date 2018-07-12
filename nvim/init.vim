@@ -4,8 +4,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Yggdroot/indentLine', {'for': ['c', 'cpp', 'python']}
 Plug 'jiangmiao/auto-pairs'
 Plug 'w0rp/ale', {'for': ['c', 'cpp', 'python']}
-Plug 'google/yapf', {'for': 'markdown'} " python的格式化
-Plug 'ntpeters/vim-better-whitespace' "空白标红
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'godlygeek/tabular', {'for': 'markdown'}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'}
@@ -18,33 +17,33 @@ Plug 'scrooloose/nerdcommenter', {'on': '<plug>NERDCommenterToggle'}
 Plug 'fisadev/vim-isort', {'on': 'Isort'}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
-Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
+" Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh', 'on': 'LeaderfFile'}
 Plug 'liuchengxu/eleline.vim'
 Plug 'liuchengxu/space-vim-dark'
 Plug 'Shougo/neopairs.vim', {'for': ['c', 'cpp', 'python']}
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
 call plug#end()
-"插件末尾
+" 插件末尾
 
 
 " lazy load deoplete
 autocmd InsertEnter * call Init()
 let g:lazy_load = 0
 function! Init()
-  if g:lazy_load == 0
-    let g:lazy_load = 1
-    call deoplete#enable()
-    call plug#load('vim-gitgutter')
-    call plug#load('fcitx.vim')
-  endif
+    if g:lazy_load == 0
+        let g:lazy_load = 1
+        call deoplete#enable()
+        call plug#load('vim-gitgutter')
+        call plug#load('fcitx.vim')
+    endif
 endfunction
 
 
@@ -52,10 +51,10 @@ endfunction
 " autocmd InsertEnter *.md call Fcitx()
 " let g:fcitx_load = 0
 " function! Fcitx()
-  " if g:fcitx_load == 0
-    " let g:fcitx_load = 1
-    " call plug#load('fcitx.vim')
-  " endif
+" if g:fcitx_load == 0
+" let g:fcitx_load = 1
+" call plug#load('fcitx.vim')
+" endif
 " endfunction
 
 " vim leader key mapping
@@ -66,7 +65,7 @@ map <leader><leader>t :TagbarToggle<cr>
 
 noremap <c-a> I
 noremap <c-e> A
-noremap <SPACE> :
+noremap <space> :
 noremap <leader>w :w<cr>
 noremap <leader>q :q!<cr>
 noremap <leader>e :wq<cr>
@@ -95,7 +94,6 @@ inoremap <leader>f <Esc>bi"<Esc>ea"
 inoremap <leader>p print()<Esc>i
 inoremap <leader>j <Esc>f)i
 inoremap <leader>. <Esc>
-
 
 " vim tables
 noremap gn :tabn<CR>
@@ -175,12 +173,8 @@ let g:formatter_yapf_style = 'google'
 noremap <leader>a :Autoformat<CR>
 
 
-" vim-markdown
-let g:instant_markdown_autostart = 0 "关闭chrome自动打开
-" 使用 :InstantMarkdionPreview 打开chrome预览
-let g:vim_markdown_folding_disabled = 1 "禁用折叠
-let g:vim_markdown_conceal = 0 "禁用语法隐藏
-let g:vim_markdown_no_default_key_mappings = 1
+" markdown preview
+let g:mkdp_auto_close = 0
 
 
 " ale
@@ -217,12 +211,12 @@ set laststatus=2
 let NERDTreeShowLineNumbers=1
 let NERDTreeAutoCenter=1
 let NERDTreeShowHidden=1 " 是否显示隐藏文件
-let NERDTreeWinSize=28 " 设置宽度
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+let NERDTreeWinSize=30 " 设置宽度
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 " 按下 F2 调出/隐藏 NERDTree
 map <F2> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
 
 
 " indentLine
@@ -272,20 +266,21 @@ let g:neopairs#enable = 1 "enable neopairs make deoplete complete with one pair 
 
 
 " deoplete-jedi
-let g:deoplete#sources#jedi#python_path = '/home/lan/anaconda3/bin/python3'
+let g:deoplete#sources#jedi#python_path = '/home/lan/anaconda3/bin/python3.6'
 let g:deoplete#sources#jedi#enable_cache = 10 " 缓存
 
 
 " deoplete-clang
-let g:deoplete#sources#clang#libclang_path = "/usr/lib/libclang.so"
-let g:deoplete#sources#clang#clang_header = "/usr/lib/clang/6.0.0/include/"
+" let g:deoplete#sources#clang#libclang_path = "/usr/lib/libclang.so"
+" let g:deoplete#sources#clang#clang_header = "/usr/lib/clang/6.0.0/include/"
 set completeopt -=preview
 
 " make neovim faster without search python
 let g:python3_host_skip_check=1
-let g:python3_host_prog = '/home/lan/anaconda3/bin/python3'
+let g:python3_host_prog = '/home/lan/anaconda3/bin/python3.6'
+" let g:python_host_skip_check=1
+" let g:python_host_prog = '/usr/bin/python'
 
 " leaderf
-let g:Lf_WindowHeight = 0.3
-let g:Lf_DefaultMode = 'Fuzzy'
+let g:Lf_WindowHeight = 0.30
 let g:Lf_CursorBlink = 0
