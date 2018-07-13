@@ -23,9 +23,6 @@ Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
 Plug 'kien/ctrlp.vim', {'for': ['c', 'cpp', 'python']}
 Plug 'liuchengxu/eleline.vim'
 Plug 'liuchengxu/space-vim-dark'
-
-
-
 call plug#end()
 "插件末尾
 

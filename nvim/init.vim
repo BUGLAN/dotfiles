@@ -23,11 +23,11 @@
 " Plug 'liuchengxu/space-vim-dark'
 " Plug 'Shougo/neopairs.vim', {'for': ['c', 'cpp', 'python']}
 " if has('nvim')
-    " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " else
-    " Plug 'Shougo/deoplete.nvim'
-    " Plug 'roxma/nvim-yarp'
-    " Plug 'roxma/vim-hug-neovim-rpc'
+" Plug 'Shougo/deoplete.nvim'
+" Plug 'roxma/nvim-yarp'
+" Plug 'roxma/vim-hug-neovim-rpc'
 " endif
 
 " call plug#end()
@@ -36,49 +36,51 @@ set runtimepath+=/home/lan/.config/nvim/dein/repos/github.com/Shougo/dein.vim " 
 call dein#begin(expand('/home/lan/.config/nvim/dein'))
 
 if dein#load_state('/home/lan/.config/nvim/dein')
-  call dein#add('/home/lan/.config/nvim/dein')
-  call dein#add('Shougo/deoplete.nvim')
-  call dein#add('zchee/deoplete-jedi', {'on_ft': 'python'})
-  call dein#add('scrooloose/nerdtree', {'on_cmd': 'NERDTreeToggle'})
-  call dein#add('Yggdroot/indentLine', {'on_ft': ['c', 'python', 'cpp']})
-  call dein#add('jiangmiao/auto-pairs')
-  call dein#add('w0rp/ale', {'on_event': 'InsertEnter'})
-  call dein#add('ntpeters/vim-better-whitespace', {'on_event': 'InsertEnter'})
-  call dein#add('godlygeek/tabular', {'on_ft': 'markdown'})
-  call dein#add('plasticboy/vim-markdown', {'on_ft': 'markdown'})
-  call dein#add('iamcco/mathjax-support-for-mkdp', {'on_ft': 'markdown'})
-  call dein#add('iamcco/markdown-preview.vim', {'on_ft': 'markdown'})
-  call dein#add('lilydjwg/fcitx.vim', {'on_event': 'InsertEnter'})
-  call dein#add('Chiel92/vim-autoformat', {'on_cmd': 'Autoformat'})
-  call dein#add('airblade/vim-gitgutter', {'on_event': 'InsertEnter'})
-  call dein#add('SirVer/ultisnips', {'on_event': 'InsertEnter'})
-  call dein#add('fisadev/vim-isort', {'on_cmd': 'Isort'})
-  call dein#add('majutsushi/tagbar', {'on_cmd': 'TagbarToggle'})
-  call dein#add('Yggdroot/LeaderF', {'on_cmd': 'LeaderfFile'})
-  call dein#add('liuchengxu/eleline.vim')
-  call dein#add('liuchengxu/space-vim-dark')
-  call dein#add('Shougo/neopairs.vim', {'on_event': 'InsertEnter'})
-  call dein#add('scrooloose/nerdcommenter', {'on_map': '<plug>NERDCommenterToggle'})
+    call dein#add('/home/lan/.config/nvim/dein')
+    call dein#add('Shougo/deoplete.nvim')
+    call dein#add('zchee/deoplete-jedi', {'on_ft': 'python'})
+    call dein#add('scrooloose/nerdtree', {'on_cmd': 'NERDTreeToggle'})
+    call dein#add('Yggdroot/indentLine', {'on_ft': ['c', 'python', 'cpp']})
+    call dein#add('jiangmiao/auto-pairs')
+    call dein#add('w0rp/ale', {'on_event': 'InsertEnter'})
+    call dein#add('ntpeters/vim-better-whitespace', {'on_event': 'InsertEnter'})
+    call dein#add('iamcco/mathjax-support-for-mkdp', {'on_ft': 'markdown', 'on_event': 'InsertEnter'})
+    call dein#add('iamcco/markdown-preview.vim', {'on_ft': 'markdown', 'on_cmd': 'MarkdownPreview'})
+    call dein#add('lilydjwg/fcitx.vim', {'on_event': 'InsertEnter'})
+    call dein#add('Chiel92/vim-autoformat', {'on_cmd': 'Autoformat'})
+    call dein#add('sgur/vim-lazygutter', {'on_event': 'InsertEnter'})
+    call dein#add('SirVer/ultisnips', {'on_event': 'InsertEnter'})
+    call dein#add('fisadev/vim-isort', {'on_cmd': 'Isort'})
+    call dein#add('majutsushi/tagbar', {'on_cmd': 'TagbarToggle'})
+    call dein#add('Yggdroot/LeaderF', {'on_cmd': 'LeaderfFile'})
+    call dein#add('liuchengxu/eleline.vim')
+    call dein#add('liuchengxu/space-vim-dark')
+    call dein#add('Shougo/neopairs.vim', {'on_event': 'InsertEnter'})
+    call dein#add('scrooloose/nerdcommenter', {'on_map': '<plug>NERDCommenterToggle'})
+    call dein#add('heavenshell/vim-pydocstring', {'on_ft': 'python', 'on_cmd': 'Pydocstring'})
+    call dein#add('godlygeek/tabular', {'on_ft': 'markdown', 'on_event': 'InsertEnter'})
+    call dein#add('plasticboy/vim-markdown', {'on': 'markdown', 'on_event': 'InsertEnter'})
 
-  if !has('nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
-  endif
 
-  call dein#end()
-  call dein#save_state()
+    if !has('nvim')
+        call dein#add('roxma/nvim-yarp')
+        call dein#add('roxma/vim-hug-neovim-rpc')
+    endif
+
+    call dein#end()
+    call dein#save_state()
 endif
 
 " lazy load deoplete
 autocmd InsertEnter * call Init()
 let g:lazy_load = 0
 function! Init()
-  if g:lazy_load == 0
-    let g:lazy_load = 1
-    call deoplete#enable()
-    " call plug#load('vim-gitgutter')
-    " let g:GitGutterEnable=1
-  endif
+    if g:lazy_load == 0
+        let g:lazy_load = 1
+        call deoplete#enable()
+        " call plug#load('vim-gitgutter')
+        " let g:GitGutterEnable=1
+    endif
 endfunction
 
 
@@ -100,7 +102,7 @@ map <leader><leader>t :TagbarToggle<cr>
 
 noremap <c-a> I
 noremap <c-e> A
-noremap <space> :
+noremap ; :
 noremap <leader>w :w<cr>
 noremap <leader>q :q!<cr>
 noremap <leader>e :wq<cr>
@@ -108,6 +110,7 @@ noremap <leader>c A:<cr>
 noremap <leader>n o
 noremap <leader><space> :nohlsearch<cr>
 noremap <leader>f :LeaderfFile<cr>
+noremap <leader><leader>d :Pydocstring<cr>
 
 inoremap <leader>w <Esc>:w<cr>
 inoremap <C-a> <esc>I
@@ -143,6 +146,7 @@ cabbrev tn tabnew
 
 
 " vim basic setting
+set updatetime=200
 set termguicolors " true color
 set lazyredraw
 set nofoldenable "禁用折叠"
@@ -312,12 +316,22 @@ let g:deoplete#sources#jedi#enable_cache = 10 " 缓存
 " let g:deoplete#sources#clang#clang_header = "/usr/lib/clang/6.0.0/include/"
 set completeopt -=preview
 
+
 " make neovim faster without search python
 let g:python3_host_skip_check=1
 let g:python3_host_prog = '/home/lan/anaconda3/bin/python3.6'
 " let g:python_host_skip_check=1
 " let g:python_host_prog = '/usr/bin/python'
 
+
 " leaderf
 let g:Lf_WindowHeight = 0.30
 let g:Lf_CursorBlink = 0
+let g:Lf_WildIgnore = {
+            \ 'dir': ['.svn','.git','.hg', 'anaconda3', 'Download', 'node_modules'],
+            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+            \}
+
+
+" vim-pydocstring
+nmap <silent> <C-_> <Plug>(pydocstring)
