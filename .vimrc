@@ -5,7 +5,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Yggdroot/indentLine', {'for': ['c', 'cpp', 'python']}
 Plug 'jiangmiao/auto-pairs'
 Plug 'w0rp/ale', {'for': ['c', 'cpp', 'python']}
-Plug 'google/yapf', {'for': 'python'} " python的格式化
+Plug 'google/yapf', {'for': 'markdown'} " python的格式化
 Plug 'ntpeters/vim-better-whitespace' "空白标红
 Plug 'godlygeek/tabular', {'for': 'markdown'}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
@@ -18,11 +18,14 @@ Plug 'SirVer/ultisnips'
 Plug 'scrooloose/nerdcommenter'
 Plug 'fisadev/vim-isort', {'on': 'Isort'}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
-Plug 'zchee/deoplete-jedi', {'for': 'python'}
-Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
+" Plug 'zchee/deoplete-jedi', {'for': 'python'}
+" Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
 Plug 'kien/ctrlp.vim', {'for': ['c', 'cpp', 'python']}
 Plug 'liuchengxu/eleline.vim'
 Plug 'liuchengxu/space-vim-dark'
+Plug 'mhinz/vim-startify'
+
+
 call plug#end()
 "插件末尾
 
@@ -52,6 +55,7 @@ noremap <leader>e :wq<cr>
 noremap <leader>c A:<cr>
 noremap <leader>n o
 nnoremap <leader><space> :nohlsearch<cr>
+
 inoremap <leader>w <Esc>:w<cr>
 inoremap <C-a> <esc>I
 inoremap <C-e> <esc>A
@@ -86,6 +90,7 @@ iabbrev im import
 iabbrev fm from
 cabbrev tn tabnew
 
+set scrolloff=7
 set hlsearch "高亮匹配项
 set lazyredraw
 set nofoldenable "禁用折叠"

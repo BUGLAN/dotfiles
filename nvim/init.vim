@@ -60,6 +60,7 @@ if dein#load_state('/home/lan/.config/nvim/dein')
     call dein#add('heavenshell/vim-pydocstring', {'on_ft': 'python', 'on_cmd': 'Pydocstring'})
     call dein#add('godlygeek/tabular', {'on_ft': 'markdown', 'on_event': 'InsertEnter'})
     call dein#add('plasticboy/vim-markdown', {'on': 'markdown', 'on_event': 'InsertEnter'})
+    call dein#add('easymotion/vim-easymotion', {'on_map': ['<Plug>(easymotion-bd-w)', '<Plug>(easymotion-bd-jk)']})
 
 
     if !has('nvim')
@@ -111,6 +112,25 @@ noremap <leader>n o
 noremap <leader><space> :nohlsearch<cr>
 noremap <leader>f :LeaderfFile<cr>
 noremap <leader><leader>d :Pydocstring<cr>
+noremap H ^
+noremap L $
+map <C-j> <C-W>j
+" map <C-k> <C-W>k
+" map <C-h> <C-W>h
+map <C-l> <C-W>l
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
+nmap  <leader><leader>w <Plug>(easymotion-bd-w)
+nmap  <leader><leader>s <Plug>(easymotion-bd-jk)
+
 
 inoremap <leader>w <Esc>:w<cr>
 inoremap <C-a> <esc>I
@@ -146,6 +166,8 @@ cabbrev tn tabnew
 
 
 " vim basic setting
+set ttyfast
+set scrolloff=7
 set updatetime=200
 set termguicolors " true color
 set lazyredraw
@@ -157,6 +179,7 @@ syntax on " 开启语法高粱
 set autoindent "自动缩进
 set cindent "C语言的缩进格式
 set smartindent "当遇到右花括号（}），则取消缩进形式
+set shiftround
 set tabstop=4 "定义tab所等同的空格长度
 set expandtab "expandtab，输入一个tab，将被展开成softtabstop值个空格，如果softtabstop=4，那么一个tab就会被替换成4个空格
 set shiftwidth=4 "程序中自动缩进所使用的空白长度指示的
@@ -201,7 +224,7 @@ endif
 
 " plugins setting
 
-" vim-gitgutter
+" vim-gitgutter / vim-lazygutter
 let g:gitgutter_map_keys = 0 "关闭所有键位映射
 
 
