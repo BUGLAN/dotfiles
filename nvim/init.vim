@@ -1,37 +1,3 @@
-" call plug#begin('~/.config/nvim/plugged')
-" " 下面的我安装的插件
-" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-" Plug 'Yggdroot/indentLine', {'for': ['c', 'cpp', 'python']}
-" Plug 'jiangmiao/auto-pairs'
-" Plug 'w0rp/ale', {'for': ['c', 'cpp', 'python']}
-" Plug 'ntpeters/vim-better-whitespace'
-" Plug 'godlygeek/tabular', {'for': 'markdown'}
-" Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
-" Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'}
-" Plug 'iamcco/markdown-preview.vim', {'for': 'markdown'}
-" Plug 'lilydjwg/fcitx.vim', {'on': []}
-" Plug 'Chiel92/vim-autoformat', {'on': 'Autoformat'}
-" Plug 'airblade/vim-gitgutter', {'on': []}
-" Plug 'SirVer/ultisnips'
-" Plug 'scrooloose/nerdcommenter', {'on': '<plug>NERDCommenterToggle'}
-" Plug 'fisadev/vim-isort', {'on': 'Isort'}
-" Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
-" Plug 'zchee/deoplete-jedi', {'for': 'python'}
-" " Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
-" Plug 'Yggdroot/LeaderF', { 'do': './install.sh', 'on': 'LeaderfFile'}
-" Plug 'liuchengxu/eleline.vim'
-" Plug 'liuchengxu/space-vim-dark'
-" Plug 'Shougo/neopairs.vim', {'for': ['c', 'cpp', 'python']}
-" if has('nvim')
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" else
-" Plug 'Shougo/deoplete.nvim'
-" Plug 'roxma/nvim-yarp'
-" Plug 'roxma/vim-hug-neovim-rpc'
-" endif
-
-" call plug#end()
-" " 插件末尾
 set runtimepath+=/home/lan/.config/nvim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
 call dein#begin(expand('/home/lan/.config/nvim/dein'))
 
@@ -61,6 +27,7 @@ if dein#load_state('/home/lan/.config/nvim/dein')
     call dein#add('godlygeek/tabular', {'on_ft': 'markdown', 'on_event': 'InsertEnter'})
     call dein#add('plasticboy/vim-markdown', {'on': 'markdown', 'on_event': 'InsertEnter'})
     call dein#add('easymotion/vim-easymotion', {'on_map': ['<Plug>(easymotion-bd-w)', '<Plug>(easymotion-bd-jk)']})
+    " call dein#add('mhinz/vim-startify')
 
 
     if !has('nvim')
@@ -96,120 +63,11 @@ endfunction
 " endfunction
 
 " vim leader key mapping
-let mapleader=","
-map! <c-l> <right>
-map <leader><leader>n :NERDTreeToggle<cr>
-map <leader><leader>t :TagbarToggle<cr>
-
-noremap <c-a> I
-noremap <c-e> A
-noremap ; :
-noremap <leader>w :w<cr>
-noremap <leader>q :q!<cr>
-noremap <leader>e :wq<cr>
-noremap <leader>c A:<cr>
-noremap <leader>n o
-noremap <leader><space> :nohlsearch<cr>
-noremap <leader>f :LeaderfFile<cr>
-noremap <leader><leader>d :Pydocstring<cr>
-noremap H ^
-noremap L $
-map <C-j> <C-W>j
-" map <C-k> <C-W>k
-" map <C-h> <C-W>h
-map <C-l> <C-W>l
-noremap <leader>1 1gt
-noremap <leader>2 2gt
-noremap <leader>3 3gt
-noremap <leader>4 4gt
-noremap <leader>5 5gt
-noremap <leader>6 6gt
-noremap <leader>7 7gt
-noremap <leader>8 8gt
-noremap <leader>9 9gt
-noremap <leader>0 :tablast<cr>
-nmap  <leader><leader>w <Plug>(easymotion-bd-w)
-nmap  <leader><leader>s <Plug>(easymotion-bd-jk)
-
-
-inoremap <leader>w <Esc>:w<cr>
-inoremap <C-a> <esc>I
-inoremap <C-e> <esc>A
-inoremap <leader>q <Esc>:wq<cr>
-inoremap <leader>e =
-inoremap <leader>r -
-inoremap <leader>a +
-inoremap <leader>u _
-inoremap <leader>i ____<Esc>hi
-inoremap <leader>n <Esc>o
-inoremap <leader>c <Esc>A:<cr>
-inoremap <leader>b ()<Esc>i
-inoremap <leader>s []<Esc>i
-inoremap <leader>t {}<Esc>i
-inoremap <leader>m *
-inoremap <leader>d <SPACE>-><SPACE>
-inoremap <leader>f <Esc>bi"<Esc>ea"
-inoremap <leader>p print()<Esc>i
-inoremap <leader>j <Esc>f)i
-inoremap <leader>. <Esc>
-
-" vim tables
-noremap gn :tabn<CR>
-noremap gp :tabp<CR>
-
-
-" 输入快捷方式
-iabbrev hw Hello World
-iabbrev im import
-iabbrev fm from
-cabbrev tn tabnew
+source ~/.config/nvim/config/mapping.vim
 
 
 " vim basic setting
-set ttyfast
-set scrolloff=7
-set updatetime=200
-set termguicolors " true color
-set lazyredraw
-set nofoldenable "禁用折叠"
-" set nocompatible "去除vi 和vim 的一致性
-set nu! " 设置行号
-filetype plugin indent on " 开启类型检查
-syntax on " 开启语法高粱
-set autoindent "自动缩进
-set cindent "C语言的缩进格式
-set smartindent "当遇到右花括号（}），则取消缩进形式
-set shiftround
-set tabstop=4 "定义tab所等同的空格长度
-set expandtab "expandtab，输入一个tab，将被展开成softtabstop值个空格，如果softtabstop=4，那么一个tab就会被替换成4个空格
-set shiftwidth=4 "程序中自动缩进所使用的空白长度指示的
-set ruler "底部的行号等显示
-set novisualbell "去掉输入错误的提示声音
-set softtabstop=4 "逢4空格进1制表符
-set t_md= "禁用粗体
-set t_Co=256 "开启256色
-set fileformat=unix "filetype
-set encoding=utf-8 "编码utf-8
-let python_highlight_all=1 "make code 漂亮
-autocmd FileType python set colorcolumn=79
-set cmdheight=1
-set noswapfile "禁止生产交换文件
-
-
-" vim color setting
-set norelativenumber
-colorscheme space-vim-dark
-hi CursorLineNR cterm=bold gui=bold
-hi lineNr guibg=NONE ctermbg=NONE
-hi Normal guibg=NONE ctermbg=NONE
-hi SignColumn ctermbg=NONE guibg=NONE
-hi Comment guifg=#5C6370 ctermfg=59 gui=NONE
-hi CursorLineNr guibg=NONE ctermbg=NONE
-hi Pmenu guibg=NONE ctermbg=NONE guifg=#af87d7 guibg=NONE
-hi TabLineFill ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
-hi TabLine ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
-hi TabLineSel ctermfg=red ctermbg=NONE guifg=#d75faf guibg=NONE
-hi Search cterm=underline ctermfg=red ctermbg=NONE guifg=red guibg=NONE gui=underline
+source ~/.config/nvim/config/setting.vim
 
 
 " 配置vim打开时vim自动定位到上次的位置
@@ -244,8 +102,8 @@ let g:ale_linters = {'python': ['flake8'], 'reStructuredText': ['rstcheck']}
 let g:ale_fixers = {'python': ['remove_trailing_lines', 'trim_whitespace', 'autopep8']}
 nmap <silent> <C-k> <Plug>(ceale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '✗'
+let g:ale_sign_error = '█'
+let g:ale_sign_warning = '█'
 highlight ALEErrorSign ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 highlight ALEWarningSign ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 let g:ale_lint_on_text_changed = 'never'
@@ -321,7 +179,7 @@ let g:deoplete#auto_complete_start_length = 2
 let g:deoplete#max_list = 15
 let g:deoplete#enable_at_startup = 0 "开启deplete
 " complete with one brackets
-call deoplete#custom#source('_', 'converters', ['converter_auto_paren'])
+" call deoplete#custom#source('_', 'converters', ['converter_auto_paren'])
 " let g:deoplete#enable_at_startup = 1
 
 
@@ -332,6 +190,71 @@ let g:neopairs#enable = 1 "enable neopairs make deoplete complete with one pair 
 " deoplete-jedi
 let g:deoplete#sources#jedi#python_path = '/home/lan/anaconda3/bin/python3.6'
 let g:deoplete#sources#jedi#enable_cache = 10 " 缓存
+let g:deoplete#enable_refresh_always = 1
+let g:deoplete#enable_camel_case = 1
+let g:deoplete#max_abbr_width = 35
+let g:deoplete#max_menu_width = 20
+let g:deoplete#skip_chars = ['(', ')', '<', '>']
+let g:deoplete#tag#cache_limit_size = 800000
+let g:deoplete#file#enable_buffer_path = 1
+
+let g:deoplete#sources#jedi#statement_length = 50
+" let g:deoplete#sources#jedi#show_docstring = 1
+let g:deoplete#sources#jedi#short_types = 1
+let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+let g:deoplete#omni_patterns = get(g:, 'deoplete#omni_patterns', {})
+let g:deoplete#sources = get(g:,'deoplete#sources',{})
+" let g:deoplete#omni#input_patterns.python = ''
+" let g:deoplete#enable_ignore_case = 'ignorecase'
+" let g:deoplete#enable_ignore_case = 1
+let g:deoplete#ignore_sources = {}
+let g:deoplete#ignore_sources._ = ['buffer']
+
+
+call deoplete#custom#source('_', 'converters', [
+            \ 'converter_remove_paren',
+            \ 'converter_remove_overlap',
+            \ 'converter_truncate_abbr',
+            \ 'converter_truncate_menu',
+            \ 'converter_auto_delimiter',
+            \ 'converter_auto_paren',
+            \ ])
+
+
+call deoplete#custom#source('file',          'mark', 'ℬ')
+" call deoplete#custom#source('TernJS',        'mark', '⌁')
+" call deoplete#custom#source('go',            'mark', '⌁')
+" call deoplete#custom#source('ultisnips',     'mark', '⌘')
+call deoplete#custom#source('tmux-complete', 'mark', '⊶')
+call deoplete#custom#source('omni',          'mark', '⌾')
+call deoplete#custom#source('flow',          'mark', '⌁')
+call deoplete#custom#source('padawan',       'mark', '⌁')
+" call deoplete#custom#source('jedi',          'mark', '⌁')
+call deoplete#custom#source('vim',           'mark', '⌁')
+call deoplete#custom#source('tag',           'mark', '⌦')
+call deoplete#custom#source('around',        'mark', '↻')
+" call deoplete#custom#source('buffer',        'mark', 'ℬ')
+call deoplete#custom#source('syntax',        'mark', '♯')
+call deoplete#custom#source('member',        'mark', '.')
+
+
+" call deoplete#custom#source('padawan',       'rank', 660)
+" call deoplete#custom#source('go',            'rank', 650)
+" call deoplete#custom#source('vim',           'rank', 640)
+" call deoplete#custom#source('flow',          'rank', 630)
+" call deoplete#custom#source('TernJS',        'rank', 620)
+call deoplete#custom#source('ultisnips',     'rank', 620)
+call deoplete#custom#source('jedi',          'rank', 620)
+call deoplete#custom#source('omni',          'rank', 600)
+call deoplete#custom#source('member',        'rank', 500)
+call deoplete#custom#source('file_include',  'rank', 420)
+call deoplete#custom#source('file',          'rank', 410)
+call deoplete#custom#source('tag',           'rank', 400)
+call deoplete#custom#source('around',        'rank', 330)
+call deoplete#custom#source('buffer',        'rank', 320)
+call deoplete#custom#source('dictionary',    'rank', 310)
+call deoplete#custom#source('tmux-complete', 'rank', 300)
+call deoplete#custom#source('syntax',        'rank', 200)
 
 
 " deoplete-clang
