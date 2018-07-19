@@ -17,17 +17,18 @@ if dein#load_state('/home/lan/.config/nvim/dein')
     call dein#add('sgur/vim-lazygutter', {'on_event': 'InsertEnter'})
     call dein#add('SirVer/ultisnips', {'on_event': 'InsertEnter'})
     call dein#add('fisadev/vim-isort', {'on_cmd': 'Isort'})
-    call dein#add('majutsushi/tagbar', {'on_cmd': 'TagbarToggle'})
-    call dein#add('Yggdroot/LeaderF', {'on_cmd': 'LeaderfFile'})
+    call dein#add('Yggdroot/LeaderF', {'on_cmd': ['LeaderfFile', 'LeaderfFunction']})
     call dein#add('liuchengxu/eleline.vim')
     call dein#add('liuchengxu/space-vim-dark')
     call dein#add('Shougo/neopairs.vim', {'on_event': 'InsertEnter'})
     call dein#add('scrooloose/nerdcommenter', {'on_map': '<plug>NERDCommenterToggle'})
     call dein#add('heavenshell/vim-pydocstring', {'on_ft': 'python', 'on_cmd': 'Pydocstring'})
-    call dein#add('godlygeek/tabular', {'on_ft': 'markdown', 'on_event': 'InsertEnter'})
-    call dein#add('plasticboy/vim-markdown', {'on': 'markdown', 'on_event': 'InsertEnter'})
+    call dein#add('godlygeek/tabular', {'on_ft': 'markdown'})
+    call dein#add('plasticboy/vim-markdown', {'on_ft': 'markdown'})
     call dein#add('easymotion/vim-easymotion', {'on_map': ['<Plug>(easymotion-bd-w)', '<Plug>(easymotion-bd-jk)']})
-    " call dein#add('mhinz/vim-startify')
+    call dein#add('mhinz/vim-startify', {'on_event': 'VimEnter'})
+    call dein#add('tpope/vim-surround')
+    call dein#add('luochen1990/rainbow')
 
 
     if !has('nvim')
@@ -102,8 +103,8 @@ let g:ale_linters = {'python': ['flake8'], 'reStructuredText': ['rstcheck']}
 let g:ale_fixers = {'python': ['remove_trailing_lines', 'trim_whitespace', 'autopep8']}
 nmap <silent> <C-k> <Plug>(ceale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-let g:ale_sign_error = '█'
-let g:ale_sign_warning = '█'
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '✘'
 highlight ALEErrorSign ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 highlight ALEWarningSign ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 let g:ale_lint_on_text_changed = 'never'
@@ -168,6 +169,7 @@ let g:vim_isort_python_version = 'python3'
 
 " tagbar
 let g:tagbar_width = 30
+let g:tagbar_ctags_bin = 'ctags'
 nmap <F8> :TagbarToggle<CR>
 
 " deoplete-vim
@@ -200,15 +202,15 @@ let g:deoplete#file#enable_buffer_path = 1
 
 let g:deoplete#sources#jedi#statement_length = 50
 " let g:deoplete#sources#jedi#show_docstring = 1
-let g:deoplete#sources#jedi#short_types = 1
+" let g:deoplete#sources#jedi#short_types = 1
 let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
 let g:deoplete#omni_patterns = get(g:, 'deoplete#omni_patterns', {})
 let g:deoplete#sources = get(g:,'deoplete#sources',{})
 " let g:deoplete#omni#input_patterns.python = ''
 " let g:deoplete#enable_ignore_case = 'ignorecase'
-" let g:deoplete#enable_ignore_case = 1
+let g:deoplete#enable_ignore_case = 1
 let g:deoplete#ignore_sources = {}
-let g:deoplete#ignore_sources._ = ['buffer']
+" let g:deoplete#ignore_sources._ = ['buffer']
 
 
 call deoplete#custom#source('_', 'converters', [
@@ -233,7 +235,7 @@ call deoplete#custom#source('padawan',       'mark', '⌁')
 call deoplete#custom#source('vim',           'mark', '⌁')
 call deoplete#custom#source('tag',           'mark', '⌦')
 call deoplete#custom#source('around',        'mark', '↻')
-" call deoplete#custom#source('buffer',        'mark', 'ℬ')
+call deoplete#custom#source('buffer',        'mark', 'ℬ')
 call deoplete#custom#source('syntax',        'mark', '♯')
 call deoplete#custom#source('member',        'mark', '.')
 
@@ -244,7 +246,7 @@ call deoplete#custom#source('member',        'mark', '.')
 " call deoplete#custom#source('flow',          'rank', 630)
 " call deoplete#custom#source('TernJS',        'rank', 620)
 call deoplete#custom#source('ultisnips',     'rank', 620)
-call deoplete#custom#source('jedi',          'rank', 620)
+call deoplete#custom#source('jedi',          'rank', 610)
 call deoplete#custom#source('omni',          'rank', 600)
 call deoplete#custom#source('member',        'rank', 500)
 call deoplete#custom#source('file_include',  'rank', 420)
@@ -274,10 +276,24 @@ let g:python3_host_prog = '/home/lan/anaconda3/bin/python3.6'
 let g:Lf_WindowHeight = 0.30
 let g:Lf_CursorBlink = 0
 let g:Lf_WildIgnore = {
-            \ 'dir': ['.svn','.git','.hg', 'anaconda3', 'Download', 'node_modules'],
+            \ 'dir': ['.svn','.git','.hg', 'anaconda3', 'Download', 'node_modules', '.*', 'venv'],
             \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
             \}
 
 
 " vim-pydocstring
 nmap <silent> <C-_> <Plug>(pydocstring)
+
+" vim-startify
+let g:startify_enable_unsafe = 1
+
+" rainbow
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+	\	'guifgs': ['darkorange3', 'firebrick', 'seagreen3', 'royalblue3'],
+	\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+    \   'operators': '_,_',
+	\}
+
+" nerdtree
+let g:NERDTreeIgnore = ['\.pyc$', '^__pycache__$', '\.git$']
