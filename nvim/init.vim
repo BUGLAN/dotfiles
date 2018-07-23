@@ -12,7 +12,7 @@ if dein#load_state('/home/lan/.config/nvim/dein')
     call dein#add('ntpeters/vim-better-whitespace', {'on_event': 'InsertEnter'})
     call dein#add('iamcco/mathjax-support-for-mkdp', {'on_ft': 'markdown', 'on_event': 'InsertEnter'})
     call dein#add('iamcco/markdown-preview.vim', {'on_ft': 'markdown', 'on_cmd': 'MarkdownPreview'})
-    call dein#add('lilydjwg/fcitx.vim', {'on_event': 'InsertEnter'})
+    " call dein#add('lilydjwg/fcitx.vim', {'on_event': 'InsertEnter'})
     call dein#add('Chiel92/vim-autoformat', {'on_cmd': 'Autoformat'})
     call dein#add('sgur/vim-lazygutter', {'on_event': 'InsertEnter'})
     call dein#add('SirVer/ultisnips', {'on_event': 'InsertEnter'})
@@ -29,6 +29,12 @@ if dein#load_state('/home/lan/.config/nvim/dein')
     call dein#add('mhinz/vim-startify', {'on_event': 'VimEnter'})
     call dein#add('tpope/vim-surround')
     call dein#add('luochen1990/rainbow')
+    call dein#add('posva/vim-vue', {'on_ft': 'vue'})
+    call dein#add('carlitux/deoplete-ternjs')
+    " call dein#add('maksimr/vim-jsbeautify')
+    " call dein#add('mattn/emmet-vim')
+    call dein#add('pangloss/vim-javascript')
+    call dein#add('marijnh/tern_for_vim')
 
 
     if !has('nvim')
@@ -83,6 +89,10 @@ endif
 
 " plugins setting
 
+
+" dein
+let g:dein#install_max_processes = 16
+
 " vim-gitgutter / vim-lazygutter
 let g:gitgutter_map_keys = 0 "关闭所有键位映射
 
@@ -91,6 +101,7 @@ let g:gitgutter_map_keys = 0 "关闭所有键位映射
 let g:formatdef_harttle = '"astyle --style=attach --pad-oper"'
 let g:formatters_cpp = ['harttle']
 let g:formatter_yapf_style = 'google'
+let g:formatters_python= ['autopep8']
 noremap <leader>a :Autoformat<CR>
 
 
@@ -99,7 +110,18 @@ let g:mkdp_auto_close = 0
 
 
 " ale
-let g:ale_linters = {'python': ['flake8'], 'reStructuredText': ['rstcheck']}
+" npm install -g eslint bable-eslint
+" pip install flake8 autopep8
+" {
+"    "extends": "standard",
+"    "parser": "babel-eslint"
+" }
+
+let g:ale_linters = {
+            \ 'python': ['flake8'],
+            \ 'reStructuredText': ['rstcheck']
+            \ }
+
 let g:ale_fixers = {'python': ['remove_trailing_lines', 'trim_whitespace', 'autopep8']}
 nmap <silent> <C-k> <Plug>(ceale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
@@ -276,8 +298,8 @@ let g:python3_host_prog = '/home/lan/anaconda3/bin/python3.6'
 let g:Lf_WindowHeight = 0.30
 let g:Lf_CursorBlink = 0
 let g:Lf_WildIgnore = {
-            \ 'dir': ['.svn','.git','.hg', 'anaconda3', 'Download', 'node_modules', '.*', 'venv'],
-            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+            \ 'dir': ['.svn','.git','.hg', 'anaconda3', 'Download', 'node_modules', '.*', 'venv', 'migrations'],
+            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[cod]']
             \}
 
 
@@ -296,4 +318,36 @@ let g:rainbow_conf = {
 	\}
 
 " nerdtree
-let g:NERDTreeIgnore = ['\.pyc$', '^__pycache__$', '\.git$']
+let g:NERDTreeIgnore = ['\.pyc$', '^__pycache__$', '\.git$', '^migrations$', 'node_modules']
+
+
+" deoplete-ternjs
+" Set bin if you have many instalations
+let g:deoplete#sources#ternjs#tern_bin = '/usr/bin/tern'
+let g:deoplete#sources#ternjs#timeout = 1
+let g:deoplete#sources#ternjs#types = 1
+let g:deoplete#sources#ternjs#depths = 1
+let g:deoplete#sources#ternjs#docs = 1
+let g:deoplete#sources#ternjs#filter = 0
+let g:deoplete#sources#ternjs#case_insensitive = 1
+let g:deoplete#sources#ternjs#sort = 0
+let g:deoplete#sources#ternjs#expand_word_forward = 0
+let g:deoplete#sources#ternjs#omit_object_prototype = 0
+let g:deoplete#sources#ternjs#include_keywords = 1
+let g:deoplete#sources#ternjs#in_literal = 0
+let g:deoplete#sources#ternjs#filetypes = [
+                \ 'jsx',
+                \ 'javascript.jsx',
+                \ 'vue',
+                \ ]
+
+" vim jsbeautify
+" map <c-f> :call JsBeautify()<cr>
+" autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+" autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
+" autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
+" autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+" autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+
+
+" vim emmet-html

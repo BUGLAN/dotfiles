@@ -1,0 +1,78 @@
+global !p
+
+def get_dir_and_file_name(snip):
+	return os.getcwd().split(os.sep)[-1] + '.' + snip.basename
+
+endglobal
+
+
+
+snippet f "fuction define" b
+def ${1:fuction}(${2}):
+	${3:pass}
+endsnippet
+
+snippet main "if __name__ == '__main__':" b
+if __name__ == "__main__":
+	${1:main()}
+endsnippet
+
+snippet for "for loop" b
+for ${1:item} in ${2:iterable}:
+	${3:pass}
+endsnippet
+
+snippet it "def __init__(self):" b
+def __init__(self):
+	${1:pass}
+endsnippet
+
+snippet init "def __init__(self, args):" b
+def __init__(self, ${1:args}):
+	${2:pass}
+endsnippet
+
+
+snippet cls "less class define" b
+class ${1:class}:
+
+	${2:pass}
+endsnippet
+
+snippet class "more class define" b
+class ${1:class}(${2:object}):
+
+	${3:pass}
+endsnippet
+
+snippet s "standard class def" b
+def ${1:func}(self${2}):
+	${3:pass}${0}
+endsnippet
+
+snippet while "while pass" b
+while ${1:condition}:
+	${2:pass}
+endsnippet
+
+snippet doc "doc string" b
+"""${1:docstring}"""
+endsnippet
+
+snippet sh "python shell script" b
+#!/usr/bin/env python
+
+
+endsnippet
+
+snippet pmdoc "pocoo style module doc string" b
+# -*- coding: utf-8 -*-
+"""
+	`!p snip.rv = get_dir_and_file_name(snip)`
+	`!p snip.rv = '-' * len(get_dir_and_file_name(snip))`
+
+	${1:DESCRIPTION}
+	:copyright: (c) `!v strftime("%Y-%m-%d")` by buglan
+"""
+$0
+endsnippet
