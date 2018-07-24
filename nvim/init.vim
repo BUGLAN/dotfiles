@@ -98,10 +98,12 @@ let g:gitgutter_map_keys = 0 "关闭所有键位映射
 
 
 " vim-autoformater
+" pip install yapf
+" sudo pacman -S astyle
 let g:formatdef_harttle = '"astyle --style=attach --pad-oper"'
 let g:formatters_cpp = ['harttle']
 let g:formatter_yapf_style = 'google'
-let g:formatters_python= ['autopep8']
+let g:formatters_python= ['yapf']
 noremap <leader>a :Autoformat<CR>
 
 
@@ -185,6 +187,7 @@ map <leader><leader>z <plug>NERDCommenterToggle
 
 
 " vim-isort
+" pip install isort
 let g:vim_isort_map = ''
 let g:vim_isort_python_version = 'python3'
 
@@ -208,10 +211,12 @@ let g:deoplete#enable_at_startup = 0 "开启deplete
 
 
 " neopairs
-let g:neopairs#enable = 1 "enable neopairs make deoplete complete with one pair brackets"
+" let g:neopairs#enable = 1
+" enable neopairs make deoplete complete with one pair brackets"
 
 
 " deoplete-jedi
+" pip install jedi
 let g:deoplete#sources#jedi#python_path = '/home/lan/anaconda3/bin/python3.6'
 let g:deoplete#sources#jedi#enable_cache = 10 " 缓存
 let g:deoplete#enable_refresh_always = 1
@@ -282,6 +287,7 @@ call deoplete#custom#source('syntax',        'rank', 200)
 
 
 " deoplete-clang
+" sudo pacman -S clang
 " let g:deoplete#sources#clang#libclang_path = "/usr/lib/libclang.so"
 " let g:deoplete#sources#clang#clang_header = "/usr/lib/clang/6.0.0/include/"
 set completeopt -=preview
@@ -322,6 +328,7 @@ let g:NERDTreeIgnore = ['\.pyc$', '^__pycache__$', '\.git$', '^migrations$', 'no
 
 
 " deoplete-ternjs
+" npm install -g ternjs
 " Set bin if you have many instalations
 let g:deoplete#sources#ternjs#tern_bin = '/usr/bin/tern'
 let g:deoplete#sources#ternjs#timeout = 1

@@ -24,6 +24,12 @@ Plug 'kien/ctrlp.vim', {'for': ['c', 'cpp', 'python']}
 Plug 'liuchengxu/eleline.vim'
 Plug 'liuchengxu/space-vim-dark'
 Plug 'mhinz/vim-startify'
+Plug 'posva/vim-vue'
+Plug 'pangloss/vim-javascript'
+Plug 'tpope/vim-surround'
+Plug 'luochen1990/rainbow'
+Plug 'easymotion/vim-easymotion'
+Plug 'heavenshell/vim-pydocstring'
 
 
 call plug#end()
