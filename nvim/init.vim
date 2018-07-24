@@ -20,7 +20,7 @@ if dein#load_state('/home/lan/.config/nvim/dein')
     call dein#add('Yggdroot/LeaderF', {'on_cmd': ['LeaderfFile', 'LeaderfFunction']})
     call dein#add('liuchengxu/eleline.vim')
     call dein#add('liuchengxu/space-vim-dark')
-    call dein#add('Shougo/neopairs.vim', {'on_event': 'InsertEnter'})
+    " call dein#add('Shougo/neopairs.vim', {'on_event': 'InsertEnter'})
     call dein#add('scrooloose/nerdcommenter', {'on_map': '<plug>NERDCommenterToggle'})
     call dein#add('heavenshell/vim-pydocstring', {'on_ft': 'python', 'on_cmd': 'Pydocstring'})
     call dein#add('godlygeek/tabular', {'on_ft': 'markdown'})
@@ -240,10 +240,10 @@ call deoplete#custom#source('_', 'converters', [
             \ 'converter_remove_overlap',
             \ 'converter_truncate_abbr',
             \ 'converter_truncate_menu',
-            \ 'converter_auto_delimiter',
-            \ 'converter_auto_paren',
+            \ 'converter_auto_delimiter'
             \ ])
 
+" \ 'converter_auto_paren',
 
 call deoplete#custom#source('file',          'mark', 'ℬ')
 " call deoplete#custom#source('TernJS',        'mark', '⌁')
