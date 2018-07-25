@@ -35,6 +35,7 @@ if dein#load_state('/home/lan/.config/nvim/dein')
     " call dein#add('mattn/emmet-vim')
     call dein#add('pangloss/vim-javascript')
     call dein#add('marijnh/tern_for_vim')
+    call dein#add('mileszs/ack.vim')
 
 
     if !has('nvim')
@@ -357,4 +358,8 @@ let g:deoplete#sources#ternjs#filetypes = [
 " autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
 
-" vim emmet-html
+" Ack.vim
+" sudo pacman -S the_silver_searcher
+let g:ackprg = 'ag --nogroup --nocolor --column'
+" leader s[earch]
+map <leader>s :Ack<space>

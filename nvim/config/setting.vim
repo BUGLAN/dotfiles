@@ -43,3 +43,11 @@ hi TabLineFill ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
 hi TabLine ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
 hi TabLineSel ctermfg=red ctermbg=NONE guifg=#d75faf guibg=NONE
 hi Search cterm=underline ctermfg=red ctermbg=NONE guifg=red guibg=NONE gui=underline
+
+" set cursorline
+" autocmd InsertEnter * set nocursorline
+" autocmd InsertLeave * set cursorline
+autocmd FileType json,javascript,html,jsx,javascript.jsx,vue,markdown setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+
