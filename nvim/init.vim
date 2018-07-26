@@ -35,7 +35,8 @@ if dein#load_state('/home/lan/.config/nvim/dein')
     " call dein#add('mattn/emmet-vim')
     call dein#add('pangloss/vim-javascript')
     call dein#add('marijnh/tern_for_vim')
-    call dein#add('mileszs/ack.vim')
+    " call dein#add('mileszs/ack.vim')
+    call dein#add('junegunn/fzf.vim')
 
 
     if !has('nvim')
@@ -319,10 +320,10 @@ let g:startify_enable_unsafe = 1
 " rainbow
 let g:rainbow_active = 1
 let g:rainbow_conf = {
-	\	'guifgs': ['darkorange3', 'firebrick', 'seagreen3', 'royalblue3'],
-	\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-    \   'operators': '_,_',
-	\}
+            \   'guifgs': ['darkorange3', 'firebrick', 'seagreen3', 'royalblue3'],
+            \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+            \   'operators': '_,_',
+            \}
 
 " nerdtree
 let g:NERDTreeIgnore = ['\.pyc$', '^__pycache__$', '\.git$', '^migrations$', 'node_modules']
@@ -344,10 +345,10 @@ let g:deoplete#sources#ternjs#omit_object_prototype = 0
 let g:deoplete#sources#ternjs#include_keywords = 1
 let g:deoplete#sources#ternjs#in_literal = 0
 let g:deoplete#sources#ternjs#filetypes = [
-                \ 'jsx',
-                \ 'javascript.jsx',
-                \ 'vue',
-                \ ]
+            \ 'jsx',
+            \ 'javascript.jsx',
+            \ 'vue',
+            \ ]
 
 " vim jsbeautify
 " map <c-f> :call JsBeautify()<cr>
@@ -359,7 +360,11 @@ let g:deoplete#sources#ternjs#filetypes = [
 
 
 " Ack.vim
-" sudo pacman -S the_silver_searcher
-let g:ackprg = 'ag --nogroup --nocolor --column'
-" leader s[earch]
-map <leader>s :Ack<space>
+" let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" fzf.vim
+" sudo pacman -S the_silver_searcher fzf
+nnoremap <silent> <C-p> :Files<CR>
+" leader s[earch] code snippets
+nnoremap <leader>s :Ag<cr>
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--color-path="0;33"', <bang>0)
