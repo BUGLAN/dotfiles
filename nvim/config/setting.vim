@@ -28,6 +28,7 @@ autocmd FileType python set colorcolumn=79
 set cmdheight=1
 set noswapfile "禁止生产交换文件
 set norelativenumber
+set clipboard+=unnamedplus
 
 
 " vim color setting
@@ -49,5 +50,3 @@ hi Search cterm=underline ctermfg=red ctermbg=NONE guifg=red guibg=NONE gui=unde
 " autocmd InsertLeave * set cursorline
 autocmd FileType json,javascript,html,jsx,javascript.jsx,vue,markdown setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-
-

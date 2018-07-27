@@ -2,6 +2,8 @@
 let mapleader=","
 map <leader><leader>n :NERDTreeToggle<cr>
 map <leader><leader>t :LeaderfFunction!<cr>
+nmap  <leader><leader>w <Plug>(easymotion-bd-w)
+nmap  <leader><leader>s <Plug>(easymotion-bd-jk)
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -30,9 +32,8 @@ noremap <leader>7 7gt
 noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
-nmap  <leader><leader>w <Plug>(easymotion-bd-w)
-nmap  <leader><leader>s <Plug>(easymotion-bd-jk)
-
+noremap D d$
+noremap Y y$
 
 inoremap <leader>w <Esc>:w<cr>
 inoremap <C-a> <esc>I
@@ -56,6 +57,14 @@ inoremap <leader>j <Esc>f)i
 inoremap <leader>. <Esc>
 inoremap <c-l> <right>
 
+" 输入快捷方式
+iabbrev hw Hello World
+iabbrev im import
+iabbrev fm from
+iabbrev fn function
+cabbrev tn tabnew
+cabbrev update call dein#update()
+
 " vim tables
 noremap gn :tabn<CR>
 noremap gp :tabp<CR>
@@ -67,9 +76,3 @@ if has('nvim')
   tnoremap <c-v> <C-\><C-n>
 endif
 
-" 输入快捷方式
-iabbrev hw Hello World
-iabbrev im import
-iabbrev fm from
-iabbrev fn function
-cabbrev tn tabnew

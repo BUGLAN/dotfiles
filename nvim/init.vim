@@ -37,6 +37,7 @@ if dein#load_state('/home/lan/.config/nvim/dein')
     call dein#add('marijnh/tern_for_vim')
     " call dein#add('mileszs/ack.vim')
     call dein#add('junegunn/fzf.vim')
+    call dein#add('ryanoasis/vim-devicons')
 
 
     if !has('nvim')
@@ -219,7 +220,7 @@ let g:deoplete#enable_at_startup = 0 "开启deplete
 
 " deoplete-jedi
 " pip install jedi
-let g:deoplete#sources#jedi#python_path = '/home/lan/anaconda3/bin/python3.6'
+let g:deoplete#sources#jedi#python_path = '/usr/bin/python'
 let g:deoplete#sources#jedi#enable_cache = 10 " 缓存
 let g:deoplete#enable_refresh_always = 1
 let g:deoplete#enable_camel_case = 1
@@ -297,10 +298,9 @@ set completeopt -=preview
 
 " make neovim faster without search python
 let g:python3_host_skip_check=1
-let g:python3_host_prog = '/home/lan/anaconda3/bin/python3.6'
+let g:python3_host_prog = '/usr/bin/python'
 " let g:python_host_skip_check=1
 " let g:python_host_prog = '/usr/bin/python'
-
 
 " leaderf
 let g:Lf_WindowHeight = 0.30
@@ -368,3 +368,7 @@ nnoremap <silent> <C-p> :Files<CR>
 " leader s[earch] code snippets
 nnoremap <leader>s :Ag<cr>
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--color-path="0;33"', <bang>0)
+
+" vim-devicons
+" sudo pacman -S nerd-fonts-complete
+" autocmd FileType nerdtree setlocal nolist
