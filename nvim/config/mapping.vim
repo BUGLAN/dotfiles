@@ -1,12 +1,11 @@
 " keyword mapping
 let mapleader=","
-map! <c-l> <right>
 map <leader><leader>n :NERDTreeToggle<cr>
 map <leader><leader>t :LeaderfFunction!<cr>
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-" map <C-j> <C-W>j
-" map <C-k> <C-W>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 noremap <c-a> I
 noremap <c-e> A
@@ -55,6 +54,7 @@ inoremap <leader>f <Esc>bi"<Esc>ea"
 inoremap <leader>p print()<Esc>i
 inoremap <leader>j <Esc>f)i
 inoremap <leader>. <Esc>
+inoremap <c-l> <right>
 
 " vim tables
 noremap gn :tabn<CR>
@@ -64,6 +64,7 @@ if has('nvim')
   " terminal mode mapping
   tnoremap <Esc> <C-\><C-n>
   tnoremap <c-j> <C-\><C-n>
+  tnoremap <c-v> <C-\><C-n>
 endif
 
 " 输入快捷方式

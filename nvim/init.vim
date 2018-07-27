@@ -105,7 +105,7 @@ let g:gitgutter_map_keys = 0 "关闭所有键位映射
 let g:formatdef_harttle = '"astyle --style=attach --pad-oper"'
 let g:formatters_cpp = ['harttle']
 let g:formatter_yapf_style = 'google'
-let g:formatters_python= ['yapf']
+let g:formatters_python= ['autopep8']
 noremap <leader>a :Autoformat<CR>
 
 
@@ -127,8 +127,8 @@ let g:ale_linters = {
             \ }
 
 let g:ale_fixers = {'python': ['remove_trailing_lines', 'trim_whitespace', 'autopep8']}
-nmap <silent> <C-k> <Plug>(ceale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nmap <silent> <C-p> <Plug>(ceale_previous_wrap)
+nmap <silent> <C-n> <Plug>(ale_next_wrap)
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '✘'
 highlight ALEErrorSign ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
