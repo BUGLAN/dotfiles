@@ -29,6 +29,7 @@ set cmdheight=1
 set noswapfile "禁止生产交换文件
 set norelativenumber
 set clipboard+=unnamedplus
+" set tags=./tags;/
 
 
 " vim color setting

@@ -38,6 +38,7 @@ if dein#load_state('/home/lan/.config/nvim/dein')
     " call dein#add('mileszs/ack.vim')
     call dein#add('junegunn/fzf.vim')
     call dein#add('ryanoasis/vim-devicons')
+    " call dein#add('Valloric/YouCompleteMe')
 
 
     if !has('nvim')
@@ -220,7 +221,7 @@ let g:deoplete#enable_at_startup = 0 "开启deplete
 
 " deoplete-jedi
 " pip install jedi
-let g:deoplete#sources#jedi#python_path = '/usr/bin/python'
+let g:deoplete#sources#jedi#python_path = '/usr/bin/python3.6'
 let g:deoplete#sources#jedi#enable_cache = 10 " 缓存
 let g:deoplete#enable_refresh_always = 1
 let g:deoplete#enable_camel_case = 1
@@ -298,7 +299,7 @@ set completeopt -=preview
 
 " make neovim faster without search python
 let g:python3_host_skip_check=1
-let g:python3_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3.6'
 " let g:python_host_skip_check=1
 " let g:python_host_prog = '/usr/bin/python'
 
@@ -327,6 +328,8 @@ let g:rainbow_conf = {
 
 " nerdtree
 let g:NERDTreeIgnore = ['\.pyc$', '^__pycache__$', '\.git$', '^migrations$', 'node_modules']
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 
 " deoplete-ternjs
@@ -371,4 +374,13 @@ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--color-path="0;33"', <ban
 
 " vim-devicons
 " sudo pacman -S nerd-fonts-complete
+" https://github.com/Karmenzind/monaco-nerd-fonts
 " autocmd FileType nerdtree setlocal nolist
+" let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+" let g:DevIconsEnableFoldersOpenClose = 1
+" let g:WebDevIconsOS = 'ArchLinux'
+
+" for vim-startify
+function! StartifyEntryFormat()
+  return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
+endfunction

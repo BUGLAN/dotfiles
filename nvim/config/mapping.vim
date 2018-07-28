@@ -34,6 +34,7 @@ noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 noremap D d$
 noremap Y y$
+noremap <tab> %
 
 inoremap <leader>w <Esc>:w<cr>
 inoremap <C-a> <esc>I
@@ -76,3 +77,14 @@ if has('nvim')
   tnoremap <c-v> <C-\><C-n>
 endif
 
+
+function! ClipboardYank()
+  call system('pbcopy', @@)
+endfunction
+function! ClipboardPaste()
+  let @@ = system('pbpaste')
+endfunction
+
+vnoremap <silent> y y:call ClipboardYank()<cr>
+vnoremap <silent> d d:call ClipboardYank()<cr>
+nnoremap <silent> p :call ClipboardPaste()<cr>p
