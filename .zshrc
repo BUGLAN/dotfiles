@@ -31,6 +31,7 @@ setxkbmap -option ctrl:swapcaps
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
 
 # zsh-autosuggestions
@@ -39,3 +40,6 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # pipenv complete
 export PATH="/home/lan/.local/bin:$PATH"
 eval "$(pipenv --completion)"
+
+# repeat fast
+xset r rate 200 30

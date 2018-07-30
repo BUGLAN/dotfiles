@@ -24,7 +24,7 @@ set t_Co=256 "开启256色
 set fileformat=unix "filetype
 set encoding=utf-8 "编码utf-8
 let python_highlight_all=1 "make code 漂亮
-autocmd FileType python set colorcolumn=79
+autocmd FileType python set colorcolumn=120
 set cmdheight=1
 set noswapfile "禁止生产交换文件
 set norelativenumber

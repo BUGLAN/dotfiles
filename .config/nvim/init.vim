@@ -39,6 +39,8 @@ if dein#load_state('/home/lan/.config/nvim/dein')
     call dein#add('junegunn/fzf.vim')
     call dein#add('ryanoasis/vim-devicons')
     " call dein#add('Valloric/YouCompleteMe')
+    call dein#add('sheerun/vim-polyglot')
+    " call dein#add('python-mode/python-mode')
 
 
     if !has('nvim')
@@ -57,8 +59,7 @@ function! Init()
     if g:lazy_load == 0
         let g:lazy_load = 1
         call deoplete#enable()
-        " call plug#load('vim-gitgutter')
-        " let g:GitGutterEnable=1
+        " let g:pymode_init = 1
     endif
 endfunction
 
@@ -128,6 +129,7 @@ let g:ale_linters = {
             \ 'reStructuredText': ['rstcheck']
             \ }
 
+" let g:syntastic_python_flask8_post_args="--max-line-length=120"
 let g:ale_fixers = {'python': ['remove_trailing_lines', 'trim_whitespace', 'autopep8']}
 nmap <silent> <C-p> <Plug>(ceale_previous_wrap)
 nmap <silent> <C-n> <Plug>(ale_next_wrap)
@@ -382,5 +384,33 @@ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--color-path="0;33"', <ban
 
 " for vim-startify
 function! StartifyEntryFormat()
-  return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
+    return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
 endfunction
+
+
+" python-mode
+" open fuction
+" let g:pymode_init = 0
+" let g:pymode_doc = 1
+" let g:pymode_rope = 1
+
+" let g:pymode_doc_bind = 'K'
+" let g:pymode_quickfix_minheight = 3
+" let g:pymode_quickfix_maxheight = 10
+" let g:pymode_rope_goto_definition_bind = 'gd'
+" let g:pymode_rope_lookup_project = 0
+" let g:pymode_rope_goto_definition_cmd = 'new'
+
+" disable these fuction
+" let g:pymode_run = 0
+" let g:pymode_motion = 0
+" let g:pymode_breakpoint = 0
+" let g:pymode_folding = 0
+" let g:pymode_trim_whitespaces = 0
+" let g:pymode_options = 0
+" let g:pymode_lint = 0
+" let g:pymode_debug = 0
+" let g:pymode_virtualenv = 0
+" let g:pymode_indent = 0
+" let g:pymode_syntax = 0
+" let g:pymode_syntax_all = 0

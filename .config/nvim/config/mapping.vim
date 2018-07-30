@@ -73,6 +73,7 @@ noremap gp :tabp<CR>
 if has('nvim')
   " terminal mode mapping
   tnoremap <Esc> <C-\><C-n>
-  tnoremap <c-j> <C-\><C-n>
+  " tnoremap <c-j> <C-\><C-n>
   tnoremap <c-v> <C-\><C-n>
+  tnoremap <leader>w <C-\><C-n>
 endif

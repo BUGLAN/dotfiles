@@ -8,4 +8,3 @@ export XMODIFIERS=@im=fcitx
 
 exec i3
 exec sogou-qimpanel
-
