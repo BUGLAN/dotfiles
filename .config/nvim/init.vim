@@ -6,6 +6,7 @@ if dein#load_state('/home/lan/.config/nvim/dein')
     call dein#add('Shougo/deoplete.nvim')
     call dein#add('zchee/deoplete-jedi', {'on_ft': 'python'})
     call dein#add('scrooloose/nerdtree', {'on_cmd': 'NERDTreeToggle'})
+    call dein#add('majutsushi/tagbar', {'on_cmd': 'TagbarToggle'})
     call dein#add('Yggdroot/indentLine', {'on_ft': ['c', 'python', 'cpp']})
     call dein#add('jiangmiao/auto-pairs')
     call dein#add('w0rp/ale', {'on_event': 'InsertEnter'})
@@ -149,7 +150,7 @@ highlight ALEInfoLine ctermbg=NONE ctermfg=black guibg=NONE guifg=#e18254
 
 
 " yapf
-autocmd FileType python nnoremap <F3> :0,$!yapf<Cr>
+" autocmd FileType python nnoremap <F3> :0,$!yapf<Cr>
 " 建议每天最晚时刻使用格式化代码
 " 因为他每次都会跳到第一行
 
@@ -165,7 +166,7 @@ let NERDTreeShowHidden=1 " 是否显示隐藏文件
 let NERDTreeWinSize=30 " 设置宽度
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-" 按下 F2 调出/隐藏 NERDTree
+" 按下 F1 调出/隐藏 NERDTree
 map <F2> :NERDTreeToggle<CR>
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
 
@@ -189,7 +190,7 @@ let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 let g:NERDSpaceDelims = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDCreateDefaultMappings = 0
-map <leader><leader>z <plug>NERDCommenterToggle
+map <leader>z <plug>NERDCommenterToggle
 
 
 " vim-isort
@@ -201,7 +202,8 @@ let g:vim_isort_python_version = 'python3'
 " tagbar
 let g:tagbar_width = 30
 let g:tagbar_ctags_bin = 'ctags'
-nmap <F8> :TagbarToggle<CR>
+map <F3> :TagbarToggle<CR>
+map <leader>t :TagbarToggle<CR>
 
 " deoplete-vim
 " deoplete-vim 使用tab键
