@@ -19,7 +19,7 @@ if dein#load_state('/home/lan/.config/nvim/dein')
     call dein#add('SirVer/ultisnips', {'on_event': 'InsertEnter'})
     call dein#add('fisadev/vim-isort', {'on_cmd': 'Isort'})
     call dein#add('Yggdroot/LeaderF', {'on_cmd': ['LeaderfFile', 'LeaderfFunction']})
-    call dein#add('liuchengxu/eleline.vim')
+    call dein#add('BUGLAN/eleline.vim')
     call dein#add('liuchengxu/space-vim-dark')
     " call dein#add('Shougo/neopairs.vim', {'on_event': 'InsertEnter'})
     call dein#add('scrooloose/nerdcommenter', {'on_map': '<plug>NERDCommenterToggle'})
@@ -202,6 +202,8 @@ let g:vim_isort_python_version = 'python3'
 " tagbar
 let g:tagbar_width = 30
 let g:tagbar_ctags_bin = 'ctags'
+let g:tagbar_sort = 0
+" let g:tagbar_usearrows = 1
 map <F3> :TagbarToggle<CR>
 map <leader>t :TagbarToggle<CR>
 
@@ -225,7 +227,7 @@ let g:deoplete#enable_at_startup = 0 "开启deplete
 
 " deoplete-jedi
 " pip install jedi
-let g:deoplete#sources#jedi#python_path = '/usr/bin/python3.6'
+let g:deoplete#sources#jedi#python_path = '/usr/bin/python'
 let g:deoplete#sources#jedi#enable_cache = 10 " 缓存
 let g:deoplete#enable_refresh_always = 1
 let g:deoplete#enable_camel_case = 1
@@ -303,7 +305,7 @@ set completeopt -=preview
 
 " make neovim faster without search python
 let g:python3_host_skip_check=1
-let g:python3_host_prog = '/usr/bin/python3.6'
+let g:python3_host_prog = '/usr/bin/python'
 " let g:python_host_skip_check=1
 " let g:python_host_prog = '/usr/bin/python'
 

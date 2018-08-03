@@ -28,7 +28,8 @@ autocmd FileType python set colorcolumn=120
 set cmdheight=1
 set noswapfile "禁止生产交换文件
 set norelativenumber
-set clipboard+=unnamedplus
+" set clipboard+=unnamedplus
+" sudo pacman -S xclip 支持全局剪切板
 " set tags=./tags;/
 
 

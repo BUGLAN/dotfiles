@@ -1,13 +1,19 @@
 " keyword mapping
 let mapleader=","
-map <leader><leader>n :NERDTreeToggle<cr>
+map <leader>n :NERDTreeToggle<cr>
 map <leader><leader>t :LeaderfFunction!<cr>
+map <leader>y "+y
+map <leader>p "+p
 nmap  <leader><leader>w <Plug>(easymotion-bd-w)
 nmap  <leader><leader>s <Plug>(easymotion-bd-jk)
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+nnoremap - <C-w>-
+nnoremap + <C-w>+
+nnoremap < <C-w><
+nnoremap > <C-w>>
 
 noremap <c-a> I
 noremap <c-e> A
@@ -16,7 +22,6 @@ noremap <leader>w :w<cr>
 noremap <leader>q :q!<cr>
 noremap <leader>e :wq<cr>
 noremap <leader>c A:<cr>
-noremap <leader>n o
 noremap <leader><space> :nohlsearch<cr>
 noremap <leader>f :LeaderfFile<cr>
 autocmd FileType python noremap <leader><leader>d :Pydocstring<cr>
@@ -53,7 +58,7 @@ inoremap <leader>t {}<Esc>i
 inoremap <leader>m *
 inoremap <leader>d <SPACE>-><SPACE>
 inoremap <leader>f <Esc>bi"<Esc>ea"
-inoremap <leader>p print()<Esc>i
+" inoremap <leader>p print()<Esc>i
 inoremap <leader>j <Esc>f)i
 inoremap <leader>. <Esc>
 inoremap <c-l> <right>
@@ -76,4 +81,10 @@ if has('nvim')
   " tnoremap <c-j> <C-\><C-n>
   tnoremap <c-v> <C-\><C-n>
   tnoremap <leader>w <C-\><C-n>
+  tnoremap <leader>q <C-\><C-n>:q!<cr>
+  nnoremap <leader>o :below 10sp term://$SHELL<cr>i
+  tnoremap <C-h> <C-\><C-n><C-w>h
+  tnoremap <C-j> <C-\><C-n><C-w>j
+  tnoremap <C-k> <C-\><C-n><C-w>k
+  tnoremap <C-l> <C-\><C-n><C-w>l
 endif
