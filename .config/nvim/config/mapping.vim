@@ -2,10 +2,13 @@
 let mapleader=","
 map <leader>n :NERDTreeToggle<cr>
 map <leader><leader>t :LeaderfFunction!<cr>
-map <leader>y "+y
-map <leader>p "+p
-nmap  <leader><leader>w <Plug>(easymotion-bd-w)
-nmap  <leader><leader>s <Plug>(easymotion-bd-jk)
+map <F1> <nop>
+vnoremap <leader>y "+y
+vnoremap <leader>p "+p
+noremap  <leader><leader>w <Plug>(easymotion-bd-w)
+noremap  <leader><leader>s <Plug>(easymotion-bd-jk)
+nnoremap <F5> :vsplit $MYVIMRC<cr>
+nnoremap <F6> :source $MYVIMRC<cr>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -62,6 +65,7 @@ inoremap <leader>f <Esc>bi"<Esc>ea"
 inoremap <leader>j <Esc>f)i
 inoremap <leader>. <Esc>
 inoremap <c-l> <right>
+
 
 " 输入快捷方式
 iabbrev hw Hello World
