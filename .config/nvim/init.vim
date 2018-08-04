@@ -42,6 +42,7 @@ if dein#load_state('/home/lan/.config/nvim/dein')
     " call dein#add('Valloric/YouCompleteMe')
     call dein#add('sheerun/vim-polyglot')
     " call dein#add('python-mode/python-mode')
+    call dein#add('BUGLAN/vim-youdao-translater')
 
 
     if !has('nvim')
@@ -304,3 +305,8 @@ endfunction
 " let g:pymode_indent = 0
 " let g:pymode_syntax = 0
 " let g:pymode_syntax_all = 0
+
+" vim youdao translater
+vnoremap <silent> <C-T> :<C-u>Ydv<CR>
+nnoremap <silent> t :<C-u>Ydc<CR>
+noremap <leader>yd :<C-u>Yde<CR>

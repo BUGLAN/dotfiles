@@ -2,11 +2,11 @@
 let mapleader=","
 map <leader>n :NERDTreeToggle<cr>
 map <leader><leader>t :LeaderfFunction!<cr>
+map  <leader><leader>w <Plug>(easymotion-bd-w)
+map  <leader><leader>s <Plug>(easymotion-bd-jk)
 map <F1> <nop>
 vnoremap <leader>y "+y
 vnoremap <leader>p "+p
-noremap  <leader><leader>w <Plug>(easymotion-bd-w)
-noremap  <leader><leader>s <Plug>(easymotion-bd-jk)
 nnoremap <F5> :vsplit $MYVIMRC<cr>
 nnoremap <F6> :source $MYVIMRC<cr>
 nnoremap <C-h> <C-w>h
