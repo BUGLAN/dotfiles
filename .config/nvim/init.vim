@@ -1,58 +1,97 @@
-set runtimepath+=/home/lan/.config/nvim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
-call dein#begin(expand('/home/lan/.config/nvim/dein'))
+" set runtimepath+=/home/lan/.config/nvim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
+" call dein#begin(expand('/home/lan/.config/nvim/dein'))
 
-if dein#load_state('/home/lan/.config/nvim/dein')
-    call dein#add('/home/lan/.config/nvim/dein')
-    call dein#add('Shougo/deoplete.nvim')
-    call dein#add('zchee/deoplete-jedi', {'on_ft': 'python'})
-    call dein#add('scrooloose/nerdtree', {'on_cmd': 'NERDTreeToggle'})
-    call dein#add('majutsushi/tagbar', {'on_cmd': 'TagbarToggle'})
-    call dein#add('Yggdroot/indentLine', {'on_ft': ['c', 'python', 'cpp']})
-    call dein#add('jiangmiao/auto-pairs')
-    call dein#add('w0rp/ale', {'on_event': 'InsertEnter'})
-    call dein#add('ntpeters/vim-better-whitespace', {'on_event': 'InsertEnter'})
-    call dein#add('iamcco/mathjax-support-for-mkdp', {'on_ft': 'markdown', 'on_event': 'InsertEnter'})
-    call dein#add('iamcco/markdown-preview.vim', {'on_ft': 'markdown', 'on_cmd': 'MarkdownPreview'})
-    " call dein#add('lilydjwg/fcitx.vim', {'on_event': 'InsertEnter'})
-    call dein#add('Chiel92/vim-autoformat', {'on_cmd': 'Autoformat'})
-    call dein#add('sgur/vim-lazygutter', {'on_event': 'InsertEnter'})
-    call dein#add('SirVer/ultisnips', {'on_event': 'InsertEnter'})
-    call dein#add('fisadev/vim-isort', {'on_cmd': 'Isort'})
-    call dein#add('Yggdroot/LeaderF', {'on_cmd': ['LeaderfFile', 'LeaderfFunction']})
-    call dein#add('BUGLAN/eleline.vim')
-    call dein#add('liuchengxu/space-vim-dark')
-    " call dein#add('Shougo/neopairs.vim', {'on_event': 'InsertEnter'})
-    call dein#add('scrooloose/nerdcommenter', {'on_map': '<plug>NERDCommenterToggle'})
-    call dein#add('heavenshell/vim-pydocstring', {'on_ft': 'python', 'on_cmd': 'Pydocstring'})
-    call dein#add('godlygeek/tabular', {'on_ft': 'markdown', 'on_event': 'InsertEnter'})
-    call dein#add('plasticboy/vim-markdown', {'on_ft': 'markdown', 'on_event': 'InsertEnter'})
-    call dein#add('easymotion/vim-easymotion', {'on_map': ['<Plug>(easymotion-bd-w)', '<Plug>(easymotion-bd-jk)']})
-    call dein#add('mhinz/vim-startify', {'on_event': 'VimEnter'})
-    call dein#add('tpope/vim-surround')
-    call dein#add('luochen1990/rainbow')
-    call dein#add('posva/vim-vue', {'on_ft': 'vue'})
-    call dein#add('carlitux/deoplete-ternjs')
-    " call dein#add('maksimr/vim-jsbeautify')
-    " call dein#add('mattn/emmet-vim')
-    call dein#add('pangloss/vim-javascript')
-    call dein#add('marijnh/tern_for_vim')
-    " call dein#add('mileszs/ack.vim')
-    call dein#add('junegunn/fzf.vim')
-    call dein#add('ryanoasis/vim-devicons')
-    " call dein#add('Valloric/YouCompleteMe')
-    call dein#add('sheerun/vim-polyglot')
-    " call dein#add('python-mode/python-mode')
-    call dein#add('BUGLAN/vim-youdao-translater')
+" if dein#load_state('/home/lan/.config/nvim/dein')
+" call dein#add('/home/lan/.config/nvim/dein')
+" call dein#add('Shougo/deoplete.nvim')
+" call dein#add('zchee/deoplete-jedi', {'on_ft': 'python'})
+" call dein#add('scrooloose/nerdtree', {'on_cmd': 'NERDTreeToggle'})
+" call dein#add('majutsushi/tagbar', {'on_cmd': 'TagbarToggle'})
+" call dein#add('Yggdroot/indentLine', {'on_ft': ['c', 'python', 'cpp']})
+" call dein#add('jiangmiao/auto-pairs')
+" call dein#add('w0rp/ale', {'on_event': 'InsertEnter'})
+" call dein#add('ntpeters/vim-better-whitespace', {'on_event': 'InsertEnter'})
+" call dein#add('iamcco/mathjax-support-for-mkdp', {'on_ft': 'markdown', 'on_event': 'InsertEnter'})
+" call dein#add('iamcco/markdown-preview.vim', {'on_ft': 'markdown', 'on_cmd': 'MarkdownPreview'})
+" " call dein#add('lilydjwg/fcitx.vim', {'on_event': 'InsertEnter'})
+" call dein#add('Chiel92/vim-autoformat', {'on_cmd': 'Autoformat'})
+" call dein#add('sgur/vim-lazygutter', {'on_event': 'InsertEnter'})
+" call dein#add('SirVer/ultisnips', {'on_event': 'InsertEnter'})
+" call dein#add('fisadev/vim-isort', {'on_cmd': 'Isort'})
+" call dein#add('Yggdroot/LeaderF', {'on_cmd': ['LeaderfFile', 'LeaderfFunction']})
+" call dein#add('BUGLAN/eleline.vim')
+" call dein#add('liuchengxu/space-vim-dark')
+" " call dein#add('Shougo/neopairs.vim', {'on_event': 'InsertEnter'})
+" call dein#add('scrooloose/nerdcommenter', {'on_map': '<plug>NERDCommenterToggle'})
+" call dein#add('heavenshell/vim-pydocstring', {'on_ft': 'python', 'on_cmd': 'Pydocstring'})
+" call dein#add('godlygeek/tabular', {'on_ft': 'markdown', 'on_event': 'InsertEnter'})
+" call dein#add('plasticboy/vim-markdown', {'on_ft': 'markdown', 'on_event': 'InsertEnter'})
+" call dein#add('easymotion/vim-easymotion', {'on_map': ['<Plug>(easymotion-bd-w)', '<Plug>(easymotion-bd-jk)']})
+" call dein#add('mhinz/vim-startify', {'on_event': 'VimEnter'})
+" call dein#add('tpope/vim-surround')
+" call dein#add('luochen1990/rainbow')
+" call dein#add('posva/vim-vue', {'on_ft': 'vue'})
+" call dein#add('carlitux/deoplete-ternjs')
+" " call dein#add('maksimr/vim-jsbeautify')
+" " call dein#add('mattn/emmet-vim')
+" call dein#add('pangloss/vim-javascript')
+" call dein#add('marijnh/tern_for_vim')
+" " call dein#add('mileszs/ack.vim')
+" call dein#add('junegunn/fzf.vim')
+" call dein#add('ryanoasis/vim-devicons')
+" " call dein#add('Valloric/YouCompleteMe')
+" call dein#add('sheerun/vim-polyglot')
+" " call dein#add('python-mode/python-mode')
+" call dein#add('BUGLAN/vim-youdao-translater')
+" " call dein#add('sillybun/vim-repl')
 
 
-    if !has('nvim')
-        call dein#add('roxma/nvim-yarp')
-        call dein#add('roxma/vim-hug-neovim-rpc')
-    endif
+" if !has('nvim')
+" call dein#add('roxma/nvim-yarp')
+" call dein#add('roxma/vim-hug-neovim-rpc')
+" endif
 
-    call dein#end()
-    call dein#save_state()
-endif
+" call dein#end()
+" call dein#save_state()
+" endif
+
+
+call plug#begin('~/.config/nvim/plugged')
+
+Plug 'Shougo/deoplete.nvim'
+Plug 'zchee/deoplete-jedi', {'for': 'python'}
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
+Plug 'Yggdroot/indentLine'
+Plug 'jiangmiao/auto-pairs'
+Plug 'w0rp/ale'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'iamcco/markdown-preview.vim', {'for': 'markdown'}
+Plug 'Chiel92/vim-autoformat', {'on': 'Autoformat'}
+Plug 'sgur/vim-lazygutter'
+Plug 'SirVer/ultisnips'
+Plug 'fisadev/vim-isort', {'on': 'Isort'}
+Plug 'Yggdroot/LeaderF', {'on': ['LeaderfFile', 'LeaderfFunction']}
+Plug 'BUGLAN/eleline.vim'
+Plug 'liuchengxu/space-vim-dark'
+Plug 'scrooloose/nerdcommenter', {'on': '<plug>NERDCommenterToggle'}
+Plug 'heavenshell/vim-pydocstring', {'for': 'python', 'on': 'Pydocstring'}
+Plug 'godlygeek/tabular', {'for': 'markdown', 'on': 'TableFormat'}
+Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+Plug 'easymotion/vim-easymotion', {'on': ['<Plug>(easymotion-bd-w)', '<Plug>(easymotion-bd-jk)']}
+Plug 'mhinz/vim-startify'
+Plug 'tpope/vim-surround'
+Plug 'luochen1990/rainbow'
+Plug 'posva/vim-vue', {'for': 'vue'}
+Plug 'carlitux/deoplete-ternjs'
+Plug 'junegunn/fzf.vim', {'on': ['Files', 'Ag']}
+Plug 'ryanoasis/vim-devicons'
+Plug 'sheerun/vim-polyglot', {'for': []}
+Plug 'BUGLAN/vim-youdao-translater'
+Plug 'sillybun/vim-repl', {'for': 'python'}
+Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
+
+call plug#end()
 
 " lazy load deoplete
 autocmd InsertEnter * call Init()
@@ -106,13 +145,14 @@ let g:dein#install_max_processes = 16
 let g:gitgutter_map_keys = 0 "关闭所有键位映射
 
 
-" vim-autoformater
-" pip install yapf
+" vim-autoformat
+" pip install yapf, autopep8
 " sudo pacman -S astyle
+" let g:formatterpath = ['/usr/bin/python']
 let g:formatdef_harttle = '"astyle --style=attach --pad-oper"'
 let g:formatters_cpp = ['harttle']
-let g:formatter_yapf_style = 'google'
-let g:formatters_python= ['autopep8']
+let g:formatter_yapf_style = 'pep8'
+let g:formatters_python= ['yapf']
 noremap <leader>a :Autoformat<CR>
 
 
@@ -309,4 +349,16 @@ endfunction
 " vim youdao translater
 vnoremap <silent> <C-T> :<C-u>Ydv<CR>
 nnoremap <silent> t :<C-u>Ydc<CR>
-noremap <leader>yd :<C-u>Yde<CR>
+noremap <leader>d :<C-u>Yde<CR>
+
+
+" vim easy text align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
+
+" vim-polyglot
+let g:polyglot_disabled = ['markdown']
+augroup plug_xtype
+  autocmd FileType * if expand('<amatch>') != 'markdown' | call plug#load('vim-polyglot') | execute 'autocmd! plug_xtype' | endif
+augroup END

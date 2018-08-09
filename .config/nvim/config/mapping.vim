@@ -21,7 +21,7 @@ nnoremap > <C-w>>
 noremap <c-a> I
 noremap <c-e> A
 noremap ; :
-noremap <leader>w :w<cr>
+map <leader>w :w<cr>
 noremap <leader>q :q!<cr>
 noremap <leader>e :wq<cr>
 noremap <leader>c A:<cr>
@@ -62,7 +62,7 @@ inoremap <leader>m *
 inoremap <leader>d <SPACE>-><SPACE>
 inoremap <leader>f <Esc>bi"<Esc>ea"
 " inoremap <leader>p print()<Esc>i
-inoremap <leader>j <Esc>f)i
+" inoremap <leader>j <Esc>f)i
 inoremap <leader>. <Esc>
 inoremap <c-l> <right>
 
@@ -91,4 +91,6 @@ if has('nvim')
   tnoremap <C-j> <C-\><C-n><C-w>j
   tnoremap <C-k> <C-\><C-n><C-w>k
   tnoremap <C-l> <C-\><C-n><C-w>l
+  tnoremap gn <C-\><C-n>:tabn<CR>
+  tnoremap gp <C-\><C-n>:tabp<CR>
 endif
