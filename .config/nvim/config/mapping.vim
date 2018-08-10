@@ -21,7 +21,7 @@ nnoremap > <C-w>>
 noremap <c-a> I
 noremap <c-e> A
 noremap ; :
-map <leader>w :w<cr>
+noremap <leader>w :w<cr>
 noremap <leader>q :q!<cr>
 noremap <leader>e :wq<cr>
 noremap <leader>c A:<cr>
@@ -63,7 +63,7 @@ inoremap <leader>d <SPACE>-><SPACE>
 inoremap <leader>f <Esc>bi"<Esc>ea"
 " inoremap <leader>p print()<Esc>i
 " inoremap <leader>j <Esc>f)i
-inoremap <leader>. <Esc>
+" inoremap <leader>. <Esc>
 inoremap <c-l> <right>
 
 
@@ -73,7 +73,7 @@ iabbrev im import
 iabbrev fm from
 iabbrev fn function
 cabbrev tn tabnew
-cabbrev update call dein#update()
+" cabbrev update call dein#update()
 
 " vim tables
 noremap gn :tabn<CR>

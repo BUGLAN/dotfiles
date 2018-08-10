@@ -88,8 +88,11 @@ Plug 'junegunn/fzf.vim', {'on': ['Files', 'Ag']}
 Plug 'ryanoasis/vim-devicons'
 Plug 'sheerun/vim-polyglot', {'for': []}
 Plug 'BUGLAN/vim-youdao-translater'
-Plug 'sillybun/vim-repl', {'for': 'python'}
+" Plug 'sillybun/vim-repl', {'for': 'python'}
 Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
+Plug 'junegunn/fzf.vim'
+" Plug 'tpope/vim-fugitive'
+
 
 call plug#end()
 

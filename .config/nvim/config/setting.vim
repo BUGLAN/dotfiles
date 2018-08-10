@@ -24,15 +24,17 @@ set t_Co=256 "开启256色
 set fileformat=unix "filetype
 set encoding=utf-8 "编码utf-8
 let python_highlight_all=1 "make code 漂亮
-autocmd FileType python set colorcolumn=79
+autocmd FileType python set colorcolumn=80
 set cmdheight=1
 set noswapfile "禁止生产交换文件
 set norelativenumber
+set ignorecase " 忽略大小写
 " set clipboard+=unnamedplus
 " sudo pacman -S xclip 支持全局剪切板
 " set tags=./tags;/
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
+
 
 
 " vim color setting
