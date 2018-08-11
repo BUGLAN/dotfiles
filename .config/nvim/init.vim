@@ -1,61 +1,3 @@
-" set runtimepath+=/home/lan/.config/nvim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
-" call dein#begin(expand('/home/lan/.config/nvim/dein'))
-
-" if dein#load_state('/home/lan/.config/nvim/dein')
-" call dein#add('/home/lan/.config/nvim/dein')
-" call dein#add('Shougo/deoplete.nvim')
-" call dein#add('zchee/deoplete-jedi', {'on_ft': 'python'})
-" call dein#add('scrooloose/nerdtree', {'on_cmd': 'NERDTreeToggle'})
-" call dein#add('majutsushi/tagbar', {'on_cmd': 'TagbarToggle'})
-" call dein#add('Yggdroot/indentLine', {'on_ft': ['c', 'python', 'cpp']})
-" call dein#add('jiangmiao/auto-pairs')
-" call dein#add('w0rp/ale', {'on_event': 'InsertEnter'})
-" call dein#add('ntpeters/vim-better-whitespace', {'on_event': 'InsertEnter'})
-" call dein#add('iamcco/mathjax-support-for-mkdp', {'on_ft': 'markdown', 'on_event': 'InsertEnter'})
-" call dein#add('iamcco/markdown-preview.vim', {'on_ft': 'markdown', 'on_cmd': 'MarkdownPreview'})
-" " call dein#add('lilydjwg/fcitx.vim', {'on_event': 'InsertEnter'})
-" call dein#add('Chiel92/vim-autoformat', {'on_cmd': 'Autoformat'})
-" call dein#add('sgur/vim-lazygutter', {'on_event': 'InsertEnter'})
-" call dein#add('SirVer/ultisnips', {'on_event': 'InsertEnter'})
-" call dein#add('fisadev/vim-isort', {'on_cmd': 'Isort'})
-" call dein#add('Yggdroot/LeaderF', {'on_cmd': ['LeaderfFile', 'LeaderfFunction']})
-" call dein#add('BUGLAN/eleline.vim')
-" call dein#add('liuchengxu/space-vim-dark')
-" " call dein#add('Shougo/neopairs.vim', {'on_event': 'InsertEnter'})
-" call dein#add('scrooloose/nerdcommenter', {'on_map': '<plug>NERDCommenterToggle'})
-" call dein#add('heavenshell/vim-pydocstring', {'on_ft': 'python', 'on_cmd': 'Pydocstring'})
-" call dein#add('godlygeek/tabular', {'on_ft': 'markdown', 'on_event': 'InsertEnter'})
-" call dein#add('plasticboy/vim-markdown', {'on_ft': 'markdown', 'on_event': 'InsertEnter'})
-" call dein#add('easymotion/vim-easymotion', {'on_map': ['<Plug>(easymotion-bd-w)', '<Plug>(easymotion-bd-jk)']})
-" call dein#add('mhinz/vim-startify', {'on_event': 'VimEnter'})
-" call dein#add('tpope/vim-surround')
-" call dein#add('luochen1990/rainbow')
-" call dein#add('posva/vim-vue', {'on_ft': 'vue'})
-" call dein#add('carlitux/deoplete-ternjs')
-" " call dein#add('maksimr/vim-jsbeautify')
-" " call dein#add('mattn/emmet-vim')
-" call dein#add('pangloss/vim-javascript')
-" call dein#add('marijnh/tern_for_vim')
-" " call dein#add('mileszs/ack.vim')
-" call dein#add('junegunn/fzf.vim')
-" call dein#add('ryanoasis/vim-devicons')
-" " call dein#add('Valloric/YouCompleteMe')
-" call dein#add('sheerun/vim-polyglot')
-" " call dein#add('python-mode/python-mode')
-" call dein#add('BUGLAN/vim-youdao-translater')
-" " call dein#add('sillybun/vim-repl')
-
-
-" if !has('nvim')
-" call dein#add('roxma/nvim-yarp')
-" call dein#add('roxma/vim-hug-neovim-rpc')
-" endif
-
-" call dein#end()
-" call dein#save_state()
-" endif
-
-
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'Shougo/deoplete.nvim'
@@ -79,20 +21,21 @@ Plug 'heavenshell/vim-pydocstring', {'for': 'python', 'on': 'Pydocstring'}
 Plug 'godlygeek/tabular', {'for': 'markdown', 'on': 'TableFormat'}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'easymotion/vim-easymotion', {'on': ['<Plug>(easymotion-bd-w)', '<Plug>(easymotion-bd-jk)']}
-Plug 'mhinz/vim-startify'
+" Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround'
 Plug 'luochen1990/rainbow'
 Plug 'posva/vim-vue', {'for': 'vue'}
 Plug 'carlitux/deoplete-ternjs'
 Plug 'junegunn/fzf.vim', {'on': ['Files', 'Ag']}
 Plug 'ryanoasis/vim-devicons'
-Plug 'sheerun/vim-polyglot', {'for': []}
+Plug 'sheerun/vim-polyglot'
 Plug 'BUGLAN/vim-youdao-translater'
 " Plug 'sillybun/vim-repl', {'for': 'python'}
 Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 Plug 'junegunn/fzf.vim'
 " Plug 'tpope/vim-fugitive'
-
+Plug 'tpope/vim-sensible'
+" fcitx.vim
 
 call plug#end()
 
@@ -108,19 +51,8 @@ function! Init()
 endfunction
 
 
-" lazy load fcitx.vim in markdown
-" autocmd InsertEnter *.md call Fcitx()
-" let g:fcitx_load = 0
-" function! Fcitx()
-" if g:fcitx_load == 0
-" let g:fcitx_load = 1
-" call plug#load('fcitx.vim')
-" endif
-" endfunction
-
 " vim leader key mapping
 source ~/.config/nvim/config/mapping.vim
-
 
 " vim basic setting
 source ~/.config/nvim/config/setting.vim
@@ -128,21 +60,14 @@ source ~/.config/nvim/config/setting.vim
 " deoplete setting
 source ~/.config/nvim/config/deoplete.vim
 
-" 配置vim打开时vim自动定位到上次的位置
-if has("autocmd")
-    autocmd BufRead *.txt set tw=78
-    autocmd BufReadPost *
-                \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-                \   exe "normal g'\"" |
-                \ endif
-endif
-
+" autocmd config
+source ~/.config/nvim/config/autocmd.vim
 
 " plugins setting
 
 
 " dein
-let g:dein#install_max_processes = 16
+" let g:dein#install_max_processes = 16
 
 " vim-gitgutter / vim-lazygutter
 let g:gitgutter_map_keys = 0 "关闭所有键位映射
@@ -273,7 +198,7 @@ let g:Lf_WildIgnore = {
 nmap <silent> <C-_> <Plug>(pydocstring)
 
 " vim-startify
-let g:startify_enable_unsafe = 1
+" let g:startify_enable_unsafe = 1
 
 " rainbow
 let g:rainbow_active = 1
@@ -287,15 +212,6 @@ let g:rainbow_conf = {
 let g:NERDTreeIgnore = ['\.pyc$', '^__pycache__$', '\.git$', '^migrations$', 'node_modules']
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-
-" vim jsbeautify
-" map <c-f> :call JsBeautify()<cr>
-" autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
-" autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
-" autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
-" autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-" autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
 
 " Ack.vim
@@ -317,37 +233,11 @@ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--color-path="0;33"', <ban
 " let g:WebDevIconsOS = 'ArchLinux'
 
 " for vim-startify
-function! StartifyEntryFormat()
-    return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
-endfunction
+" function! StartifyEntryFormat()
+    " return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
+" endfunction
 
 
-" python-mode
-" open fuction
-" let g:pymode_init = 0
-" let g:pymode_doc = 1
-" let g:pymode_rope = 1
-
-" let g:pymode_doc_bind = 'K'
-" let g:pymode_quickfix_minheight = 3
-" let g:pymode_quickfix_maxheight = 10
-" let g:pymode_rope_goto_definition_bind = 'gd'
-" let g:pymode_rope_lookup_project = 0
-" let g:pymode_rope_goto_definition_cmd = 'new'
-
-" disable these fuction
-" let g:pymode_run = 0
-" let g:pymode_motion = 0
-" let g:pymode_breakpoint = 0
-" let g:pymode_folding = 0
-" let g:pymode_trim_whitespaces = 0
-" let g:pymode_options = 0
-" let g:pymode_lint = 0
-" let g:pymode_debug = 0
-" let g:pymode_virtualenv = 0
-" let g:pymode_indent = 0
-" let g:pymode_syntax = 0
-" let g:pymode_syntax_all = 0
 
 " vim youdao translater
 vnoremap <silent> <C-T> :<C-u>Ydv<CR>
@@ -363,5 +253,7 @@ nmap ga <Plug>(EasyAlign)
 " vim-polyglot
 let g:polyglot_disabled = ['markdown']
 augroup plug_xtype
-  autocmd FileType * if expand('<amatch>') != 'markdown' | call plug#load('vim-polyglot') | execute 'autocmd! plug_xtype' | endif
+    autocmd FileType * if expand('<amatch>') != 'markdown' | call plug#load('vim-polyglot') | execute 'autocmd! plug_xtype' | endif
 augroup END
+
+set shortmess=I

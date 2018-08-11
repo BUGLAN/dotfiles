@@ -24,7 +24,7 @@ noremap ; :
 noremap <leader>w :w<cr>
 noremap <leader>q :q!<cr>
 noremap <leader>e :wq<cr>
-noremap <leader>c A:<cr>
+autocmd FileType python noremap <leader>c A:<cr>
 noremap <leader><space> :nohlsearch<cr>
 noremap <leader>f :LeaderfFile<cr>
 autocmd FileType python noremap <leader><leader>d :Pydocstring<cr>
@@ -54,7 +54,7 @@ inoremap <leader>a +
 inoremap <leader>u _
 inoremap <leader>i ____<Esc>hi
 inoremap <leader>n <Esc>o
-inoremap <leader>c <Esc>A:<cr>
+autocmd FileType python inoremap <leader>c <Esc>A:<cr>
 inoremap <leader>b ()<Esc>i
 inoremap <leader>s []<Esc>i
 inoremap <leader>t {}<Esc>i
@@ -83,7 +83,7 @@ if has('nvim')
   " terminal mode mapping
   tnoremap <Esc> <C-\><C-n>
   " tnoremap <c-j> <C-\><C-n>
-  tnoremap <c-v> <C-\><C-n>
+  " tnoremap <c-v> <C-\><C-n>
   tnoremap <leader>w <C-\><C-n>
   tnoremap <leader>q <C-\><C-n>:q!<cr>
   nnoremap <leader>o :below 10sp term://$SHELL<cr>i

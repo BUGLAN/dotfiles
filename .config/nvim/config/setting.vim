@@ -29,12 +29,12 @@ set cmdheight=1
 set noswapfile "禁止生产交换文件
 set norelativenumber
 set ignorecase " 忽略大小写
+set shortmess=I
 " set clipboard+=unnamedplus
 " sudo pacman -S xclip 支持全局剪切板
 " set tags=./tags;/
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
-
 
 
 " vim color setting
@@ -56,3 +56,4 @@ hi Search cterm=underline ctermfg=red ctermbg=NONE guifg=red guibg=NONE gui=unde
 " autocmd InsertLeave * set cursorline
 autocmd FileType json,javascript,html,jsx,javascript.jsx,vue,markdown setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd TermOpen * set nonu

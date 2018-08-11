@@ -42,8 +42,8 @@ function! Init()
   if g:lazy_load == 0
     let g:lazy_load = 1
     call plug#load('YouCompleteMe')
-    call plug#load('vim-gitgutter')
-    call plug#load('fcitx.vim')
+    " call plug#load('vim-gitgutter')
+    " call plug#load('fcitx.vim')
   endif
 endfunction
 
@@ -127,6 +127,7 @@ autocmd FileType python set colorcolumn=79
 " set gcr=a:block-blinkon0 "禁止光标闪烁
 set cmdheight=1
 set noswapfile "禁止生产交换文件
+set termguicolors " true color
 
 
 " vim color setting
@@ -156,33 +157,6 @@ endif
 " 配置vim打开时vim自动定位到上次的位置
 
 
-" 禁用斜体
-" function! ZF_Setting_DisableItalic()
-    " let his = ''
-    " redir => his
-    " silent highlight
-    " redir END
-    " let his = substitute(his, '\n\s\+', ' ', 'g')
-    " for line in split(his, "\n")
-        " if line !~ ' links to ' && line !~ ' cleared$'
-            " execute 'hi' substitute(substitute(line, ' xxx ', ' ', ''), 'italic', 'none', 'g')
-        " endif
-    " endfor
-" endfunction
-" augroup ZF_setting_disable_italic
-    " call ZF_Setting_DisableItalic()
-    " autocmd!
-
-    " autocmd FileType,BufNewFile,BufReadPost * call ZF_Setting_DisableItalic()
-" augroup END
-
-
-" normal 使用相对行号 insert 使用绝对行号
-" augroup relative_numbser
-"     autocmd!
-"     autocmd InsertEnter * :set norelativenumber
-"     autocmd InsertLeave * :set relativenumber
-" augroup END
 
 
 " 插件相关配置
