@@ -14,17 +14,19 @@ Plug 'sgur/vim-lazygutter'
 Plug 'SirVer/ultisnips'
 Plug 'fisadev/vim-isort', {'on': 'Isort'}
 Plug 'Yggdroot/LeaderF', {'on': ['LeaderfFile', 'LeaderfFunction']}
-Plug 'BUGLAN/eleline.vim'
+" Plug 'BUGLAN/eleline.vim'
+Plug 'itchyny/lightline.vim'
 Plug 'liuchengxu/space-vim-dark'
 Plug 'scrooloose/nerdcommenter', {'on': '<plug>NERDCommenterToggle'}
 Plug 'heavenshell/vim-pydocstring', {'for': 'python', 'on': 'Pydocstring'}
 Plug 'godlygeek/tabular', {'for': 'markdown', 'on': 'TableFormat'}
-Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+" Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+Plug 'tpope/vim-markdown', {'for': 'markdown'}
 Plug 'easymotion/vim-easymotion', {'on': ['<Plug>(easymotion-bd-w)', '<Plug>(easymotion-bd-jk)']}
 " Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround'
 Plug 'luochen1990/rainbow'
-Plug 'posva/vim-vue', {'for': 'vue'}
+" Plug 'posva/vim-vue', {'for': 'vue'}
 Plug 'carlitux/deoplete-ternjs'
 Plug 'junegunn/fzf.vim', {'on': ['Files', 'Ag']}
 Plug 'ryanoasis/vim-devicons'
@@ -36,6 +38,7 @@ Plug 'junegunn/fzf.vim'
 " Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 " fcitx.vim
+" Plug 'ekalinin/dockerfile.vim', {'for': 'dockerfile'}
 
 call plug#end()
 
@@ -189,7 +192,7 @@ let g:python3_host_prog = '/usr/bin/python'
 let g:Lf_WindowHeight = 0.30
 let g:Lf_CursorBlink = 0
 let g:Lf_WildIgnore = {
-            \ 'dir': ['.svn','.git','.hg', 'anaconda3', 'Download', 'node_modules', '.*', 'venv', 'migrations'],
+            \ 'dir': ['.svn','.git','.hg', 'anaconda3', 'Download', 'node_modules', '.*', 'venv', 'migrations', '__pycache__'],
             \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[cod]']
             \}
 
@@ -209,7 +212,7 @@ let g:rainbow_conf = {
             \}
 
 " nerdtree
-let g:NERDTreeIgnore = ['\.pyc$', '^__pycache__$', '\.git$', '^migrations$', 'node_modules']
+let g:NERDTreeIgnore = ['\.pyc$', '^__pycache__$', '\.git$', '^migrations$', 'node_modules', '^.pytest_cache$']
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
@@ -256,4 +259,12 @@ augroup plug_xtype
     autocmd FileType * if expand('<amatch>') != 'markdown' | call plug#load('vim-polyglot') | execute 'autocmd! plug_xtype' | endif
 augroup END
 
-set shortmess=I
+" vim-markdown
+let g:markdown_fenced_languages = ['vim', 'python', 'bash=sh']
+let g:markdown_syntax_conceal = 0
+let g:markdown_minlines = 300
+
+" lightline
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ }

@@ -7,7 +7,7 @@ map  <leader><leader>s <Plug>(easymotion-bd-jk)
 map <F1> <nop>
 vnoremap <leader>y "+y
 vnoremap <leader>p "+p
-nnoremap <F5> :vsplit $MYVIMRC<cr>
+" nnoremap <F5> :vsplit $MYVIMRC<cr>
 nnoremap <F6> :source $MYVIMRC<cr>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j

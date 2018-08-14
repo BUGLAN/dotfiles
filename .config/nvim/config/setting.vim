@@ -30,6 +30,7 @@ set noswapfile "禁止生产交换文件
 set norelativenumber
 set ignorecase " 忽略大小写
 set shortmess=I
+set noshowmode
 " set clipboard+=unnamedplus
 " sudo pacman -S xclip 支持全局剪切板
 " set tags=./tags;/
