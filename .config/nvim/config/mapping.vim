@@ -13,10 +13,10 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-nnoremap - <C-w>-
-nnoremap + <C-w>+
-nnoremap < <C-w><
-nnoremap > <C-w>>
+nnoremap <down> <C-w>-
+nnoremap <up> <C-w>+
+nnoremap <left> <C-w><
+nnoremap <right> <C-w>>
 
 noremap <c-a> I
 noremap <c-e> A
@@ -70,10 +70,11 @@ inoremap <c-l> <right>
 " 输入快捷方式
 iabbrev hw Hello World
 iabbrev im import
-iabbrev fm from
-iabbrev fn function
+" iabbrev fm from
+" iabbrev fn function
 cabbrev tn tabnew
 " cabbrev update call dein#update()
+cabbrev install PlugInstall
 
 " vim tables
 noremap gn :tabn<CR>

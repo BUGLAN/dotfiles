@@ -7,3 +7,4 @@ if has("autocmd")
                 \ endif
 endif
 
+autocmd FileType python set colorcolumn=80

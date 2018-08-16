@@ -114,3 +114,7 @@ let g:deoplete#sources#ternjs#filetypes = [
             \ 'javascript.jsx',
             \ 'vue',
             \ ]
+
+
+" deoplete-go
+let g:deoplete#sources#go#gocode_binary = '/home/lan/repos/go/bin/gocode'

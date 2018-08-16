@@ -1,7 +1,22 @@
 call plug#begin('~/.config/nvim/plugged')
 
+" Plug 'BUGLAN/eleline.vim'
+" Plug 'mhinz/vim-startify'
+" Plug 'posva/vim-vue', {'for': 'vue'}
+" Plug 'sillybun/vim-repl', {'for': 'python'}
+" Plug 'tpope/vim-fugitive'
+" fcitx.vim
+" Plug 'ekalinin/dockerfile.vim', {'for': 'dockerfile'}
+" Plug 'tpope/vim-markdown', {'for': 'markdown'}
+" Plug 'sheerun/vim-polyglot' some filetype is too slow so choose to install special syntax plugins
+
+" complete
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'carlitux/deoplete-ternjs', {'do': 'npm install -g tern'}
+
+" unit
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'Yggdroot/indentLine'
@@ -13,34 +28,36 @@ Plug 'Chiel92/vim-autoformat', {'on': 'Autoformat'}
 Plug 'sgur/vim-lazygutter'
 Plug 'SirVer/ultisnips'
 Plug 'fisadev/vim-isort', {'on': 'Isort'}
-Plug 'Yggdroot/LeaderF', {'on': ['LeaderfFile', 'LeaderfFunction']}
-" Plug 'BUGLAN/eleline.vim'
 Plug 'itchyny/lightline.vim'
-Plug 'liuchengxu/space-vim-dark'
 Plug 'scrooloose/nerdcommenter', {'on': '<plug>NERDCommenterToggle'}
 Plug 'heavenshell/vim-pydocstring', {'for': 'python', 'on': 'Pydocstring'}
-Plug 'godlygeek/tabular', {'for': 'markdown', 'on': 'TableFormat'}
-" Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
-Plug 'tpope/vim-markdown', {'for': 'markdown'}
-Plug 'easymotion/vim-easymotion', {'on': ['<Plug>(easymotion-bd-w)', '<Plug>(easymotion-bd-jk)']}
-" Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround'
-Plug 'luochen1990/rainbow'
-" Plug 'posva/vim-vue', {'for': 'vue'}
-Plug 'carlitux/deoplete-ternjs'
-Plug 'junegunn/fzf.vim', {'on': ['Files', 'Ag']}
 Plug 'ryanoasis/vim-devicons'
-Plug 'sheerun/vim-polyglot'
 Plug 'BUGLAN/vim-youdao-translater'
-" Plug 'sillybun/vim-repl', {'for': 'python'}
 Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
-Plug 'junegunn/fzf.vim'
-" Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
-" fcitx.vim
-" Plug 'ekalinin/dockerfile.vim', {'for': 'dockerfile'}
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " go get -u github.com/nsf/gocode
+
+" find & search & move
+Plug 'junegunn/fzf.vim'
+Plug 'Yggdroot/LeaderF', {'on': ['LeaderfFile', 'LeaderfFunction']}
+Plug 'easymotion/vim-easymotion', {'on': ['<Plug>(easymotion-bd-w)', '<Plug>(easymotion-bd-jk)']}
+
+" syntax highlight
+Plug 'liuchengxu/space-vim-dark'
+Plug 'vim-python/python-syntax', {'for': 'python'}
+Plug 'ekalinin/Dockerfile.vim', {'for': 'dockerfile'}
+Plug 'PotatoesMaster/i3-vim-syntax', {'for': 'i3'}
+Plug 'posva/vim-vue', {'for': 'vue'}
+Plug 'luochen1990/rainbow'
+Plug 'godlygeek/tabular', {'for': 'markdown', 'on': []}
+Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 
 call plug#end()
+
+" python-syntax
+let g:python_highlight_all = 1
+
 
 " lazy load deoplete
 autocmd InsertEnter * call Init()
@@ -73,7 +90,7 @@ source ~/.config/nvim/config/autocmd.vim
 " let g:dein#install_max_processes = 16
 
 " vim-gitgutter / vim-lazygutter
-let g:gitgutter_map_keys = 0 "关闭所有键位映射
+let g:gitgutter_map_keys = 0 " 关闭所有键位映射
 
 
 " vim-autoformat
@@ -254,10 +271,10 @@ nmap ga <Plug>(EasyAlign)
 
 
 " vim-polyglot
-let g:polyglot_disabled = ['markdown']
-augroup plug_xtype
-    autocmd FileType * if expand('<amatch>') != 'markdown' | call plug#load('vim-polyglot') | execute 'autocmd! plug_xtype' | endif
-augroup END
+" let g:polyglot_disabled = ['markdown']
+" augroup plug_xtype
+    " autocmd FileType * if expand('<amatch>') != 'markdown' | call plug#load('vim-polyglot') | execute 'autocmd! plug_xtype' | endif
+" augroup END
 
 " vim-markdown
 let g:markdown_fenced_languages = ['vim', 'python', 'bash=sh']
