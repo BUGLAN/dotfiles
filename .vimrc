@@ -1,66 +1,162 @@
 call plug#begin('~/.vim/plugged')
 " 下面的我安装的插件
-Plug 'Valloric/YouCompleteMe', {'on': []}
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'Yggdroot/indentLine', {'for': ['c', 'cpp', 'python']}
-Plug 'jiangmiao/auto-pairs'
-Plug 'w0rp/ale', {'for': ['c', 'cpp', 'python']}
-Plug 'google/yapf', {'for': 'markdown'} " python的格式化
-Plug 'ntpeters/vim-better-whitespace' "空白标红
-Plug 'godlygeek/tabular', {'for': 'markdown'}
-Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
-Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'}
-Plug 'iamcco/markdown-preview.vim', {'for': 'markdown'}
-Plug 'lilydjwg/fcitx.vim', {'on': []}
-Plug 'Chiel92/vim-autoformat', {'for': ['c', 'cpp', 'python']}
-Plug 'airblade/vim-gitgutter', {'on': []}
-Plug 'SirVer/ultisnips'
-Plug 'scrooloose/nerdcommenter'
-Plug 'fisadev/vim-isort', {'on': 'Isort'}
+
+" complete
+Plug 'Valloric/YouCompleteMe', {'do': './install.py --system-libclang --go-complete --js-complete'}
+
+" unit
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
-" Plug 'zchee/deoplete-jedi', {'for': 'python'}
-" Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
-Plug 'kien/ctrlp.vim', {'for': ['c', 'cpp', 'python']}
-Plug 'liuchengxu/eleline.vim'
-Plug 'liuchengxu/space-vim-dark'
-Plug 'mhinz/vim-startify'
-Plug 'posva/vim-vue'
-Plug 'pangloss/vim-javascript'
+Plug 'Yggdroot/indentLine'
+Plug 'jiangmiao/auto-pairs'
+Plug 'w0rp/ale'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'iamcco/markdown-preview.vim', {'for': 'markdown'}
+Plug 'Chiel92/vim-autoformat', {'on': 'Autoformat'}
+Plug 'sgur/vim-lazygutter'
+Plug 'SirVer/ultisnips'
+Plug 'fisadev/vim-isort', {'on': 'Isort'}
+Plug 'itchyny/lightline.vim'
+Plug 'scrooloose/nerdcommenter', {'on': '<plug>NERDCommenterToggle'}
+Plug 'heavenshell/vim-pydocstring', {'for': 'python', 'on': 'Pydocstring'}
 Plug 'tpope/vim-surround'
+Plug 'ryanoasis/vim-devicons'
+Plug 'BUGLAN/vim-youdao-translater'
+Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
+Plug 'tpope/vim-sensible'
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " go get -u github.com/nsf/gocode
+
+" find & search & move
+Plug 'junegunn/fzf.vim'
+Plug 'Yggdroot/LeaderF', {'on': ['LeaderfFile', 'LeaderfFunction']}
+Plug 'easymotion/vim-easymotion', {'on': ['<Plug>(easymotion-bd-w)', '<Plug>(easymotion-bd-jk)']}
+
+" syntax highlight
+Plug 'liuchengxu/space-vim-dark'
+Plug 'vim-python/python-syntax', {'for': 'python'}
+Plug 'ekalinin/Dockerfile.vim', {'for': 'dockerfile'}
+Plug 'PotatoesMaster/i3-vim-syntax', {'for': 'i3'}
+Plug 'posva/vim-vue', {'for': 'vue'}
 Plug 'luochen1990/rainbow'
-Plug 'easymotion/vim-easymotion'
-Plug 'heavenshell/vim-pydocstring'
+Plug 'godlygeek/tabular', {'for': 'markdown', 'on': []}
+Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+
 
 
 call plug#end()
 "插件末尾
 
 " lazy load plugins
-autocmd! InsertEnter * call Init()
-let g:lazy_load = 0
-function! Init()
-  if g:lazy_load == 0
-    let g:lazy_load = 1
-    call plug#load('YouCompleteMe')
-    " call plug#load('vim-gitgutter')
-    " call plug#load('fcitx.vim')
-  endif
-endfunction
+" autocmd! InsertEnter * call Init()
+" let g:lazy_load = 0
+" function! Init()
+"   if g:lazy_load == 0
+"     let g:lazy_load = 1
+"     call plug#load('YouCompleteMe')
+"   endif
+" endfunction
 
 
-" key mapping
+" vim setting
+set ttyfast
+set scrolloff=7            " 滚动的时候有7行多余
+set updatetime=100         " update time
+set termguicolors          " true color
+set lazyredraw             " lazy draw
+set nofoldenable           " 禁用折叠"
+set nocompatible           " 去除vi 和vim 的一致性
+set nu                     " 设置行号
+filetype plugin indent on  " 开启类型检查
+syntax on                  " 开启语法高粱
+set autoindent             " 自动缩进
+set cindent                " C语言的缩进格式
+set smartindent            " 当遇到右花括号（}），则取消缩进形式
+set shiftround
+set tabstop=4              " 定义tab所等同的空格长度
+set expandtab              " expandtab，输入一个tab，将被展开成softtabstop值个空格，如果softtabstop=4，那么一个tab就会被替换成4个空格
+set shiftwidth=4           " 程序中自动缩进所使用的空白长度指示的
+set ruler                  " 底部的行号等显示
+set novisualbell           " 去掉输入错误的提示声音
+set softtabstop=4          " 逢4空格进1制表符
+set t_md=                  " 禁用粗体
+set t_Co=256               " 开启256色
+set fileformat=unix        " filetype
+set encoding=utf-8         " 编码utf-8
+set cmdheight=1
+set noswapfile             " 禁止生产交换文件
+set norelativenumber       " 行号为不是相对模式
+set ignorecase             " 忽略大小写
+set shortmess=I            " 不显示vim版本信息
+set noshowmode             " 不显示--INSERT--
+set nrformats=             " 使vim将所有数字当成十进制
+set laststatus=2
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
+" set clipboard+=unnamedplus
+" sudo pacman -S xclip 支持全局剪切板
+" set tags=./tags;/
+
+
+" vim color setting
+colorscheme space-vim-dark
+hi CursorLineNR cterm=bold gui=bold
+hi lineNr guibg=NONE ctermbg=NONE
+hi Normal guibg=NONE ctermbg=NONE
+hi SignColumn ctermbg=NONE guibg=NONE
+hi Comment guifg=#5C6370 ctermfg=59 gui=NONE
+hi CursorLineNr guibg=NONE ctermbg=NONE
+hi Pmenu guibg=NONE ctermbg=NONE guifg=#af87d7 guibg=NONE
+hi TabLineFill ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
+hi TabLine ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
+hi TabLineSel ctermfg=red ctermbg=NONE guifg=#d75faf guibg=NONE
+hi Search cterm=underline ctermfg=red ctermbg=NONE guifg=red guibg=NONE gui=underline
+
+
+" vim key mapping
 let mapleader=","
-map! <c-l> <right>
+map <leader>n :NERDTreeToggle<cr>
+map <leader><leader>t :LeaderfFunction!<cr>
+map  <leader><leader>w <Plug>(easymotion-bd-w)
+map  <leader><leader>s <Plug>(easymotion-bd-jk)
+map <F1> <nop>
+vnoremap <leader>y "+y
+vnoremap <leader>p "+p
+" nnoremap <F5> :vsplit $MYVIMRC<cr>
+nnoremap <F6> :source $MYVIMRC<cr>
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <down> <C-w>-
+nnoremap <up> <C-w>+
+nnoremap <left> <C-w><
+nnoremap <right> <C-w>>
 
 noremap <c-a> I
 noremap <c-e> A
-noremap <SPACE> :
+noremap ; :
 noremap <leader>w :w<cr>
 noremap <leader>q :q!<cr>
 noremap <leader>e :wq<cr>
-noremap <leader>c A:<cr>
-noremap <leader>n o
-nnoremap <leader><space> :nohlsearch<cr>
+autocmd FileType python noremap <leader>c A:<cr>
+noremap <leader><space> :nohlsearch<cr>
+noremap <leader>f :LeaderfFile<cr>
+autocmd FileType python noremap <leader><leader>d :Pydocstring<cr>
+noremap H ^
+noremap L $
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
+noremap D d$
+noremap Y y$
+noremap <tab> %
 
 inoremap <leader>w <Esc>:w<cr>
 inoremap <C-a> <esc>I
@@ -72,80 +168,49 @@ inoremap <leader>a +
 inoremap <leader>u _
 inoremap <leader>i ____<Esc>hi
 inoremap <leader>n <Esc>o
-inoremap <leader>c <Esc>A:<cr>
+autocmd FileType python inoremap <leader>c <Esc>A:<cr>
 inoremap <leader>b ()<Esc>i
 inoremap <leader>s []<Esc>i
 inoremap <leader>t {}<Esc>i
 inoremap <leader>m *
 inoremap <leader>d <SPACE>-><SPACE>
 inoremap <leader>f <Esc>bi"<Esc>ea"
-inoremap <leader>p print()<Esc>i
-inoremap <leader>j <Esc>f)i
+" inoremap <leader>p print()<Esc>i
+" inoremap <leader>j <Esc>f)i
+" inoremap <leader>. <Esc>
+inoremap <c-l> <right>
 
-map <leader>. <Esc>
 
+" 输入快捷方式
+iabbrev hw Hello World
+iabbrev im import
+" iabbrev fm from
+" iabbrev fn function
+cabbrev tn tabnew
+" cabbrev update call dein#update()
+cabbrev install PlugInstall
 
-"vim tables
+" vim tables
 noremap gn :tabn<CR>
 noremap gp :tabp<CR>
 
+if has('nvim')
+  " terminal mode mapping
+  tnoremap <Esc> <C-\><C-n>
+  " tnoremap <c-j> <C-\><C-n>
+  " tnoremap <c-v> <C-\><C-n>
+  tnoremap <leader>w <C-\><C-n>
+  tnoremap <leader>q <C-\><C-n>:q!<cr>
+  nnoremap <leader>o :below 10sp term://$SHELL<cr>i
+  tnoremap <C-h> <C-\><C-n><C-w>h
+  tnoremap <C-j> <C-\><C-n><C-w>j
+  tnoremap <C-k> <C-\><C-n><C-w>k
+  tnoremap <C-l> <C-\><C-n><C-w>l
+  tnoremap gn <C-\><C-n>:tabn<CR>
+  tnoremap gp <C-\><C-n>:tabp<CR>
+endif
 
-"输入快捷方式
-iabbrev hw Hello World
-iabbrev im import
-iabbrev fm from
-cabbrev tn tabnew
-
-set scrolloff=7
-set hlsearch "高亮匹配项
-set lazyredraw
-set nofoldenable "禁用折叠"
-set nocompatible "去除vi 和vim 的一致性
-set nu! " 设置行号
-filetype on " 开启类型检查
-syntax on " 开启语法高粱
-set autoindent "自动缩进
-set cindent "C语言的缩进格式
-set smartindent "当遇到右花括号（}），则取消缩进形式
-set tabstop=4 "定义tab所等同的空格长度
-set expandtab "expandtab，输入一个tab，将被展开成softtabstop值个空格，如果softtabstop=4，那么一个tab就会被替换成4个空格
-set shiftwidth=4 "程序中自动缩进所使用的空白长度指示的
-set ai!
-"set showmatch "输入成对的括号时，Vim 会帮助你跳转并高亮一下匹配的括号
-set ruler "底部的行号等显示
-set novisualbell "去掉输入错误的提示声音
-set softtabstop=4 "逢4空格进1制表符
-"set noexpandtab
-set t_md= "禁用粗体
-set t_Co=256 "开启256色
-"set cursorline "高亮显示当前行
-"set cursorcolumn "高亮光标列
-set fileformat=unix "filetype
-set encoding=utf-8 "编码utf-8
-let python_highlight_all=1 "make code 漂亮
-autocmd FileType python set colorcolumn=79
-" set gcr=a:block-blinkon0 "禁止光标闪烁
-set cmdheight=1
-set noswapfile "禁止生产交换文件
-set termguicolors " true color
-
-
-" vim color setting
-set norelativenumber
-colorscheme space-vim-dark
-hi CursorLineNR cterm=bold
-hi lineNr guibg=NONE ctermbg=NONE
-hi Normal guibg=NONE ctermbg=NONE
-hi SignColumn ctermbg=NONE guibg=NONE
-hi Comment guifg=#5C6370 ctermfg=59
-hi CursorLineNr guibg=NONE ctermbg=NONE
-hi Pmenu guibg=NONE ctermbg=NONE
-hi Search cterm=underline ctermfg=red ctermbg=NONE
-hi TabLineFill ctermfg=NONE ctermbg=NONE
-hi TabLine ctermfg=NONE ctermbg=NONE
-hi TabLineSel ctermfg=red ctermbg=NONE
-
-
+" vim autocmd
 " 配置vim打开时vim自动定位到上次的位置
 if has("autocmd")
     autocmd BufRead *.txt set tw=78
@@ -154,8 +219,17 @@ if has("autocmd")
                 \   exe "normal g'\"" |
                 \ endif
 endif
-" 配置vim打开时vim自动定位到上次的位置
 
+autocmd FileType python set colorcolumn=80
+" set cursorline
+" autocmd InsertEnter * set nocursorline
+" autocmd InsertLeave * set cursorline
+autocmd FileType json,html,jsx,javascript.jsx,vue,markdown setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+" autocmd TermOpen * set nonu
+autocmd FileType python set colorcolumn=80
+autocmd FileType python set shiftwidth=4 softtabstop=4 expandtab
+autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noet
 
 
 
@@ -177,12 +251,6 @@ let g:instant_markdown_autostart = 0 "关闭chrome自动打开
 let g:vim_markdown_folding_disabled = 1 "禁用折叠
 let g:vim_markdown_conceal = 0 "禁用语法隐藏
 let g:vim_markdown_no_default_key_mappings = 1
-
-
-" yapf
-autocmd FileType python nnoremap <F3> :0,$!yapf<Cr>
-" 建议每天最晚时刻使用格式化代码
-" 因为他每次都会跳到第一行
 
 
 " indentLine
@@ -218,15 +286,80 @@ nmap <F8> :TagbarToggle<CR>
 
 
 " ale
-source ~/.vim/config/ale-config.vim
+" npm install -g eslint bable-eslint
+" pip install flake8 autopep8
+" {
+"    "extends": "standard",
+"    "parser": "babel-eslint"
+" }
 
-" air-line
-" source ~/.vim/config/airline-config.vim
-set laststatus=2
+let g:ale_linters = {
+            \ 'python': ['flake8'],
+            \ 'reStructuredText': ['rstcheck']
+            \ }
+
+" let g:syntastic_python_flask8_post_args="--max-line-length=120"
+let g:ale_fixers = {'python': ['remove_trailing_lines', 'trim_whitespace', 'autopep8']}
+nmap <silent> <C-p> <Plug>(ceale_previous_wrap)
+nmap <silent> <C-n> <Plug>(ale_next_wrap)
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '✘'
+highlight ALEErrorSign ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+highlight ALEWarningSign ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+let g:ale_cache_executable_check_failures = 1
+let g:ale_set_highlights = 0 "ban ale's error and warning highlights
+highlight ALEErrorSign ctermbg=NONE ctermfg=red guibg=NONE guifg=#e0211d
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow guibg=NONE guifg=yellow
+highlight ALEWarningLine ctermbg=NONE ctermfg=yellow guibg=NONE guifg=yellow
+highlight ALEErrorLine ctermbg=NONE ctermfg=red guibg=NONE guifg=#e0211d
+highlight ALEInfoLine ctermbg=NONE ctermfg=black guibg=NONE guifg=#e18254
+
+
 
 " YouCompleteMe 相关配置
-source ~/.vim/config/ycm-config.vim
+" 全局路径配置
+let g:ycm_max_num_candidates = 15
+let g:ycm_max_num_identifier_candidates = 8
+" let g:ycm_cache_omnifunc=0 "禁止缓存匹配项, 每次重新生成"
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_seed_identifiers_with_syntax=1 "语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
+set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
+" 跳转到定义GoToDefinition
+" 跳转到声明GoToDeclaration
+" 以及两者的合体GoToDefinitionElseDeclaration
+nnoremap <leader>j :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>k :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>l :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <F6> :YcmForceCompileAndDiagnostics<CR>    "force recomile with syntastic
+" nnoremap <leader>lo :lopen<CR>    "open locationlist
+" nnoremap <leader>lc :lclose<CR>   "close locationlist
+inoremap <leader><leader> <C-x><C-o>
+let g:ycm_cache_omnifunc=0
+"在注释输入中也能补全
+let g:ycm_complete_in_comments = 1
+"在字符串输入中也能补全
+let g:ycm_show_diagnostics_ui = 0 "close syntax checked
 
 
 " NERDTree setting
-source ~/.vim/config/nerdtree-config.vim
+let NERDTreeShowLineNumbers=1
+let NERDTreeAutoCenter=1
+" 是否显示隐藏文件
+let NERDTreeShowHidden=1
+" 设置宽度
+let NERDTreeWinSize=28
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" 按下 F2 调出/隐藏 NERDTree
+map <F2> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+
+
+" lightline
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ }

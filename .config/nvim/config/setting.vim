@@ -6,7 +6,7 @@ set termguicolors          " true color
 set lazyredraw             " lazy draw
 set nofoldenable           " 禁用折叠"
 set nocompatible           " 去除vi 和vim 的一致性
-set nu!                    " 设置行号
+set nu                     " 设置行号
 filetype plugin indent on  " 开启类型检查
 syntax on                  " 开启语法高粱
 set autoindent             " 自动缩进
@@ -30,6 +30,7 @@ set norelativenumber       " 行号为不是相对模式
 set ignorecase             " 忽略大小写
 set shortmess=I            " 不显示vim版本信息
 set noshowmode             " 不显示--INSERT--
+set nrformats=             " 使vim将所有数字当成十进制
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 " set clipboard+=unnamedplus
@@ -50,11 +51,3 @@ hi TabLineFill ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
 hi TabLine ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
 hi TabLineSel ctermfg=red ctermbg=NONE guifg=#d75faf guibg=NONE
 hi Search cterm=underline ctermfg=red ctermbg=NONE guifg=red guibg=NONE gui=underline
-
-" set cursorline
-" autocmd InsertEnter * set nocursorline
-" autocmd InsertLeave * set cursorline
-autocmd FileType json,javascript,html,jsx,javascript.jsx,vue,markdown setlocal ts=2 sts=2 sw=2 expandtab
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-autocmd TermOpen * set nonu
-autocmd FileType python set colorcolumn=80
