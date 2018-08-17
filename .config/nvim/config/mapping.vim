@@ -5,6 +5,8 @@ map <leader><leader>t :LeaderfFunction!<cr>
 map  <leader><leader>w <Plug>(easymotion-bd-w)
 map  <leader><leader>s <Plug>(easymotion-bd-jk)
 map <F1> <nop>
+map j gj
+map k gk
 vnoremap <leader>y "+y
 vnoremap <leader>p "+p
 " nnoremap <F5> :vsplit $MYVIMRC<cr>
@@ -27,7 +29,6 @@ noremap <leader>e :wq<cr>
 autocmd FileType python noremap <leader>c A:<cr>
 noremap <leader><space> :nohlsearch<cr>
 noremap <leader>f :LeaderfFile<cr>
-autocmd FileType python noremap <leader><leader>d :Pydocstring<cr>
 noremap H ^
 noremap L $
 noremap <leader>1 1gt
@@ -69,12 +70,13 @@ inoremap <c-l> <right>
 
 " 输入快捷方式
 iabbrev hw Hello World
-iabbrev im import
-" iabbrev fm from
 " iabbrev fn function
 cabbrev tn tabnew
 " cabbrev update call dein#update()
 cabbrev install PlugInstall
+cabbrev fcitx call plug#load('fcitx.vim')
+autocmd FileType python iabbrev fm from
+autocmd FileType python iabbrev im import
 
 " vim tables
 noremap gn :tabn<CR>
@@ -83,8 +85,6 @@ noremap gp :tabp<CR>
 if has('nvim')
   " terminal mode mapping
   tnoremap <Esc> <C-\><C-n>
-  " tnoremap <c-j> <C-\><C-n>
-  " tnoremap <c-v> <C-\><C-n>
   tnoremap <leader>w <C-\><C-n>
   tnoremap <leader>q <C-\><C-n>:q!<cr>
   nnoremap <leader>o :below 10sp term://$SHELL<cr>i

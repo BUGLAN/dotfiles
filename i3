@@ -14,10 +14,10 @@ bindsym $mod+o border 1pixel
 bindsym $mod+b border toggle
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+h focus left border 1pixel
+bindsym $mod+j focus down border 1pixel
+bindsym $mod+k focus up border 1pixel
+bindsym $mod+l focus right border 1pixel
 
 
 

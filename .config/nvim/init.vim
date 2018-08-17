@@ -5,7 +5,6 @@ call plug#begin('~/.config/nvim/plugged')
 " Plug 'posva/vim-vue', {'for': 'vue'}
 " Plug 'sillybun/vim-repl', {'for': 'python'}
 " Plug 'tpope/vim-fugitive'
-" fcitx.vim
 " Plug 'ekalinin/dockerfile.vim', {'for': 'dockerfile'}
 " Plug 'tpope/vim-markdown', {'for': 'markdown'}
 " Plug 'sheerun/vim-polyglot' some filetype is too slow so choose to install special syntax plugins
@@ -36,7 +35,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'BUGLAN/vim-youdao-translater'
 Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 Plug 'tpope/vim-sensible'
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " go get -u github.com/nsf/gocode
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " go get -u github.com/nsf/gocode
 
 " find & search & move
 Plug 'junegunn/fzf.vim'
@@ -51,7 +50,8 @@ Plug 'PotatoesMaster/i3-vim-syntax', {'for': 'i3'}
 Plug 'posva/vim-vue', {'for': 'vue'}
 Plug 'luochen1990/rainbow'
 Plug 'godlygeek/tabular', {'for': 'markdown', 'on': []}
-Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+Plug 'plasticboy/vim-markdown'
+Plug 'lilydjwg/fcitx.vim', {'on': []}
 
 call plug#end()
 
@@ -66,7 +66,6 @@ function! Init()
     if g:lazy_load == 0
         let g:lazy_load = 1
         call deoplete#enable()
-        " let g:pymode_init = 1
     endif
 endfunction
 
@@ -197,6 +196,22 @@ let g:tagbar_sort = 0
 " let g:tagbar_usearrows = 1
 map <F3> :TagbarToggle<CR>
 map <leader>t :TagbarToggle<CR>
+" add those to ~/.ctags
+" --langdef=markdown
+" --langmap=markdown:.md
+" --regex-markdown=/^#{1}[ \t]*([^#]+.*)/. \1/h,headings/
+" --regex-markdown=/^#{2}[ \t]*([^#]+.*)/.   \1/h,headings/
+" --regex-markdown=/^#{3}[ \t]*([^#]+.*)/.     \1/h,headings/
+" --regex-markdown=/^#{4}[ \t]*([^#]+.*)/.       \1/h,headings/
+" --regex-markdown=/^#{5}[ \t]*([^#]+.*)/.         \1/h,headings/
+" --regex-markdown=/^#{6}[ \t]*([^#]+.*)/.           \1/h,headings/
+let g:tagbar_type_markdown = {
+        \ 'ctagstype' : 'markdown',
+        \ 'kinds' : [
+                \ 'h:headings',
+        \ ],
+    \ 'sort' : 0
+    \ }
 
 
 " make neovim faster without search python
@@ -216,6 +231,7 @@ let g:Lf_WildIgnore = {
 
 " vim-pydocstring
 nmap <silent> <C-_> <Plug>(pydocstring)
+autocmd FileType python noremap <leader><leader>d :Pydocstring<cr>
 
 " vim-startify
 " let g:startify_enable_unsafe = 1
@@ -277,11 +293,30 @@ nmap ga <Plug>(EasyAlign)
 " augroup END
 
 " vim-markdown
-let g:markdown_fenced_languages = ['vim', 'python', 'bash=sh']
-let g:markdown_syntax_conceal = 0
-let g:markdown_minlines = 300
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_no_default_key_mappings = 1
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_no_extensions_in_markdown = 1
+
 
 " lightline
 let g:lightline = {
       \ 'colorscheme': 'one',
       \ }
+
+" vim-go
+let g:go_version_warning = 0
+let g:go_list_type = "quickfix"
+let g:go_fmt_fail_silently = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_generate_tags = 1
+let g:go_term_height = 10
+
+autocmd FileType go nmap <leader>b  <Plug>(go-build)
+autocmd FileType go nmap <leader>r  <Plug>(go-run-split)
+autocmd FileType go nmap <Leader>v <Plug>(go-def-split)
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4

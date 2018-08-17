@@ -54,7 +54,7 @@ call deoplete#custom#source('_', 'converters', [
 
 call deoplete#custom#source('file',          'mark', 'ℬ')
 call deoplete#custom#source('TernJS',        'mark', '⌁')
-" call deoplete#custom#source('go',            'mark', '⌁')
+call deoplete#custom#source('go',            'mark', '⌁')
 call deoplete#custom#source('ultisnips',     'mark', '⌘')
 call deoplete#custom#source('tmux-complete', 'mark', '⊶')
 call deoplete#custom#source('omni',          'mark', '⌾')
@@ -117,4 +117,4 @@ let g:deoplete#sources#ternjs#filetypes = [
 
 
 " deoplete-go
-let g:deoplete#sources#go#gocode_binary = '/home/lan/repos/go/bin/gocode'
+let g:deoplete#sources#go#gocode_binary = '/home/lan/go/bin/gocode'

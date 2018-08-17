@@ -14,10 +14,10 @@ bindsym $mod+o border 1pixel
 bindsym $mod+b border toggle
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+h focus left border 1pixel
+bindsym $mod+j focus down border 1pixel
+bindsym $mod+k focus up border 1pixel
+bindsym $mod+l focus right border 1pixel
 
 
 
@@ -50,7 +50,7 @@ bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
 # new window style
-new_float none
+new_float 1pixel
 new_window 1pixel
 
 # keywords
@@ -165,13 +165,16 @@ for_window [class="Blueberry.py"] floating enable
 for_window [class="Nitrogen"] floating enable
 for_window [class="Lxappearance"] floating enable
 for_window [class="Gnome-screenshot"] floating enable
-# move position center
+for_window [class="netease-cloud-music"] floating enable resize set 800 600
+# support qt program which i program
+for_window [class="^qt*"] floating enable border normal
 
+# move position center
 bindsym $mod+z exec Thunar
 
 
 # scratchpad config
-bindsym $mod+m move scratchpad
+bindsym $mod+m move scratchpad border 1pixel
 bindsym $mod+a scratchpad show
 
 # screenshot

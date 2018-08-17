@@ -31,6 +31,9 @@ set ignorecase             " 忽略大小写
 set shortmess=I            " 不显示vim版本信息
 set noshowmode             " 不显示--INSERT--
 set nrformats=             " 使vim将所有数字当成十进制
+set autowrite              " vim 自动保存
+set splitbelow             " vim 在底部打开新的窗口
+set splitright             " vim在右侧打开新的窗口
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 " set clipboard+=unnamedplus
