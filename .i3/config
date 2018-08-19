@@ -62,7 +62,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 #bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec xfce4-terminal
 bindsym $mod+Shift+q kill
-# bindsym $mod+q kill easy to touch
+bindsym $mod+q kill
 bindsym $mod+c exec google-chrome-stable
 
 # - & |
@@ -113,28 +113,18 @@ exec --no-startup-id LANG="zh_CN.UTF-8" fcitx
 # bar
 bar {
     i3bar_command i3bar -t
-    # position top
-    status_command conky -c ~/.i3/conky_bar
-    colors {
-        background #555555
-        statusline #ffffff
-        focused_workspace  #4c7899 #285577 #ffffff
-        active_workspace   #333333 #5f676a #ffffff
-        inactive_workspace #333333 #222222 #888888
-        urgent_workspace   #2f343a #900000 #ffffff
-    }
-    colors {
-        background #10101000
-        statusline #FFFFFF
-        separator  #3399FF
-        # 工作区颜色         边框    背景    文字
-        focused_workspace  #3297FD #11111100 #FFFFFF
-        active_workspace   #FFFFFF #FFFFFF00 #FFFFFF
-        inactive_workspace #111111 #11111100 #FFFFFF
-        urgent_workspace   #990000 #11111100 #FFFFFF
-        binding_mode       #990000 #99000000 #FFFFFF
-}
-
+        # position top
+        status_command conky -c ~/.i3/conky_bar
+        colors {
+            background #10101000
+            statusline #ffffff
+            separator #3399FF
+            # 工作区颜色         边框    背景    文字
+            focused_workspace  #3297FD #11111100 #FFFFFF
+            active_workspace   #FFFFFF #FFFFFF00 #FFFFFF
+            inactive_workspace #11111100 #11111100 #FFFFFF
+            urgent_workspace   #990000 #11111100 #FFFFFF
+        }
 }
 
 bindsym $mod+r mode "resize"
@@ -142,17 +132,17 @@ bindsym $mod+r mode "resize"
 #resize shortcuts (also you can use the mouse for resizing)
 mode "resize" {
     bindsym h resize shrink width 10 px or 10 ppt
-    bindsym j resize grow height 10 px or 10 ppt
-    bindsym k resize shrink height 10 px or 10 ppt
-    bindsym l resize grow width 10 px or 10 ppt
-    #same bindings, but for the arrow keys
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+#same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+# back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
 }
 
 
