@@ -35,13 +35,11 @@ endsnippet
 
 snippet cls "less class define" b
 class ${1:class}:
-
 	${2:pass}
 endsnippet
 
 snippet class "more class define" b
 class ${1:class}(${2:object}):
-
 	${3:pass}
 endsnippet
 
@@ -61,11 +59,12 @@ endsnippet
 
 snippet sh "python shell script" b
 #!/usr/bin/env python
-
+# -*- coding: utf-8 -*-
 
 endsnippet
 
 snippet pmdoc "pocoo style module doc string" b
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 	`!p snip.rv = get_dir_and_file_name(snip)`
@@ -75,4 +74,12 @@ snippet pmdoc "pocoo style module doc string" b
 	:copyright: (c) `!v strftime("%Y-%m-%d")` by buglan
 """
 $0
+endsnippet
+
+snippet agent "user agent" b
+HEADERS = {
+	'user-agent':
+	"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) C\
+	hrome/68.0.3440.84 Safari/537.36"
+}
 endsnippet

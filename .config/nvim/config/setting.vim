@@ -7,7 +7,7 @@ set lazyredraw             " lazy draw
 set nofoldenable           " 禁用折叠"
 set nocompatible           " 去除vi 和vim 的一致性
 set nu                     " 设置行号
-filetype plugin indent on  " 开启类型检查
+filetype plugin indent on  " 开启类型检查自动缩进
 syntax on                  " 开启语法高粱
 set autoindent             " 自动缩进
 set cindent                " C语言的缩进格式

@@ -28,9 +28,6 @@ export PYTHONPATH=$PYTHONPATH:/usr/lib/python3.7/site-packages
 alias w="python ~/repos/words/words.py"
 alias t="python ~/repos/tools/youdaotranslate/youdaotranslate/main.py"
 
-# neovim
-alias n="nvim"
-
 # change caps & ctrl
 setxkbmap -option ctrl:swapcaps
 
