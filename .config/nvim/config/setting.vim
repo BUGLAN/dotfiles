@@ -12,7 +12,6 @@ syntax on                  " 开启语法高粱
 set autoindent             " 自动缩进
 set cindent                " C语言的缩进格式
 set smartindent            " 当遇到右花括号（}），则取消缩进形式
-set shiftround
 set tabstop=4              " 定义tab所等同的空格长度
 set expandtab              " expandtab，输入一个tab，将被展开成softtabstop值个空格，如果softtabstop=4，那么一个tab就会被替换成4个空格
 set shiftwidth=4           " 程序中自动缩进所使用的空白长度指示的
@@ -34,6 +33,9 @@ set nrformats=             " 使vim将所有数字当成十进制
 set autowrite              " vim 自动保存
 set splitbelow             " vim 在底部打开新的窗口
 set splitright             " vim在右侧打开新的窗口
+set showcmd                " 总是显示命令
+set hidden
+set shiftround
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 " set clipboard+=unnamedplus
