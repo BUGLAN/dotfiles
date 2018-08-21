@@ -1,5 +1,5 @@
 # font
-font pango: Hack
+font pango: Monaco
 
 # mod alt
 set $mod Mod1
@@ -114,7 +114,7 @@ exec --no-startup-id LANG="zh_CN.UTF-8" fcitx
 bar {
     i3bar_command i3bar -t
         # position top
-        status_command conky -c ~/.i3/conky_bar
+        status_command conky -c ~/.i3/conkybar
         colors {
             background #10101000
             statusline #ffffff
@@ -135,12 +135,12 @@ mode "resize" {
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
-#same bindings, but for the arrow keys
+        #same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
-# back to normal: Enter or Escape
+        # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
@@ -159,7 +159,7 @@ for_window [class="netease-cloud-music"] floating enable resize set 800 600
 # support qt program which i program
 for_window [class="^qt*"] floating enable border normal
 
-# move position center
+# run Thunar
 bindsym $mod+z exec Thunar
 
 
@@ -175,3 +175,9 @@ bindsym $mod+Shift+Left  resize shrink width  10 px or 1 ppt
 bindsym $mod+Shift+Down  resize grow   height 10 px or 1 ppt
 bindsym $mod+Shift+Up    resize shrink height 10 px or 1 ppt
 bindsym $mod+Shift+Right resize grow   width  10 px or 1 ppt
+
+# volume
+# 用键盘上音量+和音量-
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+bindsym XF86AudioMute exec amixer -q set Master toggle
