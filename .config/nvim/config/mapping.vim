@@ -27,6 +27,7 @@ noremap <leader>w :w<cr>
 noremap <leader>q :q!<cr>
 noremap <leader>e :wq<cr>
 autocmd FileType python noremap <leader>c A:<cr>
+autocmd FileType go noremap <leader>c A{<cr>}<esc>O
 noremap <leader><space> :nohlsearch<cr>
 noremap <leader>f :LeaderfFile<cr>
 noremap H ^
@@ -56,6 +57,7 @@ inoremap <leader>u _
 inoremap <leader>i ____<Esc>hi
 inoremap <leader>n <Esc>o
 autocmd FileType python inoremap <leader>c <Esc>A:<cr>
+autocmd FileType go inoremap <leader>c <Esc>A{<cr>}<esc>O
 inoremap <leader>b ()<Esc>i
 inoremap <leader>s []<Esc>i
 inoremap <leader>t {}<Esc>i

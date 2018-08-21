@@ -159,6 +159,9 @@ for_window [class="netease-cloud-music"] floating enable resize set 800 600
 # support qt program which i program
 for_window [class="^qt*"] floating enable border normal
 
+# move app to window
+assign [class="Zeal"] 10
+
 # run Thunar
 bindsym $mod+z exec Thunar
 

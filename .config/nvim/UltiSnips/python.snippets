@@ -83,3 +83,24 @@ HEADERS = {
 	hrome/68.0.3440.84 Safari/537.36"
 }
 endsnippet
+
+
+snippet pyqt "PyQt5 template" b
+import sys
+from PyQt5.QtWidgets import QMainWindow, QApplication, ${1}
+
+
+class Example(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.init_ui()
+
+    def init_ui(self):
+        ${2:pass}
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    ex = Example()
+    sys.exit(app.exec_())
+endsnippet

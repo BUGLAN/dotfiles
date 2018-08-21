@@ -34,6 +34,7 @@ set autowrite              " vim 自动保存
 set splitbelow             " vim 在底部打开新的窗口
 set splitright             " vim在右侧打开新的窗口
 set showcmd                " 总是显示命令
+set mouse=                 " 禁用鼠标
 set hidden
 set shiftround
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929

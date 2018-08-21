@@ -5,7 +5,7 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 let g:deoplete#max_menu_length = 2
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#auto_complete_start_length = 2
-let g:deoplete#max_list = 15
+" let g:deoplete#max_list = 15
 let g:deoplete#enable_at_startup = 0 "开启deplete
 " complete with one brackets
 " call deoplete#custom#source('_', 'converters', ['converter_auto_paren'])
@@ -19,7 +19,7 @@ let g:deoplete#enable_at_startup = 0 "开启deplete
 
 " deoplete-jedi
 " pip install jedi
-let g:deoplete#sources#jedi#python_path = '/usr/bin/python'
+let g:deoplete#sources#jedi#python_path = '/home/neo/anaconda3/bin/python'
 let g:deoplete#sources#jedi#enable_cache = 10 " 缓存
 let g:deoplete#enable_refresh_always = 1
 let g:deoplete#enable_camel_case = 1
@@ -118,3 +118,8 @@ let g:deoplete#sources#ternjs#filetypes = [
 
 " deoplete-go
 let g:deoplete#sources#go#gocode_binary = '/home/lan/go/bin/gocode'
+
+
+" deug
+" call deoplete#custom#source('jedi', 'debug_enabled', 1)
+" call deoplete#enable_logging('DEBUG', '/tmp/deoplete.log')

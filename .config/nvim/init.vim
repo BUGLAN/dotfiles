@@ -11,6 +11,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " complete
 Plug 'Shougo/deoplete.nvim'
+" Plug 'zchee/deoplete-jedi', {'for': 'python', 'branch': 'light'}
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'carlitux/deoplete-ternjs', {'do': 'npm install -g tern'}
@@ -216,9 +217,9 @@ let g:tagbar_type_markdown = {
 
 " make neovim faster without search python
 let g:python3_host_skip_check=1
-let g:python3_host_prog = '/usr/bin/python'
-" let g:python_host_skip_check=1
-" let g:python_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/home/neo/anaconda3/bin/python'
+let g:python_host_skip_check=1
+let g:python_host_prog = '/usr/bin/python2'
 
 " leaderf
 let g:Lf_WindowHeight = 0.30
@@ -231,7 +232,7 @@ let g:Lf_WildIgnore = {
 
 " vim-pydocstring
 nmap <silent> <C-_> <Plug>(pydocstring)
-autocmd FileType python noremap <leader><leader>d :Pydocstring<cr>
+autocmd FileType python noremap <leader>d :Pydocstring<cr>
 
 " vim-startify
 " let g:startify_enable_unsafe = 1
@@ -278,7 +279,7 @@ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--color-path="0;33"', <ban
 " vim youdao translater
 vnoremap <silent> <C-T> :<C-u>Ydv<CR>
 nnoremap <silent> t :<C-u>Ydc<CR>
-noremap <leader>d :<C-u>Yde<CR>
+noremap <leader><leader>d :<C-u>Yde<CR>
 
 
 " vim easy text align
@@ -320,3 +321,4 @@ autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run-split)
 autocmd FileType go nmap <Leader>v <Plug>(go-def-split)
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+
