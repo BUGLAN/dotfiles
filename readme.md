@@ -2,3 +2,4 @@
 ![screenshot](./assets/screenshot.png)
 
 ### nvim
+![nvim](./assets/nvim.png)
