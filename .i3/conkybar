@@ -21,11 +21,12 @@ conky.config = {
 }
 
 conky.text = [[
- ${upspeed wlp5s0}/s  ${downspeed wlp5s0}/s \
+ ${wireless_ap wlp3s0} \
  ${cpu cpu0}% \
  ${mem} \
  ${fs_used /} \
  ${battery_percent}% \
 ${execi 1 amixer | grep -A10 'Master' | sed -rn 's/.*\[([0-9]+%)\].*\[(on|off)\]/\2 \1/p' | sed -n '1p' | sed 's/off.*/ /' | sed -r 's/on( [01234]?[0-9]%)/\1/' | sed -r 's/(on|) 0%/ 0%/' | sed -r 's/on//'} \
+ ${time %Y-%m-%d} \
  ${time %H:%M}
 ]]
