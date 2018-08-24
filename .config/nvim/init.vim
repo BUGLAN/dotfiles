@@ -7,6 +7,7 @@ call plug#begin('~/.config/nvim/plugged')
 " Plug 'tpope/vim-fugitive'
 " Plug 'ekalinin/dockerfile.vim', {'for': 'dockerfile'}
 " Plug 'tpope/vim-markdown', {'for': 'markdown'}
+" Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 " Plug 'sheerun/vim-polyglot' some filetype is too slow so choose to install special syntax plugins
 
 " complete
@@ -37,6 +38,7 @@ Plug 'BUGLAN/vim-youdao-translater'
 Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 Plug 'tpope/vim-sensible'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " go get -u github.com/nsf/gocode
+Plug 'lilydjwg/fcitx.vim', {'on': []}
 
 " find & search & move
 Plug 'junegunn/fzf.vim'
@@ -44,6 +46,7 @@ Plug 'Yggdroot/LeaderF', {'on': ['LeaderfFile', 'LeaderfFunction']}
 Plug 'easymotion/vim-easymotion', {'on': ['<Plug>(easymotion-bd-w)', '<Plug>(easymotion-bd-jk)']}
 
 " syntax highlight
+Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'liuchengxu/space-vim-dark'
 Plug 'vim-python/python-syntax', {'for': 'python'}
 Plug 'ekalinin/Dockerfile.vim', {'for': 'dockerfile'}
@@ -52,7 +55,6 @@ Plug 'posva/vim-vue', {'for': 'vue'}
 Plug 'luochen1990/rainbow'
 Plug 'godlygeek/tabular', {'for': 'markdown', 'on': []}
 Plug 'plasticboy/vim-markdown'
-Plug 'lilydjwg/fcitx.vim', {'on': []}
 
 call plug#end()
 
@@ -106,6 +108,12 @@ noremap <leader>a :Autoformat<CR>
 
 " markdown preview
 let g:mkdp_auto_close = 0
+
+
+" vim-instant-markdown
+" sudo npm install instant-markdown-d
+" let g:instant_markdown_autostart = 0
+" let g:instant_markdown_autostart = 0
 
 
 " ale
@@ -217,7 +225,7 @@ let g:tagbar_type_markdown = {
 
 " make neovim faster without search python
 let g:python3_host_skip_check=1
-let g:python3_host_prog = '/home/neo/anaconda3/bin/python'
+let g:python3_host_prog = '/home/neo/miniconda3/bin/python'
 let g:python_host_skip_check=1
 let g:python_host_prog = '/usr/bin/python2'
 
@@ -308,7 +316,7 @@ let g:lightline = {
 " vim-go
 let g:go_version_warning = 0
 let g:go_list_type = "quickfix"
-let g:go_fmt_fail_silently = 1
+let g:go_fmt_fail_silently = 0
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
