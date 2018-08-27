@@ -32,10 +32,9 @@ set splitbelow            " vim 在底部打开新的窗口
 set splitright            " vim在右侧打开新的窗口
 set showcmd               " 总是显示命令
 set mouse=                " 禁用鼠标
-set timeoutlen=200        " 设置leader键延迟为200ms
+set timeoutlen=400        " 设置leader键延迟为400ms
 set hidden
 set shiftround
-match OverLength /\%81v.\+/
 " set clipboard+=unnamedplus
 " sudo pacman -S xclip 支持全局剪切板
 " set tags=./tags;/
@@ -54,4 +53,4 @@ hi TabLineFill ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
 hi TabLine ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
 hi TabLineSel ctermfg=red ctermbg=NONE guifg=#d75faf guibg=NONE
 hi Search cterm=underline ctermfg=red ctermbg=NONE guifg=red guibg=NONE gui=underline
-hi OverLength ctermbg=red ctermfg=white guibg=#592929
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929

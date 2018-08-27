@@ -39,6 +39,8 @@ Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 Plug 'tpope/vim-sensible'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " go get -u github.com/nsf/gocode
 Plug 'lilydjwg/fcitx.vim', {'on': []}
+Plug 'rhysd/clever-f.vim'
+Plug 'itchyny/vim-cursorword'
 
 " find & search & move
 Plug 'junegunn/fzf.vim'
@@ -314,6 +316,10 @@ let g:lightline = {
       \ }
 
 " vim-go
+let g:go_fmt_command = "goimports"
+let g:go_fmt_fail_silently = 1
+let g:go_fmt_command = "gofmt"
+let g:go_fmt_autosave = 0
 let g:go_version_warning = 0
 let g:go_list_type = "quickfix"
 let g:go_fmt_fail_silently = 0
@@ -325,8 +331,13 @@ let g:go_highlight_extra_types = 1
 let g:go_highlight_generate_tags = 1
 let g:go_term_height = 10
 
-autocmd FileType go nmap <leader>b  <Plug>(go-build)
-autocmd FileType go nmap <leader>r  <Plug>(go-run-split)
-autocmd FileType go nmap <Leader>v <Plug>(go-def-split)
+autocmd FileType go nnoremap <leader>b  <Plug>(go-build)
+" autocmd FileType go nmap <leader>r  <Plug>(go-run-split)
+autocmd FileType go nnoremap <leader>r  :exec '!go run' shellescape(@%, 1)<cr>
+autocmd FileType go nnoremap <Leader>v <Plug>(go-def-split)
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
+
+" vim cursorword
+autocmd InsertEnter * let b:cursorword = 0
+autocmd InsertLeave * let b:cursorword = 1

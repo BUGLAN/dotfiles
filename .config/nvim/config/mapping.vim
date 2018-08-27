@@ -51,11 +51,10 @@ inoremap <C-a> <esc>I
 inoremap <C-e> <esc>A
 inoremap <leader>q <Esc>:wq<cr>
 inoremap <leader>e =
-autocmd FileType go inoremap <leader>r :=
-autocmd FileType python inoremap <leader>r -
+inoremap <leader>r -
 inoremap <leader>a +
 inoremap <leader>u _
-inoremap <leader>i ____<Esc>hi
+autocmd Filetype python inoremap <leader>i ____<Esc>hi
 inoremap <leader>n <Esc>o
 autocmd FileType python inoremap <leader>c <Esc>A:<cr>
 autocmd FileType go inoremap <leader>c <Esc>A{<cr>}<esc>O
@@ -63,7 +62,8 @@ inoremap <leader>b ()<Esc>i
 inoremap <leader>s []<Esc>i
 inoremap <leader>t {}<Esc>i
 " inoremap <leader>m *
-inoremap <leader>d <SPACE>-><SPACE>
+autocmd FileType python inoremap <leader>d <SPACE>-><SPACE>
+autocmd FileType go inoremap <leader>d <SPACE>:=<SPACE>
 inoremap <leader>f <Esc>bi"<Esc>ea"
 " inoremap <leader>p print()<Esc>i
 " inoremap <leader>j <Esc>f)i
