@@ -1,4 +1,4 @@
-snippet pack "package main" b
+snippet pa "package main" b
 package main
 endsnippet
 
@@ -9,5 +9,9 @@ func ${1:main}() {
 endsnippet
 
 snippet p "fmt.Println()" b
-fmt.Println(${0})
+fmt.Printf(${1})
+endsnippet
+
+snippet pf "fmt.Printf('')" b
+fmt.Printf("${1}")
 endsnippet
