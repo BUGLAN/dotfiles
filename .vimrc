@@ -2,7 +2,7 @@ call plug#begin('~/.vim/plugged')
 " 下面的我安装的插件
 
 " complete
-Plug 'Valloric/YouCompleteMe', {'do': './install.py --system-libclang --go-complete --js-complete'}
+Plug 'Valloric/YouCompleteMe', {'on': [], 'do': './install.py --clang-complete --go-complete --system-libclang'}
 
 " unit
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -24,7 +24,10 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'BUGLAN/vim-youdao-translater'
 Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 Plug 'tpope/vim-sensible'
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " go get -u github.com/nsf/gocode
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " go get -u github.com/nsf/gocode
+Plug 'lilydjwg/fcitx.vim', {'on': []}
+Plug 'rhysd/clever-f.vim'
+Plug 'itchyny/vim-cursorword'
 
 " find & search & move
 Plug 'junegunn/fzf.vim'
@@ -41,20 +44,22 @@ Plug 'luochen1990/rainbow'
 Plug 'godlygeek/tabular', {'for': 'markdown', 'on': []}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 
+" python-syntax
+let g:python_highlight_all = 1
 
 
 call plug#end()
 "插件末尾
 
 " lazy load plugins
-" autocmd! InsertEnter * call Init()
-" let g:lazy_load = 0
-" function! Init()
-"   if g:lazy_load == 0
-"     let g:lazy_load = 1
-"     call plug#load('YouCompleteMe')
-"   endif
-" endfunction
+autocmd! InsertEnter * call Init()
+let g:lazy_load = 0
+function! Init()
+  if g:lazy_load == 0
+    let g:lazy_load = 1
+    call plug#load('YouCompleteMe')
+  endif
+endfunction
 
 
 " vim setting
@@ -89,6 +94,9 @@ set ignorecase             " 忽略大小写
 set shortmess=I            " 不显示vim版本信息
 set noshowmode             " 不显示--INSERT--
 set nrformats=             " 使vim将所有数字当成十进制
+set timeoutlen=400        " 设置leader键延迟为400ms
+set showcmd
+set hidden
 set laststatus=2
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
@@ -175,19 +183,13 @@ inoremap <leader>t {}<Esc>i
 inoremap <leader>m *
 inoremap <leader>d <SPACE>-><SPACE>
 inoremap <leader>f <Esc>bi"<Esc>ea"
-" inoremap <leader>p print()<Esc>i
-" inoremap <leader>j <Esc>f)i
-" inoremap <leader>. <Esc>
 inoremap <c-l> <right>
 
 
 " 输入快捷方式
 iabbrev hw Hello World
 iabbrev im import
-" iabbrev fm from
-" iabbrev fn function
 cabbrev tn tabnew
-" cabbrev update call dein#update()
 cabbrev install PlugInstall
 
 " vim tables
@@ -197,8 +199,6 @@ noremap gp :tabp<CR>
 if has('nvim')
   " terminal mode mapping
   tnoremap <Esc> <C-\><C-n>
-  " tnoremap <c-j> <C-\><C-n>
-  " tnoremap <c-v> <C-\><C-n>
   tnoremap <leader>w <C-\><C-n>
   tnoremap <leader>q <C-\><C-n>:q!<cr>
   nnoremap <leader>o :below 10sp term://$SHELL<cr>i
@@ -272,7 +272,7 @@ let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 let g:NERDSpaceDelims = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDCreateDefaultMappings = 0
-map <leader><leader>z <plug>NERDCommenterToggle
+map <leader>z <plug>NERDCommenterToggle
 
 
 " vim-isort
@@ -320,8 +320,8 @@ highlight ALEInfoLine ctermbg=NONE ctermfg=black guibg=NONE guifg=#e18254
 
 " YouCompleteMe 相关配置
 " 全局路径配置
-let g:ycm_max_num_candidates = 15
-let g:ycm_max_num_identifier_candidates = 8
+" let g:ycm_max_num_candidates = 15
+" let g:ycm_max_num_identifier_candidates = 8
 " let g:ycm_cache_omnifunc=0 "禁止缓存匹配项, 每次重新生成"
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
@@ -363,3 +363,35 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeT
 let g:lightline = {
       \ 'colorscheme': 'one',
       \ }
+
+" vim-go
+let g:go_template_autocreate = 0
+let g:go_fmt_command = "goimports"
+let g:go_fmt_fail_silently = 1
+let g:go_fmt_command = "gofmt"
+let g:go_fmt_autosave = 0
+let g:go_version_warning = 0
+let g:go_list_type = "quickfix"
+let g:go_fmt_fail_silently = 0
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_term_height = 10
+
+
+autocmd FileType go nnoremap <leader>b  <Plug>(go-build)
+" autocmd FileType go nmap <leader>r  <Plug>(go-run-split)
+autocmd FileType go nnoremap <leader>r  :exec '!go run' shellescape(@%, 1)<cr>
+autocmd FileType go nnoremap <Leader>v <Plug>(go-def-split)
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+
+" vim cursorword
+autocmd InsertEnter * let b:cursorword = 0
+autocmd InsertLeave * let b:cursorword = 1
