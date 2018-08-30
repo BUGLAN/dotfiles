@@ -1,6 +1,6 @@
 " vim setting type ':h vim_diff' to see different with neovim and vim
 set ttyfast               " neovim is always set
-set scrolloff=7           " 滚动的时候有7行多余
+set scrolloff=7           " 滚动的上下都有7行多余
 set updatetime=100        " update time
 set termguicolors         " true color
 set lazyredraw            " lazy draw

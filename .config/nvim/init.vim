@@ -38,6 +38,7 @@ Plug 'BUGLAN/vim-youdao-translater'
 Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 Plug 'tpope/vim-sensible'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " go get -u github.com/nsf/gocode
+Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 Plug 'lilydjwg/fcitx.vim', {'on': []}
 Plug 'rhysd/clever-f.vim'
 Plug 'itchyny/vim-cursorword'

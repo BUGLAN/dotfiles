@@ -63,7 +63,7 @@ inoremap <leader>s []<Esc>i
 inoremap <leader>t {}<Esc>i
 " inoremap <leader>m *
 autocmd FileType python inoremap <leader>d <SPACE>-><SPACE>
-autocmd FileType go inoremap <leader>d <SPACE>:=<SPACE>
+autocmd FileType go inoremap <leader>d :=
 inoremap <leader>f <Esc>bi"<Esc>ea"
 " inoremap <leader>p print()<Esc>i
 " inoremap <leader>j <Esc>f)i
@@ -75,6 +75,7 @@ inoremap <c-l> <right>
 iabbrev hw Hello World
 " iabbrev fn function
 cabbrev tn tabnew
+autocmd FileType go cabbrev im GoImport
 " cabbrev update call dein#update()
 cabbrev install PlugInstall
 cabbrev fcitx call plug#load('fcitx.vim')
@@ -85,16 +86,14 @@ autocmd FileType python iabbrev im import
 noremap gn :tabn<CR>
 noremap gp :tabp<CR>
 
-if has('nvim')
-  " terminal mode mapping
-  tnoremap <Esc> <C-\><C-n>
-  tnoremap <leader>w <C-\><C-n>
-  tnoremap <leader>q <C-\><C-n>:q!<cr>
-  nnoremap <leader>o :below 10sp term://$SHELL<cr>i
-  tnoremap <C-h> <C-\><C-n><C-w>h
-  tnoremap <C-j> <C-\><C-n><C-w>j
-  tnoremap <C-k> <C-\><C-n><C-w>k
-  tnoremap <C-l> <C-\><C-n><C-w>l
-  tnoremap gn <C-\><C-n>:tabn<CR>
-  tnoremap gp <C-\><C-n>:tabp<CR>
-endif
+" terminal mapping
+tnoremap <Esc> <C-\><C-n>
+tnoremap <leader>w <C-\><C-n>
+tnoremap <leader>q <C-\><C-n>:q!<cr>
+nnoremap <leader>o :below 10sp term://$SHELL<cr>i
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
+tnoremap gn <C-\><C-n>:tabn<CR>
+tnoremap gp <C-\><C-n>:tabp<CR>

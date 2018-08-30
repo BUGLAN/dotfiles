@@ -95,6 +95,8 @@ set shortmess=I            " 不显示vim版本信息
 set noshowmode             " 不显示--INSERT--
 set nrformats=             " 使vim将所有数字当成十进制
 set timeoutlen=400        " 设置leader键延迟为400ms
+set splitbelow
+set splitright
 set showcmd
 set hidden
 set laststatus=2
@@ -118,6 +120,7 @@ hi TabLineFill ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
 hi TabLine ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
 hi TabLineSel ctermfg=red ctermbg=NONE guifg=#d75faf guibg=NONE
 hi Search cterm=underline ctermfg=red ctermbg=NONE guifg=red guibg=NONE gui=underline
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 
 
 " vim key mapping
@@ -196,19 +199,18 @@ cabbrev install PlugInstall
 noremap gn :tabn<CR>
 noremap gp :tabp<CR>
 
-if has('nvim')
-  " terminal mode mapping
-  tnoremap <Esc> <C-\><C-n>
-  tnoremap <leader>w <C-\><C-n>
-  tnoremap <leader>q <C-\><C-n>:q!<cr>
-  nnoremap <leader>o :below 10sp term://$SHELL<cr>i
-  tnoremap <C-h> <C-\><C-n><C-w>h
-  tnoremap <C-j> <C-\><C-n><C-w>j
-  tnoremap <C-k> <C-\><C-n><C-w>k
-  tnoremap <C-l> <C-\><C-n><C-w>l
-  tnoremap gn <C-\><C-n>:tabn<CR>
-  tnoremap gp <C-\><C-n>:tabp<CR>
-endif
+" terminal mapping
+tnoremap <Esc> <C-\><C-n>
+tnoremap <leader>w <C-\><C-n>
+tnoremap <leader>q <C-\><C-n>:q!<cr>
+nnoremap <leader>o :below 10sp term://$SHELL<cr>i
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
+tnoremap gn <C-\><C-n>:tabn<CR>
+tnoremap gp <C-\><C-n>:tabp<CR>
+
 
 " vim autocmd
 " 配置vim打开时vim自动定位到上次的位置
