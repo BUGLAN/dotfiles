@@ -7,7 +7,6 @@ if has("autocmd")
                 \ endif
 endif
 
-autocmd FileType python set colorcolumn=80
 " set cursorline
 " autocmd InsertEnter * set nocursorline
 " autocmd InsertLeave * set cursorline

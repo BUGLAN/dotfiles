@@ -9,6 +9,7 @@ call plug#begin('~/.config/nvim/plugged')
 " Plug 'tpope/vim-markdown', {'for': 'markdown'}
 " Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 " Plug 'sheerun/vim-polyglot' some filetype is too slow so choose to install special syntax plugins
+" Plug 'racer-rust/vim-racer'
 
 " complete
 Plug 'Shougo/deoplete.nvim'
@@ -16,6 +17,11 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'carlitux/deoplete-ternjs', {'do': 'npm install -g tern'}
+Plug 'sebastianmarkow/deoplete-rust'
+" Plug 'autozimu/LanguageClient-neovim', {
+    " \ 'branch': 'next',
+    " \ 'do': 'bash install.sh',
+    " \ }
 
 " unit
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -42,6 +48,8 @@ Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/sy
 Plug 'lilydjwg/fcitx.vim', {'on': []}
 Plug 'rhysd/clever-f.vim'
 Plug 'itchyny/vim-cursorword'
+Plug 'honza/vim-snippets'
+Plug 'rust-lang/rust.vim'
 
 " find & search & move
 Plug 'junegunn/fzf.vim'
@@ -58,6 +66,7 @@ Plug 'posva/vim-vue', {'for': 'vue'}
 Plug 'luochen1990/rainbow'
 Plug 'godlygeek/tabular', {'for': 'markdown', 'on': []}
 Plug 'plasticboy/vim-markdown'
+Plug 'cespare/vim-toml'
 
 call plug#end()
 
@@ -106,6 +115,7 @@ let g:formatdef_harttle = '"astyle --style=attach --pad-oper"'
 let g:formatters_cpp = ['harttle']
 let g:formatter_yapf_style = 'pep8'
 let g:formatters_python= ['yapf']
+let g:formatters_rust=['rustfmt']
 noremap <leader>a :Autoformat<CR>
 
 
@@ -129,10 +139,13 @@ let g:mkdp_auto_close = 0
 
 let g:ale_linters = {
             \ 'python': ['flake8'],
-            \ 'reStructuredText': ['rstcheck']
+            \ 'reStructuredText': ['rstcheck'],
+            \ 'go': ['go build', 'golint', 'gofmt', 'go vet'],
             \ }
 
 " let g:syntastic_python_flask8_post_args="--max-line-length=120"
+let g:ale_rust_cargo_use_check = 1
+let g:ale_rust_cargo_check_all_targets = 1
 let g:ale_fixers = {'python': ['remove_trailing_lines', 'trim_whitespace', 'autopep8']}
 nmap <silent> <C-p> <Plug>(ceale_previous_wrap)
 nmap <silent> <C-n> <Plug>(ale_next_wrap)
@@ -146,7 +159,7 @@ let g:ale_cache_executable_check_failures = 1
 let g:ale_set_highlights = 0 "ban ale's error and warning highlights
 highlight ALEErrorSign ctermbg=NONE ctermfg=red guibg=NONE guifg=#e0211d
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow guibg=NONE guifg=yellow
-highlight ALEWarningLine ctermbg=NONE ctermfg=yellow guibg=NONE guifg=yellow
+highlight ALEWarningLine ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 highlight ALEErrorLine ctermbg=NONE ctermfg=red guibg=NONE guifg=#e0211d
 highlight ALEInfoLine ctermbg=NONE ctermfg=black guibg=NONE guifg=#e18254
 
@@ -223,6 +236,34 @@ let g:tagbar_type_markdown = {
                 \ 'h:headings',
         \ ],
     \ 'sort' : 0
+    \ }
+" support go language
+let g:tagbar_type_go = {
+	\ 'ctagstype' : 'go',
+	\ 'kinds'     : [
+		\ 'p:package',
+		\ 'i:imports:1',
+		\ 'c:constants',
+		\ 'v:variables',
+		\ 't:types',
+		\ 'n:interfaces',
+		\ 'w:fields',
+		\ 'e:embedded',
+		\ 'm:methods',
+		\ 'r:constructor',
+		\ 'f:functions'
+	\ ],
+	\ 'sro' : '.',
+	\ 'kind2scope' : {
+		\ 't' : 'ctype',
+		\ 'n' : 'ntype'
+	\ },
+	\ 'scope2kind' : {
+		\ 'ctype' : 't',
+		\ 'ntype' : 'n'
+	\ },
+	\ 'ctagsbin'  : 'gotags',
+	\ 'ctagsargs' : '-sort -silent'
     \ }
 
 
@@ -347,3 +388,40 @@ autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 " vim cursorword
 autocmd InsertEnter * let b:cursorword = 0
 autocmd InsertLeave * let b:cursorword = 1
+
+
+" vim-racer
+" let g:racer_cmd = "/home/neo/.cargo/bin/racer"
+" let g:racer_experimental_completer = 1
+" autocmd FileType rust nmap gd <Plug>(rust-def)
+" autocmd FileType rust nmap gs <Plug>(rust-def-split)
+" autocmd FileType rust nmap gx <Plug>(rust-def-vertical)
+" autocmd FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+
+" rust.vim
+autocmd FileType rust nnoremap <leader>r :RustRun<cr>
+let g:rustfmt_command = "rustfmt"
+let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
+let g:rustfmt_fail_silently = 0
+let g:rust_clip_command = 'xclip -selection clipboard'
+
+
+" deoplete-rust
+let g:deoplete#sources#rust#racer_binary='/home/neo/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='/home/neo/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+let g:deoplete#sources#rust#show_duplicates=1
+let g:deoplete#sources#rust#disable_keymap=1
+
+
+" LanguageClient-neovim
+" let g:LanguageClient_serverCommands = {
+    " \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
+    " \ }
+
+" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" " Or map each action separately
+" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>

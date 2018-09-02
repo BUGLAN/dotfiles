@@ -88,3 +88,8 @@ function cd {
 if [ -f ~/.last_dir ]
     then cd `cat ~/.last_dir`
     fi
+
+# rust path
+export PATH="/home/neo/.cargo/bin:$PATH"
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+

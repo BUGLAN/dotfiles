@@ -60,7 +60,7 @@ call deoplete#custom#source('tmux-complete', 'mark', '⊶')
 call deoplete#custom#source('omni',          'mark', '⌾')
 call deoplete#custom#source('flow',          'mark', '⌁')
 call deoplete#custom#source('padawan',       'mark', '⌁')
-" call deoplete#custom#source('jedi',          'mark', '⌁')
+call deoplete#custom#source('jedi',          'mark', '⌁')
 call deoplete#custom#source('vim',           'mark', '⌁')
 call deoplete#custom#source('tag',           'mark', '⌦')
 call deoplete#custom#source('around',        'mark', '↻')
@@ -119,7 +119,7 @@ let g:deoplete#sources#ternjs#filetypes = [
 " deoplete-go
 let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-
+call deoplete#custom#source('go', 'min_pattern_length', 2)
 
 
 " deug
