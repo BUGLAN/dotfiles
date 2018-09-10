@@ -25,16 +25,19 @@ set noswapfile            " 禁止生产交换文件
 set norelativenumber      " 行号为不是相对模式
 set ignorecase            " 忽略大小写
 set shortmess=I           " 不显示vim版本信息
-set noshowmode            " 不显示--INSERT--
+set showmode              " 显示--INSERT--
 set nrformats=            " 使vim将所有数字当成十进制
 set autowrite             " vim 自动保存
 set splitbelow            " vim 在底部打开新的窗口
 set splitright            " vim在右侧打开新的窗口
 set showcmd               " 总是显示命令
-set mouse=a               " 禁用鼠标
+set mouse=                " 禁用鼠标
 set timeoutlen=400        " 设置leader键延迟为400ms
 set hidden
 set shiftround
+set laststatus=2
+set history=1000
+set cursorline
 " set clipboard+=unnamedplus
 " sudo pacman -S xclip 支持全局剪切板
 " set tags=./tags;/

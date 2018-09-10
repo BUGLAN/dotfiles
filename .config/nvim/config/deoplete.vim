@@ -125,3 +125,9 @@ call deoplete#custom#source('go', 'min_pattern_length', 2)
 " deug
 " call deoplete#custom#source('jedi', 'debug_enabled', 1)
 " call deoplete#enable_logging('DEBUG', '/tmp/deoplete.log')
+
+" deoplete-rust
+let g:deoplete#sources#rust#racer_binary='/home/neo/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='/home/neo/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+let g:deoplete#sources#rust#show_duplicates=1
+let g:deoplete#sources#rust#disable_keymap=1

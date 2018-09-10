@@ -54,6 +54,7 @@ inoremap <leader>e =
 inoremap <leader>r -
 inoremap <leader>a +
 inoremap <leader>u _
+inoremap <leader>1 !=
 autocmd Filetype python inoremap <leader>i ____<Esc>hi
 autocmd Filetype python,go inoremap <leader>n <Esc>o
 autocmd Filetype rust inoremap <leader>n <Esc>A;<Esc>o
@@ -63,7 +64,7 @@ inoremap <leader>b ()<Esc>i
 inoremap <leader>s []<Esc>i
 inoremap <leader>t {}<Esc>i
 " inoremap <leader>m *
-autocmd FileType python inoremap <leader>d <SPACE>-><SPACE>
+autocmd FileType python,rust inoremap <leader>d <SPACE>-><SPACE>
 autocmd FileType go inoremap <leader>d :=
 inoremap <leader>f <Esc>bi"<Esc>ea"
 " inoremap <leader>p print()<Esc>i
@@ -80,6 +81,8 @@ autocmd FileType go cabbrev im GoImport
 " cabbrev update call dein#update()
 cabbrev install PlugInstall
 cabbrev fcitx call plug#load('fcitx.vim')
+autocmd FileType rust cabbrev rust RustRun
+autocmd FileType go cabbrev test GoTest
 autocmd FileType python iabbrev fm from
 autocmd FileType python iabbrev im import
 

@@ -10,18 +10,38 @@ call plug#begin('~/.config/nvim/plugged')
 " Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 " Plug 'sheerun/vim-polyglot' some filetype is too slow so choose to install special syntax plugins
 " Plug 'racer-rust/vim-racer'
+" Plug 'itchyny/vim-cursorword'
+" Plug 'liuchengxu/eleline.vim'
+" Plug 'zchee/deoplete-jedi', {'for': 'python', 'branch': 'light'}
+" Plug 'autozimu/LanguageClient-neovim', {
+" \ 'branch': 'next',
+" \ 'do': 'bash install.sh',
+" \ }
 
 " complete
 Plug 'Shougo/deoplete.nvim'
-" Plug 'zchee/deoplete-jedi', {'for': 'python', 'branch': 'light'}
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'carlitux/deoplete-ternjs', {'do': 'npm install -g tern'}
 Plug 'sebastianmarkow/deoplete-rust'
-" Plug 'autozimu/LanguageClient-neovim', {
-    " \ 'branch': 'next',
-    " \ 'do': 'bash install.sh',
-    " \ }
+Plug 'integralist/vim-mypy'
+
+" find & search & move
+Plug 'junegunn/fzf.vim'
+Plug 'Yggdroot/LeaderF', {'on': ['LeaderfFile', 'LeaderfFunction']}
+Plug 'easymotion/vim-easymotion', {'on': ['<Plug>(easymotion-bd-w)', '<Plug>(easymotion-bd-jk)']}
+
+" syntax highlight
+Plug 'Glench/Vim-Jinja2-Syntax', {'for': 'html'}
+Plug 'liuchengxu/space-vim-dark'
+Plug 'vim-python/python-syntax', {'for': 'python'}
+Plug 'ekalinin/Dockerfile.vim', {'for': 'dockerfile'}
+Plug 'PotatoesMaster/i3-vim-syntax', {'for': 'i3'}
+Plug 'posva/vim-vue', {'for': 'vue'}
+Plug 'luochen1990/rainbow'
+Plug 'godlygeek/tabular', {'for': 'markdown', 'on': []}
+Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+Plug 'cespare/vim-toml', {'for': 'toml'}
 
 " unit
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -35,7 +55,6 @@ Plug 'Chiel92/vim-autoformat', {'on': 'Autoformat'}
 Plug 'sgur/vim-lazygutter'
 Plug 'SirVer/ultisnips'
 Plug 'fisadev/vim-isort', {'on': 'Isort'}
-Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdcommenter', {'on': '<plug>NERDCommenterToggle'}
 Plug 'heavenshell/vim-pydocstring', {'for': 'python', 'on': 'Pydocstring'}
 Plug 'tpope/vim-surround'
@@ -43,30 +62,15 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'BUGLAN/vim-youdao-translater'
 Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 Plug 'tpope/vim-sensible'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " go get -u github.com/nsf/gocode
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' } " go get -u github.com/nsf/gocode
 Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 Plug 'lilydjwg/fcitx.vim', {'on': []}
 Plug 'rhysd/clever-f.vim'
-Plug 'itchyny/vim-cursorword'
 Plug 'honza/vim-snippets'
-Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/goyo.vim'
 
-" find & search & move
-Plug 'junegunn/fzf.vim'
-Plug 'Yggdroot/LeaderF', {'on': ['LeaderfFile', 'LeaderfFunction']}
-Plug 'easymotion/vim-easymotion', {'on': ['<Plug>(easymotion-bd-w)', '<Plug>(easymotion-bd-jk)']}
-
-" syntax highlight
-Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'liuchengxu/space-vim-dark'
-Plug 'vim-python/python-syntax', {'for': 'python'}
-Plug 'ekalinin/Dockerfile.vim', {'for': 'dockerfile'}
-Plug 'PotatoesMaster/i3-vim-syntax', {'for': 'i3'}
-Plug 'posva/vim-vue', {'for': 'vue'}
-Plug 'luochen1990/rainbow'
-Plug 'godlygeek/tabular', {'for': 'markdown', 'on': []}
-Plug 'plasticboy/vim-markdown'
-Plug 'cespare/vim-toml'
 
 call plug#end()
 
@@ -131,47 +135,38 @@ let g:mkdp_auto_close = 0
 
 " ale
 " npm install -g eslint bable-eslint
-" pip install flake8 autopep8
+" pip install flake8 autopep8 mypy
 " {
 "    "extends": "standard",
 "    "parser": "babel-eslint"
 " }
 
 let g:ale_linters = {
-            \ 'python': ['flake8'],
+            \ 'python': ['flake8', 'mypy'],
             \ 'reStructuredText': ['rstcheck'],
-            \ 'go': ['go build', 'golint', 'gofmt', 'go vet'],
+            \ 'go': ['go build', 'golint', 'gofmt', 'go vet', 'goimports'],
             \ }
 
 " let g:syntastic_python_flask8_post_args="--max-line-length=120"
+let g:ale_python_mypy_options = '--ignore-missing-imports --follow-imports=skip --no-strict-optional'
 let g:ale_rust_cargo_use_check = 1
 let g:ale_rust_cargo_check_all_targets = 1
-let g:ale_fixers = {'python': ['remove_trailing_lines', 'trim_whitespace', 'autopep8']}
+let g:ale_fixers = {'python': ['remove_trailing_lines', 'trim_whitespace', 'autopep8'], 'go': ['goimports', 'gofmt']}
 nmap <silent> <C-p> <Plug>(ceale_previous_wrap)
 nmap <silent> <C-n> <Plug>(ale_next_wrap)
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '✘'
-highlight ALEErrorSign ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
-highlight ALEWarningSign ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 let g:ale_cache_executable_check_failures = 1
-let g:ale_set_highlights = 0 "ban ale's error and warning highlights
+let g:ale_set_highlights = 0 " disable ale's error and warning highlights
+highlight ALEErrorSign ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+highlight ALEWarningSign ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 highlight ALEErrorSign ctermbg=NONE ctermfg=red guibg=NONE guifg=#e0211d
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow guibg=NONE guifg=yellow
 highlight ALEWarningLine ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 highlight ALEErrorLine ctermbg=NONE ctermfg=red guibg=NONE guifg=#e0211d
 highlight ALEInfoLine ctermbg=NONE ctermfg=black guibg=NONE guifg=#e18254
-
-
-" yapf
-" autocmd FileType python nnoremap <F3> :0,$!yapf<Cr>
-" 建议每天最晚时刻使用格式化代码
-" 因为他每次都会跳到第一行
-
-
-" vim status line
-set laststatus=2
 
 
 " NERDTree setting
@@ -184,6 +179,9 @@ let NERDTreeWinSize=30 " 设置宽度
 " 按下 F1 调出/隐藏 NERDTree
 map <F2> :NERDTreeToggle<CR>
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+let g:NERDTreeIgnore = ['\.pyc$', '^__pycache__$', '\.git$', '^migrations$', 'node_modules', '^.pytest_cache$', '^.mypy_cache$']
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 
 " indentLine
@@ -231,40 +229,40 @@ map <leader>t :TagbarToggle<CR>
 " --regex-markdown=/^#{5}[ \t]*([^#]+.*)/.         \1/h,headings/
 " --regex-markdown=/^#{6}[ \t]*([^#]+.*)/.           \1/h,headings/
 let g:tagbar_type_markdown = {
-        \ 'ctagstype' : 'markdown',
-        \ 'kinds' : [
-                \ 'h:headings',
-        \ ],
-    \ 'sort' : 0
-    \ }
+            \ 'ctagstype' : 'markdown',
+            \ 'kinds' : [
+            \ 'h:headings',
+            \ ],
+            \ 'sort' : 0
+            \ }
 " support go language
 let g:tagbar_type_go = {
-	\ 'ctagstype' : 'go',
-	\ 'kinds'     : [
-		\ 'p:package',
-		\ 'i:imports:1',
-		\ 'c:constants',
-		\ 'v:variables',
-		\ 't:types',
-		\ 'n:interfaces',
-		\ 'w:fields',
-		\ 'e:embedded',
-		\ 'm:methods',
-		\ 'r:constructor',
-		\ 'f:functions'
-	\ ],
-	\ 'sro' : '.',
-	\ 'kind2scope' : {
-		\ 't' : 'ctype',
-		\ 'n' : 'ntype'
-	\ },
-	\ 'scope2kind' : {
-		\ 'ctype' : 't',
-		\ 'ntype' : 'n'
-	\ },
-	\ 'ctagsbin'  : 'gotags',
-	\ 'ctagsargs' : '-sort -silent'
-    \ }
+            \ 'ctagstype' : 'go',
+            \ 'kinds'     : [
+            \ 'p:package',
+            \ 'i:imports:1',
+            \ 'c:constants',
+            \ 'v:variables',
+            \ 't:types',
+            \ 'n:interfaces',
+            \ 'w:fields',
+            \ 'e:embedded',
+            \ 'm:methods',
+            \ 'r:constructor',
+            \ 'f:functions'
+            \ ],
+            \ 'sro' : '.',
+            \ 'kind2scope' : {
+            \ 't' : 'ctype',
+            \ 'n' : 'ntype'
+            \ },
+            \ 'scope2kind' : {
+            \ 'ctype' : 't',
+            \ 'ntype' : 'n'
+            \ },
+            \ 'ctagsbin'  : 'gotags',
+            \ 'ctagsargs' : '-sort -silent'
+            \ }
 
 
 " make neovim faster without search python
@@ -297,10 +295,6 @@ let g:rainbow_conf = {
             \   'operators': '_,_',
             \}
 
-" nerdtree
-let g:NERDTreeIgnore = ['\.pyc$', '^__pycache__$', '\.git$', '^migrations$', 'node_modules', '^.pytest_cache$']
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 
 " Ack.vim
@@ -323,7 +317,7 @@ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--color-path="0;33"', <ban
 
 " for vim-startify
 " function! StartifyEntryFormat()
-    " return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
+" return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
 " endfunction
 
 
@@ -342,7 +336,7 @@ nmap ga <Plug>(EasyAlign)
 " vim-polyglot
 " let g:polyglot_disabled = ['markdown']
 " augroup plug_xtype
-    " autocmd FileType * if expand('<amatch>') != 'markdown' | call plug#load('vim-polyglot') | execute 'autocmd! plug_xtype' | endif
+" autocmd FileType * if expand('<amatch>') != 'markdown' | call plug#load('vim-polyglot') | execute 'autocmd! plug_xtype' | endif
 " augroup END
 
 " vim-markdown
@@ -355,7 +349,26 @@ let g:vim_markdown_no_extensions_in_markdown = 1
 " lightline
 let g:lightline = {
       \ 'colorscheme': 'one',
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
       \ }
+      \ }
+
+
+" eleline.vim
+let g:airline_powerline_fonts = 1
+" let g:eleline_slim = 1
+
+
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
+
 
 " vim-go
 let g:go_template_autocreate = 0
@@ -400,25 +413,17 @@ autocmd InsertLeave * let b:cursorword = 1
 
 
 " rust.vim
-autocmd FileType rust nnoremap <leader>r :RustRun<cr>
+autocmd FileType rust nnoremap <leader>r :!cargo run<cr>
 let g:rustfmt_command = "rustfmt"
 let g:rustfmt_autosave = 1
 let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
 let g:rust_clip_command = 'xclip -selection clipboard'
 
-
-" deoplete-rust
-let g:deoplete#sources#rust#racer_binary='/home/neo/.cargo/bin/racer'
-let g:deoplete#sources#rust#rust_source_path='/home/neo/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
-let g:deoplete#sources#rust#show_duplicates=1
-let g:deoplete#sources#rust#disable_keymap=1
-
-
 " LanguageClient-neovim
 " let g:LanguageClient_serverCommands = {
-    " \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
-    " \ }
+" \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
+" \ }
 
 " nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " " Or map each action separately

@@ -8,8 +8,8 @@ if has("autocmd")
 endif
 
 " set cursorline
-" autocmd InsertEnter * set nocursorline
-" autocmd InsertLeave * set cursorline
+autocmd InsertEnter * set nocursorline
+autocmd InsertLeave * set cursorline
 autocmd FileType json,html,jsx,javascript.jsx,vue setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd TermOpen * set nonu
