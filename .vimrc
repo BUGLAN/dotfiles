@@ -2,7 +2,7 @@ call plug#begin('~/.vim/plugged')
 " 下面的我安装的插件
 
 " complete
-Plug 'Valloric/YouCompleteMe', {'on': [], 'do': './install.py --clang-complete --go-complete --system-libclang'}
+Plug 'Valloric/YouCompleteMe', {'on': [], 'do': './install.py --clang-complete --go-complete --system-libclang --java-complete'}
 
 " unit
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -27,7 +27,8 @@ Plug 'tpope/vim-sensible'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " go get -u github.com/nsf/gocode
 Plug 'lilydjwg/fcitx.vim', {'on': []}
 Plug 'rhysd/clever-f.vim'
-Plug 'itchyny/vim-cursorword'
+" Plug 'itchyny/vim-cursorword'
+Plug 'honza/vim-snippets'
 
 " find & search & move
 Plug 'junegunn/fzf.vim'
@@ -120,6 +121,7 @@ hi TabLineFill ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
 hi TabLine ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
 hi TabLineSel ctermfg=red ctermbg=NONE guifg=#d75faf guibg=NONE
 hi Search cterm=underline ctermfg=red ctermbg=NONE guifg=red guibg=NONE gui=underline
+" hi Terminal ctermbg=NONE guibg=NONE
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 
 
@@ -203,7 +205,11 @@ noremap gp :tabp<CR>
 tnoremap <Esc> <C-\><C-n>
 tnoremap <leader>w <C-\><C-n>
 tnoremap <leader>q <C-\><C-n>:q!<cr>
-nnoremap <leader>o :below 10sp term://$SHELL<cr>i
+
+if has("nvim")
+    nnoremap <leader>o :below 10sp term://$SHELL<cr>i
+endif
+
 tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k

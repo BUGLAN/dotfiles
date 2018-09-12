@@ -17,6 +17,8 @@ call plug#begin('~/.config/nvim/plugged')
 " \ 'branch': 'next',
 " \ 'do': 'bash install.sh',
 " \ }
+" Plug 'gerardbm/vim-atomic'
+" Plug 'integralist/vim-mypy'
 
 " complete
 Plug 'Shougo/deoplete.nvim'
@@ -24,7 +26,8 @@ Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'carlitux/deoplete-ternjs', {'do': 'npm install -g tern'}
 Plug 'sebastianmarkow/deoplete-rust'
-Plug 'integralist/vim-mypy'
+Plug 'vhakulinen/neovim-intellij-complete'
+
 
 " find & search & move
 Plug 'junegunn/fzf.vim'
@@ -348,11 +351,11 @@ let g:vim_markdown_no_extensions_in_markdown = 1
 
 " lightline
 let g:lightline = {
-      \ 'colorscheme': 'one',
-      \ 'component_function': {
-      \   'filename': 'LightlineFilename',
-      \ }
-      \ }
+            \ 'colorscheme': 'one',
+            \ 'component_function': {
+            \   'filename': 'LightlineFilename',
+            \ }
+            \ }
 
 
 " eleline.vim
@@ -361,12 +364,12 @@ let g:airline_powerline_fonts = 1
 
 
 function! LightlineFilename()
-  let root = fnamemodify(get(b:, 'git_dir'), ':h')
-  let path = expand('%:p')
-  if path[:len(root)-1] ==# root
-    return path[len(root)+1:]
-  endif
-  return expand('%')
+    let root = fnamemodify(get(b:, 'git_dir'), ':h')
+    let path = expand('%:p')
+    if path[:len(root)-1] ==# root
+        return path[len(root)+1:]
+    endif
+    return expand('%')
 endfunction
 
 
