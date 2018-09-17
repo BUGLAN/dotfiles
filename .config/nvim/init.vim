@@ -26,8 +26,6 @@ Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'carlitux/deoplete-ternjs', {'do': 'npm install -g tern'}
 Plug 'sebastianmarkow/deoplete-rust'
-Plug 'vhakulinen/neovim-intellij-complete'
-
 
 " find & search & move
 Plug 'junegunn/fzf.vim'
@@ -402,8 +400,8 @@ autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
 
 " vim cursorword
-autocmd InsertEnter * let b:cursorword = 0
-autocmd InsertLeave * let b:cursorword = 1
+" autocmd InsertEnter * let b:cursorword = 0
+" autocmd InsertLeave * let b:cursorword = 1
 
 
 " vim-racer

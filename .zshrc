@@ -5,9 +5,11 @@ ZSH_THEME="bira"
 
 
 plugins=(
-  git
+git
 )
 
+# change caps & ctrl
+setxkbmap -option ctrl:swapcaps
 
 source $ZSH/oh-my-zsh.sh
 
@@ -32,15 +34,11 @@ alias pipa=/home/neo/miniconda3/bin/pip
 # 自己的翻译小工具
 alias w="python ~/repos/words/words.py"
 alias t="python ~/repos/tools/youdaotranslate/youdaotranslate/main.py"
-
-# change caps & ctrl
-setxkbmap -option ctrl:swapcaps
-
+alias word="nvim ~/repos/notes/English/words.md"
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-
 
 # zsh-autosuggestions
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -86,10 +84,17 @@ function cd {
 
 # restore last saved path
 if [ -f ~/.last_dir ]
-    then cd `cat ~/.last_dir`
-    fi
+then cd `cat ~/.last_dir`
+fi
 
 # rust path
 export PATH="/home/neo/.cargo/bin:$PATH"
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
+
+# thefuck
+eval $(thefuck --alias)
+
+# tmux
+export TERM=xterm-256color
+alias tnew="tmux new -s"
