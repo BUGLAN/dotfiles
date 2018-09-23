@@ -27,7 +27,6 @@ Plug 'tpope/vim-sensible'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " go get -u github.com/nsf/gocode
 Plug 'lilydjwg/fcitx.vim', {'on': []}
 Plug 'rhysd/clever-f.vim'
-" Plug 'itchyny/vim-cursorword'
 Plug 'honza/vim-snippets'
 
 " find & search & move

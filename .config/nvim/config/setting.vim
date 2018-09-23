@@ -37,7 +37,6 @@ set hidden
 set shiftround
 set laststatus=2
 set history=1000
-set cursorline
 " set clipboard+=unnamedplus
 " sudo pacman -S xclip 支持全局剪切板
 " set tags=./tags;/

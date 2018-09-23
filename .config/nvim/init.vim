@@ -19,6 +19,9 @@ call plug#begin('~/.config/nvim/plugged')
 " \ }
 " Plug 'gerardbm/vim-atomic'
 " Plug 'integralist/vim-mypy'
+" Plug 'junegunn/goyo.vim'
+" Plug 'lfv89/vim-interestingwords'
+" Plug 'zchee/nvim-go', { 'do': 'make'}
 
 " complete
 Plug 'Shougo/deoplete.nvim'
@@ -26,6 +29,7 @@ Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'carlitux/deoplete-ternjs', {'do': 'npm install -g tern'}
 Plug 'sebastianmarkow/deoplete-rust'
+Plug 'zchee/deoplete-clang'
 
 " find & search & move
 Plug 'junegunn/fzf.vim'
@@ -60,7 +64,6 @@ Plug 'scrooloose/nerdcommenter', {'on': '<plug>NERDCommenterToggle'}
 Plug 'heavenshell/vim-pydocstring', {'for': 'python', 'on': 'Pydocstring'}
 Plug 'tpope/vim-surround'
 Plug 'ryanoasis/vim-devicons'
-Plug 'BUGLAN/vim-youdao-translater'
 Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 Plug 'tpope/vim-sensible'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' } " go get -u github.com/nsf/gocode
@@ -70,7 +73,6 @@ Plug 'rhysd/clever-f.vim'
 Plug 'honza/vim-snippets'
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/goyo.vim'
 
 
 call plug#end()
@@ -268,7 +270,8 @@ let g:tagbar_type_go = {
 
 " make neovim faster without search python
 let g:python3_host_skip_check=1
-let g:python3_host_prog = '/home/neo/miniconda3/bin/python'
+" let g:python3_host_prog = '/home/neo/miniconda3/bin/python'
+let g:python3_host_prog = '/usr/bin/python'
 let g:python_host_skip_check=1
 let g:python_host_prog = '/usr/bin/python2'
 

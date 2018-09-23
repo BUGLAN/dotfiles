@@ -19,7 +19,8 @@ let g:deoplete#enable_at_startup = 0 "开启deplete
 
 " deoplete-jedi
 " pip install jedi
-let g:deoplete#sources#jedi#python_path = '/home/neo/miniconda3/bin/python'
+" let g:deoplete#sources#jedi#python_path = '/home/neo/miniconda3/bin/python'
+let g:deoplete#sources#jedi#python_path = '/usr/bin/python'
 let g:deoplete#sources#jedi#enable_cache = 10 " 缓存
 let g:deoplete#enable_refresh_always = 1
 let g:deoplete#enable_camel_case = 1
