@@ -18,19 +18,14 @@ Plug 'SirVer/ultisnips'
 Plug 'fisadev/vim-isort', {'on': 'Isort'}
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdcommenter', {'on': '<plug>NERDCommenterToggle'}
-Plug 'heavenshell/vim-pydocstring', {'for': 'python', 'on': 'Pydocstring'}
 Plug 'tpope/vim-surround'
 Plug 'ryanoasis/vim-devicons'
-Plug 'BUGLAN/vim-youdao-translater'
 Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 Plug 'tpope/vim-sensible'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " go get -u github.com/nsf/gocode
-Plug 'lilydjwg/fcitx.vim', {'on': []}
 Plug 'rhysd/clever-f.vim'
 Plug 'honza/vim-snippets'
 
 " find & search & move
-Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/LeaderF', {'on': ['LeaderfFile', 'LeaderfFunction']}
 Plug 'easymotion/vim-easymotion', {'on': ['<Plug>(easymotion-bd-w)', '<Plug>(easymotion-bd-jk)']}
 
@@ -41,8 +36,8 @@ Plug 'ekalinin/Dockerfile.vim', {'for': 'dockerfile'}
 Plug 'PotatoesMaster/i3-vim-syntax', {'for': 'i3'}
 Plug 'posva/vim-vue', {'for': 'vue'}
 Plug 'luochen1990/rainbow'
-Plug 'godlygeek/tabular', {'for': 'markdown', 'on': []}
-Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+" Plug 'godlygeek/tabular', {'for': 'markdown', 'on': []}
+" Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 
 " python-syntax
 let g:python_highlight_all = 1
@@ -100,8 +95,7 @@ set splitright
 set showcmd
 set hidden
 set laststatus=2
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+set hlsearch
 " set clipboard+=unnamedplus
 " sudo pacman -S xclip 支持全局剪切板
 " set tags=./tags;/
@@ -120,8 +114,8 @@ hi TabLineFill ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
 hi TabLine ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
 hi TabLineSel ctermfg=red ctermbg=NONE guifg=#d75faf guibg=NONE
 hi Search cterm=underline ctermfg=red ctermbg=NONE guifg=red guibg=NONE gui=underline
-" hi Terminal ctermbg=NONE guibg=NONE
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+" highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+
 
 
 " vim key mapping
@@ -253,11 +247,11 @@ noremap <leader>a :Autoformat<CR>
 
 
 " vim-markdown
-let g:instant_markdown_autostart = 0 "关闭chrome自动打开
-"使用 :InstantMarkdionPreview 打开chrome预览
-let g:vim_markdown_folding_disabled = 1 "禁用折叠
-let g:vim_markdown_conceal = 0 "禁用语法隐藏
-let g:vim_markdown_no_default_key_mappings = 1
+" let g:instant_markdown_autostart = 0 "关闭chrome自动打开
+" "使用 :InstantMarkdionPreview 打开chrome预览
+" let g:vim_markdown_folding_disabled = 1 "禁用折叠
+" let g:vim_markdown_conceal = 0 "禁用语法隐藏
+" let g:vim_markdown_no_default_key_mappings = 1
 
 
 " indentLine
@@ -294,47 +288,56 @@ nmap <F8> :TagbarToggle<CR>
 
 " ale
 " npm install -g eslint bable-eslint
-" pip install flake8 autopep8
+" pip install flake8 autopep8 mypy
 " {
 "    "extends": "standard",
 "    "parser": "babel-eslint"
 " }
 
 let g:ale_linters = {
-            \ 'python': ['flake8'],
-            \ 'reStructuredText': ['rstcheck']
+            \ 'python': ['flake8', 'mypy'],
+            \ 'reStructuredText': ['rstcheck'],
+            \ 'go': ['go build', 'golint', 'gofmt', 'go vet', 'goimports'],
             \ }
 
 " let g:syntastic_python_flask8_post_args="--max-line-length=120"
-let g:ale_fixers = {'python': ['remove_trailing_lines', 'trim_whitespace', 'autopep8']}
+let g:ale_python_mypy_options = '--ignore-missing-imports --follow-imports=skip --no-strict-optional'
+let g:ale_rust_cargo_use_check = 1
+let g:ale_rust_cargo_check_all_targets = 1
+let g:ale_fixers = {'python': ['remove_trailing_lines', 'trim_whitespace', 'autopep8'], 'go': ['goimports', 'gofmt']}
 nmap <silent> <C-p> <Plug>(ceale_previous_wrap)
 nmap <silent> <C-n> <Plug>(ale_next_wrap)
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '✘'
-highlight ALEErrorSign ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
-highlight ALEWarningSign ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 let g:ale_cache_executable_check_failures = 1
-let g:ale_set_highlights = 0 "ban ale's error and warning highlights
+let g:ale_set_highlights = 0 " disable ale's error and warning highlights
+highlight ALEErrorSign ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+highlight ALEWarningSign ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 highlight ALEErrorSign ctermbg=NONE ctermfg=red guibg=NONE guifg=#e0211d
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow guibg=NONE guifg=yellow
-highlight ALEWarningLine ctermbg=NONE ctermfg=yellow guibg=NONE guifg=yellow
+highlight ALEWarningLine ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 highlight ALEErrorLine ctermbg=NONE ctermfg=red guibg=NONE guifg=#e0211d
 highlight ALEInfoLine ctermbg=NONE ctermfg=black guibg=NONE guifg=#e18254
 
 
-
-" YouCompleteMe 相关配置
-" 全局路径配置
-" let g:ycm_max_num_candidates = 15
-" let g:ycm_max_num_identifier_candidates = 8
+" YouCompleteMe
 " let g:ycm_cache_omnifunc=0 "禁止缓存匹配项, 每次重新生成"
+let g:ycm_server_python_interpreter = '/usr/bin/python3'
+let g:ycm_python_binary_path = 'python3'
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_server_keep_logfiles = 1
-let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_max_num_candidates = 14
+let g:ycm_max_num_identifier_candidates = 7
 let g:ycm_seed_identifiers_with_syntax=1 "语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
+set completefunc=youcompleteme#Complete
 set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
+let g:ycm_global_ycm_extra_conf = "~/.ycm_extra_conf.py"
+" autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
 " 跳转到定义GoToDefinition
 " 跳转到声明GoToDeclaration
 " 以及两者的合体GoToDefinitionElseDeclaration
@@ -346,24 +349,39 @@ nnoremap <F6> :YcmForceCompileAndDiagnostics<CR>    "force recomile with syntast
 " nnoremap <leader>lc :lclose<CR>   "close locationlist
 inoremap <leader><leader> <C-x><C-o>
 let g:ycm_cache_omnifunc=0
-"在注释输入中也能补全
 let g:ycm_complete_in_comments = 1
-"在字符串输入中也能补全
+let g:ycm_complete_in_strings = 1
 let g:ycm_show_diagnostics_ui = 0 "close syntax checked
+let g:ycm_filetype_blacklist = {
+      \ 'tagbar' : 1,
+      \ 'nerdtree' : 1,
+      \}
+let g:ycm_semantic_triggers =  {
+  \   'c' : ['->', '.'],
+  \   'objc' : ['->', '.'],
+  \   'cpp,objcpp' : ['->', '.', '::'],
+  \   'perl' : ['->'],
+  \   'php' : ['->', '::'],
+  \   'cs,java,javascript,d,vim,ruby,python,perl6,scala,vb,elixir,go' : ['.'],
+  \   'lua' : ['.', ':'],
+  \   'erlang' : [':'],
+  \ }
+
 
 
 " NERDTree setting
 let NERDTreeShowLineNumbers=1
 let NERDTreeAutoCenter=1
-" 是否显示隐藏文件
-let NERDTreeShowHidden=1
-" 设置宽度
-let NERDTreeWinSize=28
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-" 按下 F2 调出/隐藏 NERDTree
+let NERDTreeShowHidden=1 " 是否显示隐藏文件
+let NERDTreeWinSize=30 " 设置宽度
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" 按下 F1 调出/隐藏 NERDTree
 map <F2> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+let g:NERDTreeIgnore = ['\.pyc$', '^__pycache__$', '\.git$', '^migrations$', 'node_modules', '^.pytest_cache$', '^.mypy_cache$']
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 
 " lightline
@@ -372,33 +390,40 @@ let g:lightline = {
       \ }
 
 " vim-go
-let g:go_template_autocreate = 0
-let g:go_fmt_command = "goimports"
-let g:go_fmt_fail_silently = 1
-let g:go_fmt_command = "gofmt"
-let g:go_fmt_autosave = 0
-let g:go_version_warning = 0
-let g:go_list_type = "quickfix"
-let g:go_fmt_fail_silently = 0
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_generate_tags = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
-let g:go_term_height = 10
+" let g:go_template_autocreate = 0
+" let g:go_fmt_command = "goimports"
+" let g:go_fmt_fail_silently = 1
+" let g:go_fmt_command = "gofmt"
+" let g:go_fmt_autosave = 0
+" let g:go_version_warning = 0
+" let g:go_list_type = "quickfix"
+" let g:go_fmt_fail_silently = 0
+" let g:go_highlight_types = 1
+" let g:go_highlight_fields = 1
+" let g:go_highlight_functions = 1
+" let g:go_highlight_function_calls = 1
+" let g:go_highlight_extra_types = 1
+" let g:go_highlight_generate_tags = 1
+" let g:go_highlight_build_constraints = 1
+" let g:go_highlight_methods = 1
+" let g:go_highlight_operators = 1
+" let g:go_highlight_structs = 1
+" let g:go_term_height = 10
 
 
-autocmd FileType go nnoremap <leader>b  <Plug>(go-build)
+" autocmd FileType go nnoremap <leader>b  <Plug>(go-build)
 " autocmd FileType go nmap <leader>r  <Plug>(go-run-split)
-autocmd FileType go nnoremap <leader>r  :exec '!go run' shellescape(@%, 1)<cr>
-autocmd FileType go nnoremap <Leader>v <Plug>(go-def-split)
-autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+" autocmd FileType go nnoremap <leader>r  :exec '!go run' shellescape(@%, 1)<cr>
+" autocmd FileType go nnoremap <Leader>v <Plug>(go-def-split)
+" autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
-" vim cursorword
-autocmd InsertEnter * let b:cursorword = 0
-autocmd InsertLeave * let b:cursorword = 1
+
+" LeaderF
+let g:Lf_ReverseOrder = 1
+let g:Lf_WindowHeight = 0.30
+let g:Lf_CursorBlink = 0
+let g:Lf_WildIgnore = {
+            \ 'dir': ['.svn','.git','.hg', 'anaconda3', 'Download', 'node_modules', '.*', 'venv', 'migrations', '__pycache__'],
+            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[cod]']
+            \}
+

@@ -22,6 +22,8 @@ call plug#begin('~/.config/nvim/plugged')
 " Plug 'junegunn/goyo.vim'
 " Plug 'lfv89/vim-interestingwords'
 " Plug 'zchee/nvim-go', { 'do': 'make'}
+" Plug 'Valloric/YouCompleteMe', {'on': [], 'do': './install.py --clang-completer --system-libclangr --go-completer --js-completer --rust-completer' }
+
 
 " complete
 Plug 'Shougo/deoplete.nvim'
@@ -30,6 +32,8 @@ Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'carlitux/deoplete-ternjs', {'do': 'npm install -g tern'}
 Plug 'sebastianmarkow/deoplete-rust'
 Plug 'zchee/deoplete-clang'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+
 
 " find & search & move
 Plug 'junegunn/fzf.vim'
@@ -91,7 +95,6 @@ function! Init()
     endif
 endfunction
 
-
 " vim leader key mapping
 source ~/.config/nvim/config/mapping.vim
 
@@ -112,7 +115,6 @@ source ~/.config/nvim/config/autocmd.vim
 
 " vim-gitgutter / vim-lazygutter
 let g:gitgutter_map_keys = 0 " 关闭所有键位映射
-
 
 " vim-autoformat
 " pip install yapf, autopep8
@@ -270,12 +272,13 @@ let g:tagbar_type_go = {
 
 " make neovim faster without search python
 let g:python3_host_skip_check=1
-" let g:python3_host_prog = '/home/neo/miniconda3/bin/python'
-let g:python3_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/home/neo/miniconda3/bin/python'
+" let g:python3_host_prog = '/usr/bin/python'
 let g:python_host_skip_check=1
 let g:python_host_prog = '/usr/bin/python2'
 
 " leaderf
+let g:Lf_ReverseOrder = 1
 let g:Lf_WindowHeight = 0.30
 let g:Lf_CursorBlink = 0
 let g:Lf_WildIgnore = {
