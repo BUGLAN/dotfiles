@@ -30,6 +30,7 @@ Plug 'Yggdroot/LeaderF', {'on': ['LeaderfFile', 'LeaderfFunction']}
 Plug 'easymotion/vim-easymotion', {'on': ['<Plug>(easymotion-bd-w)', '<Plug>(easymotion-bd-jk)']}
 
 " syntax highlight
+Plug 'Glench/Vim-Jinja2-Syntax', {'for': 'html'}
 Plug 'liuchengxu/space-vim-dark'
 Plug 'vim-python/python-syntax', {'for': 'python'}
 Plug 'ekalinin/Dockerfile.vim', {'for': 'dockerfile'}
@@ -125,6 +126,8 @@ map <leader><leader>t :LeaderfFunction!<cr>
 map  <leader><leader>w <Plug>(easymotion-bd-w)
 map  <leader><leader>s <Plug>(easymotion-bd-jk)
 map <F1> <nop>
+map j gj
+map k gk
 vnoremap <leader>y "+y
 vnoremap <leader>p "+p
 " nnoremap <F5> :vsplit $MYVIMRC<cr>
@@ -323,7 +326,6 @@ highlight ALEInfoLine ctermbg=NONE ctermfg=black guibg=NONE guifg=#e18254
 
 
 " YouCompleteMe
-" let g:ycm_cache_omnifunc=0 "禁止缓存匹配项, 每次重新生成"
 let g:ycm_server_python_interpreter = '/usr/bin/python3'
 let g:ycm_python_binary_path = 'python3'
 let g:ycm_seed_identifiers_with_syntax = 1
@@ -333,14 +335,9 @@ let g:ycm_server_keep_logfiles = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_max_num_candidates = 14
 let g:ycm_max_num_identifier_candidates = 7
-let g:ycm_seed_identifiers_with_syntax=1 "语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
-set completefunc=youcompleteme#Complete
-set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+" set completefunc=youcompleteme#Complete
+set completeopt=longest,menu   " 让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
 let g:ycm_global_ycm_extra_conf = "~/.ycm_extra_conf.py"
-" autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
-" 跳转到定义GoToDefinition
-" 跳转到声明GoToDeclaration
-" 以及两者的合体GoToDefinitionElseDeclaration
 nnoremap <leader>j :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>k :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>l :YcmCompleter GoToDefinitionElseDeclaration<CR>

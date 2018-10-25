@@ -26,17 +26,17 @@ call plug#begin('~/.config/nvim/plugged')
 
 
 " complete
-Plug 'Shougo/deoplete.nvim'
-Plug 'zchee/deoplete-jedi', {'for': 'python'}
-Plug 'zchee/deoplete-go', { 'do': 'make'}
-Plug 'carlitux/deoplete-ternjs', {'do': 'npm install -g tern'}
-Plug 'sebastianmarkow/deoplete-rust'
-Plug 'zchee/deoplete-clang'
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+" Plug 'Shougo/deoplete.nvim'
+" Plug 'zchee/deoplete-jedi', {'for': 'python'}
+" Plug 'zchee/deoplete-go', { 'do': 'make'}
+" Plug 'carlitux/deoplete-ternjs', {'do': 'npm install -g tern'}
+" Plug 'sebastianmarkow/deoplete-rust'
+" Plug 'zchee/deoplete-clang'
+Plug 'Valloric/YouCompleteMe', {'on': [], 'do': './install.py --clang-completer --system-libclang' }
 
 
 " find & search & move
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/LeaderF', {'on': ['LeaderfFile', 'LeaderfFunction']}
 Plug 'easymotion/vim-easymotion', {'on': ['<Plug>(easymotion-bd-w)', '<Plug>(easymotion-bd-jk)']}
 
@@ -91,7 +91,8 @@ let g:lazy_load = 0
 function! Init()
     if g:lazy_load == 0
         let g:lazy_load = 1
-        call deoplete#enable()
+        " call deoplete#enable()
+        call plug#load('YouCompleteMe')
     endif
 endfunction
 
@@ -102,7 +103,7 @@ source ~/.config/nvim/config/mapping.vim
 source ~/.config/nvim/config/setting.vim
 
 " deoplete setting
-source ~/.config/nvim/config/deoplete.vim
+" source ~/.config/nvim/config/deoplete.vim
 
 " autocmd config
 source ~/.config/nvim/config/autocmd.vim
@@ -130,12 +131,6 @@ noremap <leader>a :Autoformat<CR>
 
 " markdown preview
 let g:mkdp_auto_close = 0
-
-
-" vim-instant-markdown
-" sudo npm install instant-markdown-d
-" let g:instant_markdown_autostart = 0
-" let g:instant_markdown_autostart = 0
 
 
 " ale
@@ -291,9 +286,6 @@ let g:Lf_WildIgnore = {
 nmap <silent> <C-_> <Plug>(pydocstring)
 autocmd FileType python noremap <leader>d :Pydocstring<cr>
 
-" vim-startify
-" let g:startify_enable_unsafe = 1
-
 " rainbow
 let g:rainbow_active = 1
 let g:rainbow_conf = {
@@ -302,17 +294,6 @@ let g:rainbow_conf = {
             \   'operators': '_,_',
             \}
 
-
-
-" Ack.vim
-" let g:ackprg = 'ag --nogroup --nocolor --column'
-
-" fzf.vim
-" sudo pacman -S the_silver_searcher fzf
-nnoremap <silent> <C-p> :Files<CR>
-" leader s[earch] code snippets
-nnoremap <leader>s :Ag<cr>
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--color-path="0;33"', <bang>0)
 
 " vim-devicons
 " sudo pacman -S nerd-fonts-complete
@@ -328,23 +309,10 @@ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--color-path="0;33"', <ban
 " endfunction
 
 
-
-" vim youdao translater
-vnoremap <silent> <C-T> :<C-u>Ydv<CR>
-nnoremap <silent> t :<C-u>Ydc<CR>
-noremap <leader><leader>d :<C-u>Yde<CR>
-
-
 " vim easy text align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-
-" vim-polyglot
-" let g:polyglot_disabled = ['markdown']
-" augroup plug_xtype
-" autocmd FileType * if expand('<amatch>') != 'markdown' | call plug#load('vim-polyglot') | execute 'autocmd! plug_xtype' | endif
-" augroup END
 
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
@@ -399,24 +367,9 @@ let g:go_highlight_structs = 1
 let g:go_term_height = 10
 
 autocmd FileType go nnoremap <leader>b  <Plug>(go-build)
-" autocmd FileType go nmap <leader>r  <Plug>(go-run-split)
 autocmd FileType go nnoremap <leader>r  :exec '!go run' shellescape(@%, 1)<cr>
 autocmd FileType go nnoremap <Leader>v <Plug>(go-def-split)
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
-
-
-" vim cursorword
-" autocmd InsertEnter * let b:cursorword = 0
-" autocmd InsertLeave * let b:cursorword = 1
-
-
-" vim-racer
-" let g:racer_cmd = "/home/neo/.cargo/bin/racer"
-" let g:racer_experimental_completer = 1
-" autocmd FileType rust nmap gd <Plug>(rust-def)
-" autocmd FileType rust nmap gs <Plug>(rust-def-split)
-" autocmd FileType rust nmap gx <Plug>(rust-def-vertical)
-" autocmd FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 
 " rust.vim
@@ -427,13 +380,24 @@ let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
 let g:rust_clip_command = 'xclip -selection clipboard'
 
-" LanguageClient-neovim
-" let g:LanguageClient_serverCommands = {
-" \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
-" \ }
 
-" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" " Or map each action separately
-" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+" YouCompleteMe
+let g:ycm_server_python_interpreter = '/usr/bin/python3'
+let g:ycm_python_binary_path = 'python3'
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_log_level = 'info'
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings=1
+let g:ycm_key_invoke_completion = '<c-z>'
+let g:ycm_global_ycm_extra_conf = "~/.ycm_extra_conf.py"
+set completeopt=longest,menu
+let g:ycm_semantic_triggers =  {
+            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+            \ 'cs,lua,javascript': ['re!\w{2}'],
+            \ }
+let g:ycm_filetype_blacklist = {
+      \ 'tagbar' : 1,
+      \ 'nerdtree' : 1,
+      \}
