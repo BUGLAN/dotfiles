@@ -159,6 +159,7 @@ for_window [class="netease-cloud-music"] floating enable resize set 800 600
 # support qt program which i program
 for_window [class="^qt*"] floating enable border normal
 for_window [class="obs"] floating enable
+for_window [class="Code"] floating enable
 
 # move app to window
 assign [class="Zeal"] 10
