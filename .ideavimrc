@@ -6,17 +6,22 @@ set ignorecase
 set smartcase
 set showmode
 set number
-set relativenumber
+" set relativenumber
 set scrolloff=3
 set history=100000
 set clipboard=unnamed
 
+" normal key mapping
 nnoremap L $
 nnoremap H ^
 nnoremap ; :
 nnoremap <tab> %
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
-" insert key map
+" insert key mapping
 inoremap <C-h> <Left>
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
@@ -25,9 +30,8 @@ inoremap <C-a> <Home>
 inoremap <C-e> <End>
 inoremap <C-d> <Delete>
 
-" normal key map
+" insert leader mapping
 inoremap <leader>w <Esc>
-inoremap <leader>c <c-e>;<cr>
 inoremap <leader>s []<left>
 inoremap <leader>b ()<left>
 inoremap <leader>e =
@@ -36,3 +40,8 @@ inoremap <leader>r -
 inoremap <leader>u _
 inoremap <leader>a +
 inoremap <leader>t {}<left>
+
+" filetype autocmd
+autocmd Filetype java,c,cpp inoremap <leader>c <c-e>;<cr>
+autocmd Filetype python inoremap <leader>c <c-e>:<cr>
+autocmd Filetype go inoremap <leader>c <c-e>{<cr>
