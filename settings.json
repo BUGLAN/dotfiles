@@ -1,36 +1,71 @@
 {
-  "vim.easymotion": true,
-  "vim.sneak": true,
-  "vim.incsearch": true,
-  "vim.useSystemClipboard": true,
-  "vim.useCtrlKeys": true,
-  "vim.hlsearch": true,
-  "vim.insertModeKeyBindings": [{
-    "before": ["<leader>", "w"],
-    "after": ["<Esc>"]
-  }],
-  "vim.normalModeKeyBindingsNonRecursive": [{
-    "before": ["H"],
-    "after": ["^"]
-  },
-  {
-    "before": ["L"],
-    "after": ["$"]
-  },
-  {
-    "before": ["<tab>"],
-    "after": ["%"]
-  },
-
-  {
-    "before": ["<leader>", "<space>"],
-    "commands": [":nohl"]
-  },
-  {
-    "before": [";"],
-    "after": [":"]
-  },
-
-  ],
-  "vim.leader": ",",
+    "files.autoSave": "afterDelay",
+    "window.zoomLevel": 0,
+    "editor.fontSize": 18,
+    "workbench.iconTheme": "material-icon-theme",
+    "vim.easymotion": true,
+    "vim.sneak": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "<leader>",
+                "w"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "H"
+            ],
+            "after": [
+                "^"
+            ]
+        },
+        {
+            "before": [
+                "L"
+            ],
+            "after": [
+                "$"
+            ]
+        },
+        {
+            "before": [
+                "<tab>"
+            ],
+            "after": [
+                "%"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "<space>"
+            ],
+            "commands": [
+                ":nohl"
+            ]
+        },
+        {
+            "before": [
+                ";"
+            ],
+            "after": [
+                ":"
+            ]
+        },
+    ],
+    "vim.leader": ",",
+    "editor.fontFamily": "monaco, 'monaco', monaco",
+    "workbench.colorTheme": "Atom One Dark",
+    "terminal.integrated.shell.windows": "D:\\Git\\bin\\bash.exe",
+    "explorer.confirmDelete": false,
 }
