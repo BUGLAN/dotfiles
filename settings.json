@@ -68,4 +68,7 @@
     "workbench.colorTheme": "Atom One Dark",
     "terminal.integrated.shell.windows": "D:\\Git\\bin\\bash.exe",
     "explorer.confirmDelete": false,
+    "python.autoComplete.addBrackets": true,
+    "go.useCodeSnippetsOnFunctionSuggest": true
+
 }
