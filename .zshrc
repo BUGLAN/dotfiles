@@ -27,34 +27,37 @@ source $ZSH/oh-my-zsh.sh
 # alias python3=/usr/bin/python
 
 # miniconda
-export PATH=/home/neo/miniconda3//bin:$PATH
+# export PATH=/home/neo/miniconda3//bin:$PATH
 # export PYTHONPATH=$PYTHONPATH:/home/neo/miniconda3//lib/python3.6/site-packages
-alias pipa=/home/neo/miniconda3/bin/pip
+# alias pipa=/home/neo/miniconda3/bin/pip
 
 # 自己的翻译小工具
-alias w="python ~/repos/words/words.py"
-alias t="python ~/repos/tools/youdaotranslate/youdaotranslate/main.py"
-alias word="nvim ~/repos/notes/English/words.md"
+# alias w="python ~/repos/words/words.py"
+# alias t="python ~/repos/tools/youdaotranslate/youdaotranslate/main.py"
+# alias word="nvim ~/repos/notes/English/words.md"
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+# export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
 # zsh-autosuggestions
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# pipenv complete
+# neo python path
 export PATH="/home/neo/.local/bin:$PATH"
+
+# pipenv complete
 eval "$(pipenv --completion)"
+
 # export PATH="/usr/bin:$PATH"
 # export PYTHONPATH=$PYTHONPATH:/usr/lib/python3.7/site-packages
 # pipenv with anaconda3
 # pipenv --python path/to/anaconda/bin/python
 
-# goland env
-export GOROOT=/usr/lib/go
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+# go env
+# export GOROOT=/usr/lib/go
+# export GOPATH=$HOME/go
+# export PATH=$PATH:$GOPATH/bin
 
 
 # repeat fast
@@ -74,7 +77,7 @@ source /usr/share/autojump/autojump.zsh
 
 
 # python path
-export PATH="/usr/bin:$PATH"
+# export PATH="/usr/bin:$PATH"
 
 # save path on cd
 function cd {
@@ -88,13 +91,13 @@ then cd `cat ~/.last_dir`
 fi
 
 # rust path
-export PATH="/home/neo/.cargo/bin:$PATH"
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+# export PATH="/home/neo/.cargo/bin:$PATH"
+# export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 
 # thefuck
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 
 # tmux
-export TERM=xterm-256color
-alias tnew="tmux new -s"
+# export TERM=xterm-256color
+# alias tnew="tmux new -s"

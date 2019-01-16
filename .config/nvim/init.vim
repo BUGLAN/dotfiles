@@ -267,7 +267,7 @@ let g:tagbar_type_go = {
 
 " make neovim faster without search python
 let g:python3_host_skip_check=1
-let g:python3_host_prog = '/home/neo/miniconda3/bin/python'
+let g:python3_host_prog = '/usr/bin/python'
 " let g:python3_host_prog = '/usr/bin/python'
 let g:python_host_skip_check=1
 let g:python_host_prog = '/usr/bin/python2'
@@ -382,7 +382,7 @@ let g:rust_clip_command = 'xclip -selection clipboard'
 
 
 " YouCompleteMe
-let g:ycm_server_python_interpreter = '/usr/bin/python3'
+let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_python_binary_path = 'python3'
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_show_diagnostics_ui = 0
