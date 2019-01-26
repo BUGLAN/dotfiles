@@ -32,7 +32,7 @@ call plug#begin('~/.config/nvim/plugged')
 " Plug 'carlitux/deoplete-ternjs', {'do': 'npm install -g tern'}
 " Plug 'sebastianmarkow/deoplete-rust'
 " Plug 'zchee/deoplete-clang'
-Plug 'Valloric/YouCompleteMe', {'on': [], 'do': './install.py --clang-completer --system-libclang' }
+Plug 'Valloric/YouCompleteMe', {'on': [], 'do': './install.py --clang-completer --system-libclang --ts-completer' }
 
 
 " find & search & move
@@ -59,7 +59,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'jiangmiao/auto-pairs'
 Plug 'w0rp/ale'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'iamcco/markdown-preview.vim', {'for': 'markdown'}
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown'}
 Plug 'Chiel92/vim-autoformat', {'on': 'Autoformat'}
 Plug 'sgur/vim-lazygutter'
 Plug 'SirVer/ultisnips'
@@ -123,13 +123,14 @@ let g:gitgutter_map_keys = 0 " 关闭所有键位映射
 " let g:formatterpath = ['/usr/bin/python']
 let g:formatdef_harttle = '"astyle --style=attach --pad-oper"'
 let g:formatters_cpp = ['harttle']
-let g:formatter_yapf_style = 'pep8'
 let g:formatters_python= ['yapf']
+let g:formatter_yapf_style = 'pep8'
 let g:formatters_rust=['rustfmt']
-noremap <leader>a :Autoformat<CR>
+
+autocmd FileType python noremap <leader>a :Isort<CR>:Autoformat<CR>
 
 
-" markdown preview
+" markdown-preview.nvim
 let g:mkdp_auto_close = 0
 
 
@@ -169,14 +170,16 @@ highlight ALEErrorLine ctermbg=NONE ctermfg=red guibg=NONE guifg=#e0211d
 highlight ALEInfoLine ctermbg=NONE ctermfg=black guibg=NONE guifg=#e18254
 
 
-" NERDTree setting
+" NERDTred setting
+let NERDTreeDirArrows=0
 let NERDTreeShowLineNumbers=1
 let NERDTreeAutoCenter=1
 let NERDTreeShowHidden=1 " 是否显示隐藏文件
 let NERDTreeWinSize=30 " 设置宽度
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-" 按下 F1 调出/隐藏 NERDTree
+" 按下 F2 调出/隐藏 NERDTree
 map <F2> :NERDTreeToggle<CR>
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
 let g:NERDTreeIgnore = ['\.pyc$', '^__pycache__$', '\.git$', '^migrations$', 'node_modules', '^.pytest_cache$', '^.mypy_cache$']

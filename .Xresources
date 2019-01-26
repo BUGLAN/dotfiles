@@ -1,6 +1,6 @@
 rofi.theme: android_notification
 rofi.lines: 10
-rofi.font: WenQuanYi Micro Hei 16
+rofi.font: Monaco 16
 rofi.columns: 1
 rofi.fixed-num-lines: true
 rofi.hide-scrollbar: true
