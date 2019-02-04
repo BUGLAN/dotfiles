@@ -32,7 +32,8 @@ call plug#begin('~/.config/nvim/plugged')
 " Plug 'carlitux/deoplete-ternjs', {'do': 'npm install -g tern'}
 " Plug 'sebastianmarkow/deoplete-rust'
 " Plug 'zchee/deoplete-clang'
-Plug 'Valloric/YouCompleteMe', {'on': [], 'do': './install.py --clang-completer --system-libclang --ts-completer' }
+Plug 'Valloric/YouCompleteMe', {'on': [], 'do': './install.py --clang-completer --system-libclang --tern-complete' }
+Plug 'ternjs/tern_for_vim', {'do': 'npm install'} "https://medium.com/vim-drops/javascript-autocompletion-on-vim-4fea7f6934e2
 
 
 " find & search & move
@@ -51,6 +52,8 @@ Plug 'luochen1990/rainbow'
 Plug 'godlygeek/tabular', {'for': 'markdown', 'on': []}
 " Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'cespare/vim-toml', {'for': 'toml'}
+Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 
 " unit
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -128,6 +131,8 @@ let g:formatter_yapf_style = 'pep8'
 let g:formatters_rust=['rustfmt']
 
 autocmd FileType python noremap <leader>a :Isort<CR>:Autoformat<CR>
+" npm install -g js-beautify eslint jslint
+autocmd FileType javascript noremap <leader>a :Autoformat<CR>
 
 
 " markdown-preview.nvim
@@ -385,6 +390,7 @@ let g:rust_clip_command = 'xclip -selection clipboard'
 
 
 " YouCompleteMe
+let g:ycm_cache_omnifunc=1
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_python_binary_path = 'python3'
 let g:ycm_add_preview_to_completeopt = 0
@@ -404,3 +410,7 @@ let g:ycm_filetype_blacklist = {
       \ 'tagbar' : 1,
       \ 'nerdtree' : 1,
       \}
+if !exists("g:ycm_semantic_triggers")
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers['typescript'] = ['.']
