@@ -99,5 +99,12 @@ fi
 # eval $(thefuck --alias)
 
 # tmux
-# export TERM=xterm-256color
-# alias tnew="tmux new -s"
+export TERM=xterm-256color
+alias tnew="tmux new -s"
+
+
+alias vim="nvim"
+
+alias pipi="pip install -i https://pypi.tuna.tsinghua.edu.cn/simple"
+alias pipenvi="pipenv install -i https://pypi.tuna.tsinghua.edu.cn/simple"
+alias npmi="npm install --registry=https://registry.npm.taobao.org"
