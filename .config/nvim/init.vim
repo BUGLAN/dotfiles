@@ -126,13 +126,14 @@ let g:gitgutter_map_keys = 0 " 关闭所有键位映射
 " let g:formatterpath = ['/usr/bin/python']
 let g:formatdef_harttle = '"astyle --style=attach --pad-oper"'
 let g:formatters_cpp = ['harttle']
-let g:formatters_python= ['yapf']
+let g:formatters_python= ['autopep8']
 let g:formatter_yapf_style = 'pep8'
 let g:formatters_rust=['rustfmt']
 
-autocmd FileType python noremap <leader>a :Isort<CR>:Autoformat<CR>
+" autocmd FileType python noremap <leader>a :Isort<CR>:Autoformat<CR>
+autocmd FileType python noremap <leader>a :Isort<CR>
 " npm install -g js-beautify eslint jslint
-autocmd FileType javascript noremap <leader>a :Autoformat<CR>
+autocmd FileType javascript,vue noremap <leader>a :Autoformat<CR>
 
 
 " markdown-preview.nvim
