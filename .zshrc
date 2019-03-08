@@ -9,6 +9,7 @@ git
 zsh-syntax-highlighting
 )
 
+
 # change caps & ctrl
 setxkbmap -option ctrl:swapcaps
 
@@ -57,8 +58,8 @@ eval "$(pipenv --completion)"
 
 # go env
 # export GOROOT=/usr/lib/go
-# export GOPATH=$HOME/go
-# export PATH=$PATH:$GOPATH/bin
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 
 
 # repeat fast
@@ -109,3 +110,11 @@ alias vim="nvim"
 alias pipi="pip install -i https://pypi.tuna.tsinghua.edu.cn/simple"
 alias pipenvi="pipenv install -i https://pypi.tuna.tsinghua.edu.cn/simple"
 alias npmi="npm install --registry=https://registry.npm.taobao.org"
+
+
+# disable underline
+ZH_HIGHLIGHT_STYLES[path]=none
+ZSH_HIGHLIGHT_STYLES[path_prefix]=none
+
+http_proxy='http://127.0.0.1:1080'
+https_proxy='https://127.0.0.1:1080'
