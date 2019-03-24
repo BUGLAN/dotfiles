@@ -1,12 +1,20 @@
 {
+    "workbench.colorTheme": "Gruvbox Dark Medium",
+    "explorer.confirmDelete": false,
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.mypy_cache": true,
+        "**/.pytest_cahce": true,
+        "**/.vscode": true,
+        "**/*.py[cod]": true,
+        "**/node_modules": true
+    },
+    "editor.fontFamily": "Monaco, Monaco, 'Courier New', monospace",
     "files.autoSave": "afterDelay",
-    "window.zoomLevel": 0,
-    "editor.fontSize": 18,
     "workbench.iconTheme": "material-icon-theme",
-    "vim.easymotion": true,
-    "vim.sneak": true,
-    "vim.incsearch": true,
-    "vim.useSystemClipboard": true,
+    "window.zoomLevel": 1,
+    "workbench.startupEditor": "newUntitledFile",
+    "extensions.ignoreRecommendations": true,
     "vim.useCtrlKeys": true,
     "vim.hlsearch": true,
     "vim.insertModeKeyBindings": [
@@ -23,18 +31,18 @@
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": [
-                "H"
+                "H",
             ],
             "after": [
-                "^"
+                "^",
             ]
         },
         {
             "before": [
-                "L"
+                "L",
             ],
             "after": [
-                "$"
+                "$",
             ]
         },
         {
@@ -64,11 +72,4 @@
         },
     ],
     "vim.leader": ",",
-    "editor.fontFamily": "monaco, 'monaco', monaco",
-    "workbench.colorTheme": "Atom One Dark",
-    "terminal.integrated.shell.windows": "D:\\Git\\bin\\bash.exe",
-    "explorer.confirmDelete": false,
-    "python.autoComplete.addBrackets": true,
-    "go.useCodeSnippetsOnFunctionSuggest": true
-
 }
