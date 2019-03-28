@@ -40,6 +40,7 @@ inoremap <leader>r -
 inoremap <leader>u _
 inoremap <leader>a +
 inoremap <leader>t {}<left>
+inoremap <leader>c <Esc>A:<return><tab>
 
 " filetype autocmd
 autocmd Filetype java,c,cpp inoremap <leader>c <c-e>;<cr>
