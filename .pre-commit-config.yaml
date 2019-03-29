@@ -1,0 +1,11 @@
+-   repo: git://github.com/pre-commit/pre-commit-hooks
+    sha: v0.7.1
+    hooks:
+    -   id: trailing-whitespace
+    -   id: autopep8-wrapper
+    -   id: flake8
+-   repo: https://github.com/pre-commit/mirrors-isort
+    rev: v4.3.16
+    hooks:
+    -   id: isort
+
