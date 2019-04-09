@@ -3,6 +3,7 @@
     "explorer.confirmDelete": false,
     "files.exclude": {
         "**/__pycache__": true,
+        "**/.idea": true,
         "**/.mypy_cache": true,
         "**/.pytest_cahce": true,
         "**/.vscode": true,
@@ -12,7 +13,7 @@
     "editor.fontFamily": "Monaco, Monaco, 'Courier New', monospace",
     "files.autoSave": "afterDelay",
     "workbench.iconTheme": "material-icon-theme",
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 2,
     "workbench.startupEditor": "newUntitledFile",
     "extensions.ignoreRecommendations": true,
     "vim.useCtrlKeys": true,
@@ -72,4 +73,5 @@
         },
     ],
     "vim.leader": ",",
+    "explorer.confirmDragAndDrop": false,
 }
