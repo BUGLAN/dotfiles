@@ -108,31 +108,44 @@ export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 export PATH="/usr/local/Cellar/python/3.7.2_2/Frameworks/Python.framework/Versions/3.7/bin:$PATH"
 export PATH="/Users/lan/Library/Python/3.7/bin:$PATH"
 
+# mysql path
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+
+# go path
+export GOPATH=$HOME/go
+
+# go proxy
+export GO111MODULE=on
+# export GOPROXY=https://goproxy.io
+
 # autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 # thefuck
-eval $(thefuck --alias --enable-experimental-instant-mode)
-
-# disable underline
-ZH_HIGHLIGHT_STYLES[path]=none
-ZSH_HIGHLIGHT_STYLES[path_prefix]=none
-
+eval $(thefuck --alias)
 # alias
 alias vim="nvim"
 alias pip="pip3"
 alias python="python3"
 
 # pipenv complete
-eval "$(pipenv --completion)"
+# eval "$(pipenv --completion)"
 
-# save path on cd
-function cd {
-    builtin cd $@
-    pwd > ~/.last_dir
-}
-
-# restore last saved path
-if [ -f ~/.last_dir ]
-then cd `cat ~/.last_dir`
+# bash-insulter
+if [ -f /etc/bash.command-not-found ]; then
+    . /etc/bash.command-not-found
 fi
+
+
+# drone env
+export DRONE_SERVER=https://buglan.org
+export DRONE_TOKEN=YikVE8wwfrXIYC2hGprOIYAIxewGdCpB
+
+# rust env
+source $HOME/.cargo/env
+
+# rabbitmq path
+export PATH="/usr/local/Cellar/rabbitmq/3.7.14/sbin:$PATH"
+
+# zsh-completeions
+fpath=(/usr/local/share/zsh-completions $fpath)
