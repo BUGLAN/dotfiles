@@ -8,7 +8,7 @@ export ZSH="/Users/lan/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="bira"
+ZSH_THEME="steeef"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -138,8 +138,8 @@ fi
 
 
 # drone env
-export DRONE_SERVER=https://buglan.org
-export DRONE_TOKEN=YikVE8wwfrXIYC2hGprOIYAIxewGdCpB
+# export DRONE_SERVER=https://buglan.org
+# export DRONE_TOKEN=YikVE8wwfrXIYC2hGprOIYAIxewGdCpB
 
 # rust env
 source $HOME/.cargo/env
@@ -149,3 +149,6 @@ export PATH="/usr/local/Cellar/rabbitmq/3.7.14/sbin:$PATH"
 
 # zsh-completeions
 fpath=(/usr/local/share/zsh-completions $fpath)
+
+# typora
+alias typora="open -a typora"
