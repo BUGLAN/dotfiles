@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Gruvbox Dark Medium",
+    "workbench.colorTheme": "One Dark Pro Vivid",
     "explorer.confirmDelete": false,
     "files.exclude": {
         "**/__pycache__": true,
@@ -13,7 +13,7 @@
     "editor.fontFamily": "Monaco, Monaco, 'Courier New', monospace",
     "files.autoSave": "afterDelay",
     "workbench.iconTheme": "material-icon-theme",
-    "window.zoomLevel": 2,
+    "window.zoomLevel": 1,
     "workbench.startupEditor": "newUntitledFile",
     "extensions.ignoreRecommendations": true,
     "vim.useCtrlKeys": true,
@@ -27,7 +27,40 @@
             "after": [
                 "<Esc>"
             ]
-        }
+        },
+        {
+            "before": [
+                "<leader>", "b"
+            ],
+            "after": [
+                "(", ")"
+            ]
+        },
+        {
+            "before": [
+                "<leader>", "t"
+            ],
+            "after": [
+                "{", "}"
+            ]
+        },
+        {
+            "before": [
+                "<leader>", "e"
+            ],
+            "after": [
+                "="
+            ]
+        },
+        {
+            "before": [
+                "<leader>", "e"
+            ],
+            "after": [
+                "-"
+            ]
+        },
+
     ],
     "vim.normalModeKeyBindingsNonRecursive": [
         {
@@ -74,4 +107,18 @@
     ],
     "vim.leader": ",",
     "explorer.confirmDragAndDrop": false,
+    "go.useLanguageServer": true,
+    "breadcrumbs.enabled": true,
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
 }
