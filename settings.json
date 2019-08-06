@@ -60,6 +60,19 @@
                 "-"
             ]
         },
+        {
+            "before": [
+                "<leader>", "c"
+            ],
+            "after": [
+                "<Esc>",
+                "A",
+                ":",
+                "<Esc>",
+                "o"
+            ]
+        }
+
 
     ],
     "vim.normalModeKeyBindingsNonRecursive": [
@@ -104,6 +117,18 @@
                 ":"
             ]
         },
+        {
+            "before": [
+                "<leader>", "c"
+            ],
+            "after": [
+                "A",
+                ":",
+                "<Esc>",
+                "o"
+            ]
+        }
+
     ],
     "vim.leader": ",",
     "explorer.confirmDragAndDrop": false,
