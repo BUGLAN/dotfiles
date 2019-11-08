@@ -20,6 +20,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+nnoremap <leader><space> :nohl<return>
 
 " insert key mapping
 inoremap <C-h> <Left>
@@ -40,9 +41,17 @@ inoremap <leader>r -
 inoremap <leader>u _
 inoremap <leader>a +
 inoremap <leader>t {}<left>
-inoremap <leader>c <Esc>A:<return><tab>
+inoremap <leader>c <Esc>A:<return>
+inoremap <leader>d :=
 
 " filetype autocmd
 autocmd Filetype java,c,cpp inoremap <leader>c <c-e>;<cr>
 autocmd Filetype python inoremap <leader>c <c-e>:<cr>
 autocmd Filetype go inoremap <leader>c <c-e>{<cr>
+
+autocmd Filetype go inoremap <leader>d :=
+
+" acejump
+map <leader><leader>w :action AceAction<CR>
+map <leader><leader>f :action AceTargetAction<CR>
+map <leader><leader>l :action AceLineAction<CR>
