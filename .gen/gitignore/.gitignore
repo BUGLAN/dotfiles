@@ -1,0 +1,15 @@
+# python file
+*.py[cod]
+__pycache__
+.mypy_cache
+.pytest_cache
+
+# dist files
+build
+dist
+*.egg-info
+
+# editor files
+.idea
+.vscode
+.eggs
