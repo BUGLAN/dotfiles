@@ -118,3 +118,6 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 
 http_proxy='http://127.0.0.1:1080'
 https_proxy='https://127.0.0.1:1080'
+
+# brew disable auto update while install package
+export HOMEBREW_NO_AUTO_UPDATE=1
